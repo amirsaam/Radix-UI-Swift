@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "space-between-horizontally.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "component-instance.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

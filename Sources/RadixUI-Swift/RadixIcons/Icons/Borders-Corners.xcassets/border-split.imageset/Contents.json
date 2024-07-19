@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "border-split.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

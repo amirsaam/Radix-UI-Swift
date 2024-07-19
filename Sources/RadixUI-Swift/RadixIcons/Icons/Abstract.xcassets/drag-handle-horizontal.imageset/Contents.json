@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "drag-handle-horizontal.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

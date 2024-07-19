@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "card-stack-minus.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

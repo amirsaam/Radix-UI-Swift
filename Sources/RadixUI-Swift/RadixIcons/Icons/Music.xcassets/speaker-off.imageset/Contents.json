@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "speaker-off.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

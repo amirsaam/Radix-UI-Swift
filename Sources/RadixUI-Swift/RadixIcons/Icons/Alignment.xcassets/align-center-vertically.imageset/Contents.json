@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "align-center-vertically.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "overline.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

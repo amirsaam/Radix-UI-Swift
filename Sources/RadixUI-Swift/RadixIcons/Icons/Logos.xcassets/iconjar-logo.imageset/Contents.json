@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "iconjar-logo.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
