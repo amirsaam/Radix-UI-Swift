@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Register RadixIcons Catalog
-extension Bundle {
+public extension Bundle {
     static let radixUIBundle: Bundle = {
         // The actual bundle name observed in the build output
         let bundleName = "RadixUI-Swift_RadixUI-Swift"
