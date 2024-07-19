@@ -21,7 +21,7 @@ let package = Package(
         .target(
             name: "RadixUI-Swift",
             resources: [
-                .process("Resources"),
+                .copy("Resources"),
             ]
         ),
         .testTarget(
