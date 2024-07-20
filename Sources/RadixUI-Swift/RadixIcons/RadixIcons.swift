@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
-// MARK: - Register RadixIcons Catalog
+// MARK: - Make RadixUI assets available to client app
 public extension Bundle {
-    static let radixUIBundle: Bundle = {
+    static let radixUI: Bundle = {
         // The actual bundle name observed in the build output
         let bundleName = "RadixUI-Swift_RadixUI-Swift"
 
@@ -24,3 +25,16 @@ public extension Bundle {
     }()
 }
 
+/// Make `Label` accept a `bundle` input just like how `Image` does
+public extension Label where Title == Text, Icon == Image {
+    init(_ title: LocalizedStringKey, image: String, bundle: Bundle) {
+        // Define a closure that returns a Text view
+        let titleView: () -> Text = { Text(title) }
+        
+        // Define a closure that returns an Image view
+        let iconView: () -> Image = { Image(image, bundle: bundle) }
+        
+        // Initialize the Label with the closures
+        self.init(title: titleView, icon: iconView)
+    }
+}
