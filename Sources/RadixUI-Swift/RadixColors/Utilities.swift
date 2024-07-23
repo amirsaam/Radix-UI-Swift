@@ -26,11 +26,9 @@ public extension Color {
 }
 
 // MARK: - Dynamic Light/Dark Mode Color Extenstion
+#if canImport(UIKit)
 public extension UIColor {
-    convenience init(
-        light lightModeColor: @escaping @autoclosure () -> UIColor,
-        dark darkModeColor: @escaping @autoclosure () -> UIColor
-    ) {
+    convenience init(light lightModeColor: @escaping @autoclosure () -> UIColor, dark darkModeColor: @escaping @autoclosure () -> UIColor) {
         self.init { traitCollection in
             switch traitCollection.userInterfaceStyle {
             case .light:
@@ -43,15 +41,30 @@ public extension UIColor {
         }
     }
 }
-
 public extension Color {
-    init(
-        light lightModeColor: @escaping @autoclosure () -> Color,
-        dark darkModeColor: @escaping @autoclosure () -> Color
-    ) {
-        self.init(UIColor(
-            light: UIColor(lightModeColor()),
-            dark: UIColor(darkModeColor())
-        ))
+    init(light lightModeColor: @escaping @autoclosure () -> Color, dark darkModeColor: @escaping @autoclosure () -> Color) {
+        self.init(
+            UIColor(
+                light: UIColor(lightModeColor()),
+                dark: UIColor(darkModeColor())
+            )
+        )
     }
 }
+#elseif canImport(AppKit)
+public extension NSColor {
+    convenience init(light lightModeColor: @escaping @autoclosure () -> NSColor, dark darkModeColor: @escaping @autoclosure () -> NSColor) {
+        self.init(light: lightModeColor(), dark: darkModeColor())
+    }
+}
+public extension Color {
+    init(light lightModeColor: @escaping @autoclosure () -> Color, dark darkModeColor: @escaping @autoclosure () -> Color) {
+        self.init(
+            NSColor(
+                light: NSColor(lightModeColor()),
+                dark: NSColor(darkModeColor())
+            )
+        )
+    }
+}
+#endif
