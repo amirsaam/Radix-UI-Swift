@@ -2,7 +2,8 @@
   "images" : [
     {
       "filename" : "chat-bubble.svg",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {

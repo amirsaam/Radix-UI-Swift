@@ -2,7 +2,8 @@
   "images" : [
     {
       "filename" : "shadow.svg",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {
