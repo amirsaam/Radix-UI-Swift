@@ -31,24 +31,17 @@ public extension UIColor {
     convenience init(light lightModeColor: @escaping @autoclosure () -> UIColor, dark darkModeColor: @escaping @autoclosure () -> UIColor) {
         self.init { traitCollection in
             switch traitCollection.userInterfaceStyle {
-            case .light:
-                return lightModeColor()
-            case .dark:
-                return darkModeColor()
-            default:
-                return lightModeColor()
+            case .light: return lightModeColor()
+            case .dark: return darkModeColor()
+            default: return lightModeColor()
             }
         }
     }
 }
+
 public extension Color {
     init(light lightModeColor: @escaping @autoclosure () -> Color, dark darkModeColor: @escaping @autoclosure () -> Color) {
-        self.init(
-            UIColor(
-                light: UIColor(lightModeColor()),
-                dark: UIColor(darkModeColor())
-            )
-        )
+        self.init(UIColor(light: UIColor(lightModeColor()), dark: UIColor(darkModeColor())))
     }
 }
 #elseif canImport(AppKit)
@@ -57,14 +50,10 @@ public extension NSColor {
         self.init(light: lightModeColor(), dark: darkModeColor())
     }
 }
+
 public extension Color {
     init(light lightModeColor: @escaping @autoclosure () -> Color, dark darkModeColor: @escaping @autoclosure () -> Color) {
-        self.init(
-            NSColor(
-                light: NSColor(lightModeColor()),
-                dark: NSColor(darkModeColor())
-            )
-        )
+        self.init(NSColor(light: NSColor(lightModeColor()), dark: NSColor(darkModeColor())))
     }
 }
 #endif
