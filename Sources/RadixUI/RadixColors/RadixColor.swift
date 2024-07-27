@@ -71,3 +71,7 @@ public extension Color {
     static let whiteA11 = RadixColor.WhiteA.whiteA11
     static let whiteA12 = RadixColor.WhiteA.whiteA12
 }
+
+public extension Color {
+    static let myAwesomeClr = Color(UIColor(named: "testWhiteA12", in: .module, compatibleWith: nil)!)
+}
