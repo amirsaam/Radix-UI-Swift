@@ -21,6 +21,7 @@ let package = Package(
         .target(
             name: "RadixUI",
             resources: [
+                .process("RadixColors/RadixColors.xcassets"),
                 .process("RadixIcons/RadixIcons.xcassets")
             ]
         ),
