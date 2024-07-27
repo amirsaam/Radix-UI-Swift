@@ -26,7 +26,7 @@ let package = Package(
 
 Surely import the package
 ```swift
-import RadixUI_Swift
+import RadixUI
 ```
 
 Use colors as any other colors
@@ -73,7 +73,7 @@ Any PRs are welcomed:
 - [x] Add [Radix Icons](https://github.com/radix-ui/icons)
 - [ ] Add [Radix Primitives](https://github.com/radix-ui/primitives) (not-web ones)
 - [ ] Add [Radix Themes](https://github.com/radix-ui/themes) (I'm not sure)
-- [ ] Make a macOS ready version
+- [x] Make a macOS ready version
 - [ ] Write Xcode Tests
 - [ ] Make Pod
 - [x] Deploy Github Action
