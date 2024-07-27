@@ -1,5 +1,5 @@
 //
-//  RadixToggle.swift
+//  RadixSwitch.swift
 //
 //
 //  Created by Amir Mohammadi on 5/2/1403 AP.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-fileprivate struct RadixToggle: ToggleStyle {
+fileprivate struct RadixSwitch: ToggleStyle {
   
   @Environment(\.colorScheme) private var colorScheme
   
@@ -26,11 +26,13 @@ fileprivate struct RadixToggle: ToggleStyle {
       RoundedRectangle(cornerRadius: 16, style: .circular)
         .fill(configuration.isOn ? newOnColor : newOffColor)
         .frame(width: 42, height: 25)
+        .shadow(color: .blackA7, radius: 10, x: 0, y: 2)
         .overlay(
           Circle()
             .fill(newThumbColor)
             .frame(width: 21, height: 21)
             .offset(x: configuration.isOn ? 8 : -8)
+            .shadow(color: .blackA7, radius: 2, x: 0, y: 2)
         )
         .onTapGesture {
           withAnimation(.smooth(duration: 0.2)) {
@@ -42,7 +44,13 @@ fileprivate struct RadixToggle: ToggleStyle {
 }
 
 extension Toggle {
-    public func radixToggle(onColor: Color? = nil, offColor: Color? = nil, thumbColor: Color? = nil) -> some View {
-        self.toggleStyle(RadixToggle(onColor: onColor, offColor: offColor, thumbColor: thumbColor))
+    public func radixSwitch(onColor: Color? = nil, offColor: Color? = nil, thumbColor: Color? = nil) -> some View {
+        self.toggleStyle(
+            RadixSwitch(
+                onColor: onColor,
+                offColor: offColor,
+                thumbColor: thumbColor
+            )
+        )
     }
 }
