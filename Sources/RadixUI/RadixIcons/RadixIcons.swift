@@ -11,7 +11,7 @@ import Foundation
 public extension Bundle {
     static let radixUI: Bundle = {
         // The actual bundle name observed in the build output
-        let bundleName = "RadixUI-Swift_RadixUI-Swift"
+        let bundleName = "RadixUI_RadixUI"
 
         // Construct the URL for the bundle
         guard let bundleURL = Bundle.main.bundleURL
