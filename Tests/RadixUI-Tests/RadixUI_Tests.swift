@@ -1,7 +1,7 @@
 import XCTest
-@testable import RadixUI_Swift
+@testable import RadixUI
 
-final class RadixUI_SwiftTests: XCTestCase {
+final class RadixUI_Tests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest
