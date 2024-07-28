@@ -42,23 +42,30 @@ internal func radixColorToSwift(name: String) -> Color {
 
 /// Create `RadixAlphaColors` percise values for `Light` & `Dark` schemes
 #if canImport(UIKit)
-typealias PlatformColor = UIColor
+internal typealias PlatformColor = UIColor
 #elseif canImport(AppKit)
-typealias PlatformColor = NSColor
+internal typealias PlatformColor = NSColor
 #endif
 
 extension Color {
-    init(lightHex: String, darkHex: String) {
+    public init(lightHex: String, darkHex: String) {
         func colorFromHex(_ hex: String) -> PlatformColor {
             let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
             var rgba: UInt64 = 0
             Scanner(string: hex).scanHexInt64(&rgba)
 
-            let r = CGFloat((rgba & 0xff000000) >> 24) / 255.0
-            let g = CGFloat((rgba & 0x00ff0000) >> 16) / 255.0
-            let b = CGFloat((rgba & 0x0000ff00) >> 8) / 255.0
-            let a = CGFloat(rgba & 0x000000ff) / 255.0
-
+            let r, g, b, a: CGFloat
+            if hex.count == 8 {
+                r = CGFloat((rgba & 0xff000000) >> 24) / 255.0
+                g = CGFloat((rgba & 0x00ff0000) >> 16) / 255.0
+                b = CGFloat((rgba & 0x0000ff00) >> 8) / 255.0
+                a = CGFloat(rgba & 0x000000ff) / 255.0
+            } else {
+                r = CGFloat((rgba & 0xff0000) >> 16) / 255.0
+                g = CGFloat((rgba & 0x00ff00) >> 8) / 255.0
+                b = CGFloat(rgba & 0x0000ff) / 255.0
+                a = 1.0
+            }
             return PlatformColor(red: r, green: g, blue: b, alpha: a)
         }
 
