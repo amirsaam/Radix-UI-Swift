@@ -5,7 +5,7 @@
 [![License][license-image]][license-url]
 
 Since [Radix-UI](https://www.radix-ui.com) developers said it is not available to Mobile Development (like SwiftUI) and never be ([reference](https://github.com/radix-ui/themes/issues/522)), I decided to make it ready for myself to use it because I just like it so much.
-My inspiration for doing it is [Basics](https://swiftuibasics.com) website and the minimal and gorgeous design of Radix-UI but I should give credits to [Lingxi Li](https://github.com/lilingxi01/radix-colors-swift) for defining the colors but my issue with his work is it's a big chunk codes in a single file that makes Xcode not happy and increases the build time very much.
+My inspiration for doing it is [Basics](https://swiftuibasics.com) website and the minimal and gorgeous design of Radix-UI.
 
 ## Installation
 
@@ -35,7 +35,7 @@ Text("RadixUI-Swift")
   .foregroundColor(.crimson1)
 ```
 
-Use icons in `Image` with bundle name completely resizable
+Use icons in `Image` with bundle name completely customisable
 ```swift
 Image("github-logo", bundle: .radixUI)
   .resizable()
@@ -71,8 +71,8 @@ extension Label where Title == Text, Icon == SVGImage {
 Any PRs are welcomed:
 - [x] Add [Radix Colors](https://github.com/radix-ui/colors)
 - [x] Add [Radix Icons](https://github.com/radix-ui/icons)
-- [ ] Add [Radix Primitives](https://github.com/radix-ui/primitives) (not-web ones)
-- [ ] Add [Radix Themes](https://github.com/radix-ui/themes) (I'm not sure)
+- [ ] Add [Radix Primitives](https://github.com/radix-ui/primitives) (WIP)
+- [ ] Add [Radix Themes](https://github.com/radix-ui/themes) (WIP)
 - [x] Make a macOS ready version
 - [ ] Write Xcode Tests
 - [ ] Make Pod
