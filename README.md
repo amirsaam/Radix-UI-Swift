@@ -93,7 +93,6 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 ## Credits
 
 - [@WorkOS](https://github.com/workos) for [Radix-UI](https://github.com/radix-ui)
-- [Lingxi Li](https://github.com/lilingxi01) for [Radix-Colors-Swift](https://github.com/lilingxi01/radix-colors-swift)
 
 [swift-image]:https://img.shields.io/badge/swift-5.4-orange.svg
 [swift-url]: https://swift.org/
