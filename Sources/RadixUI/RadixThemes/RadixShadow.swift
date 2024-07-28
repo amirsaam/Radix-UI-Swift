@@ -32,14 +32,14 @@ extension View {
         self.modifier(
             RadixShadowModifier(
                 shadowLight: [
-                    (Color.grayA5.opacity(1), 0, 0, 0, 0),
-                    (Color.grayA2.opacity(0.5), 2, 0, 1.5, 0),
-                    (Color.blackA2.opacity(0.5), 2, 0, 1.5, 0)
+                    (.grayA5, 0, 0, 0, 0),
+                    (.grayA2, 2, 0, 1.5, 0),
+                    (.blackA2, 2, 0, 1.5, 0)
                 ], shadowDark: [
-                    (Color.grayA3.opacity(1), 0, 0, -1, 1),
-                    (Color.grayA3.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA5.opacity(0.5), 4, 0, 3, 0),
-                    (Color.grayA4.opacity(1), 0, 0, 0, 0)
+                    (.grayA3, 0, 0, -1, 1),
+                    (.grayA3, 0, 0, 0, 0),
+                    (.blackA5, 4, 0, 3, 0),
+                    (.grayA4, 0, 0, 0, 0)
                 ]
             )
         )
@@ -49,17 +49,17 @@ extension View {
         self.modifier(
             RadixShadowModifier(
                 shadowLight: [
-                    (Color.grayA3.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA1.opacity(0.5), 0, 0, 0, 0),
-                    (Color.grayA2.opacity(0.5), 1, 0, 1, 0),
-                    (Color.blackA1.opacity(0.5), 1, 0, 2, -1),
-                    (Color.blackA1.opacity(0.5), 3, 0, 1, 0)
+                    (.grayA3, 0, 0, 0, 0),
+                    (.blackA1, 0, 0, 0, 0),
+                    (.grayA2, 1, 0, 1, 0),
+                    (.blackA1, 1, 0, 2, -1),
+                    (.blackA1, 3, 0, 1, 0)
                 ], shadowDark: [
-                    (Color.grayA6.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA3.opacity(0.5), 0, 0, 0, 0),
-                    (Color.blackA6.opacity(0.5), 1, 0, 1, 0),
-                    (Color.blackA6.opacity(0.5), 1, 0, 2, -1),
-                    (Color.blackA5.opacity(0.5), 3, 0, 1, 0)
+                    (.grayA6, 0, 0, 0, 0),
+                    (.blackA3, 0, 0, 0, 0),
+                    (.blackA6, 1, 0, 1, 0),
+                    (.blackA6, 1, 0, 2, -1),
+                    (.blackA5, 3, 0, 1, 0)
                 ]
             )
         )
@@ -69,15 +69,15 @@ extension View {
         self.modifier(
             RadixShadowModifier(
                 shadowLight: [
-                    (Color.grayA3.opacity(1), 0, 0, 0, 0),
-                    (Color.grayA3.opacity(0.5), 3, 0, 2, -2),
-                    (Color.blackA2.opacity(0.5), 12, 0, 3, -4),
-                    (Color.blackA2.opacity(0.5), 16, 0, 4, -8)
+                    (.grayA3, 0, 0, 0, 0),
+                    (.grayA3, 3, 0, 2, -2),
+                    (.blackA2, 12, 0, 3, -4),
+                    (.blackA2, 16, 0, 4, -8)
                 ], shadowDark: [
-                    (Color.grayA6.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA3.opacity(0.5), 3, 0, 2, -2),
-                    (Color.blackA6.opacity(0.5), 8, 0, 3, -2),
-                    (Color.blackA7.opacity(0.5), 12, 0, 4, -4)
+                    (.grayA6, 0, 0, 0, 0),
+                    (.blackA3, 3, 0, 2, -2),
+                    (.blackA6, 8, 0, 3, -2),
+                    (.blackA7, 12, 0, 4, -4)
                 ]
             )
         )
@@ -87,13 +87,13 @@ extension View {
         self.modifier(
             RadixShadowModifier(
                 shadowLight: [
-                    (Color.grayA3.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA1.opacity(0.5), 40, 0, 8, 0),
-                    (Color.grayA3.opacity(0.5), 32, 0, 12, -16)
+                    (.grayA3, 0, 0, 0, 0),
+                    (.blackA1, 40, 0, 8, 0),
+                    (.grayA3, 32, 0, 12, -16)
                 ], shadowDark: [
-                    (Color.grayA6.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA3.opacity(0.5), 40, 0, 8, 0),
-                    (Color.blackA5.opacity(0.5), 32, 0, 12, -16)
+                    (.grayA6, 0, 0, 0, 0),
+                    (.blackA3, 40, 0, 8, 0),
+                    (.blackA5, 32, 0, 12, -16)
                 ]
             )
         )
@@ -103,13 +103,13 @@ extension View {
         self.modifier(
             RadixShadowModifier(
                 shadowLight: [
-                    (Color.grayA3.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA3.opacity(0.5), 60, 0, 12, 0),
-                    (Color.grayA5.opacity(0.5), 32, 0, 12, -16)
+                    (.grayA3, 0, 0, 0, 0),
+                    (.blackA3, 60, 0, 12, 0),
+                    (.grayA5, 32, 0, 12, -16)
                 ], shadowDark: [
-                    (Color.grayA6.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA5.opacity(0.5), 60, 0, 12, 0),
-                    (Color.blackA7.opacity(0.5), 32, 0, 12, -16)
+                    (.grayA6, 0, 0, 0, 0),
+                    (.blackA5, 60, 0, 12, 0),
+                    (.blackA7, 32, 0, 12, -16)
                 ]
             )
         )
@@ -119,15 +119,15 @@ extension View {
         self.modifier(
             RadixShadowModifier(
                 shadowLight: [
-                    (Color.grayA3.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA3.opacity(0.5), 60, 0, 12, 0),
-                    (Color.grayA2.opacity(0.5), 64, 0, 16, 0),
-                    (Color.grayA7.opacity(0.5), 36, 0, 16, -20)
+                    (.grayA3, 0, 0, 0, 0),
+                    (.blackA3, 60, 0, 12, 0),
+                    (.grayA2, 64, 0, 16, 0),
+                    (.grayA7, 36, 0, 16, -20)
                 ], shadowDark: [
-                    (Color.grayA6.opacity(1), 0, 0, 0, 0),
-                    (Color.blackA4.opacity(0.5), 60, 0, 12, 0),
-                    (Color.blackA6.opacity(0.5), 64, 0, 16, 0),
-                    (Color.blackA11.opacity(0.5), 36, 0, 16, -20)
+                    (.grayA6, 0, 0, 0, 0),
+                    (.blackA4, 60, 0, 12, 0),
+                    (.blackA6, 64, 0, 16, 0),
+                    (.blackA11, 36, 0, 16, -20)
                 ]
             )
         )
