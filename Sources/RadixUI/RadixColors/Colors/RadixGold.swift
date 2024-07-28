@@ -23,16 +23,16 @@ public extension Color {
 }
 
 public extension Color {
-    static let goldA1 = radixColorToSwift(name: "GoldA1")
-    static let goldA2 = radixColorToSwift(name: "GoldA2")
-    static let goldA3 = radixColorToSwift(name: "GoldA3")
-    static let goldA4 = radixColorToSwift(name: "GoldA4")
-    static let goldA5 = radixColorToSwift(name: "GoldA5")
-    static let goldA6 = radixColorToSwift(name: "GoldA6")
-    static let goldA7 = radixColorToSwift(name: "GoldA7")
-    static let goldA8 = radixColorToSwift(name: "GoldA8")
-    static let goldA9 = radixColorToSwift(name: "GoldA9")
-    static let goldA10 = radixColorToSwift(name: "GoldA10")
-    static let goldA11 = radixColorToSwift(name: "GoldA11")
-    static let goldA12 = radixColorToSwift(name: "GoldA12")
+    static let goldA1 = Color(lightHex: "#55550003", darkHex: "#91911102")
+    static let goldA2 = Color(lightHex: "#9d8a000d", darkHex: "#f9e29d0b")
+    static let goldA3 = Color(lightHex: "#75600018", darkHex: "#f8ecbb15")
+    static let goldA4 = Color(lightHex: "#6b4e0024", darkHex: "#ffeec41e")
+    static let goldA5 = Color(lightHex: "#60460030", darkHex: "#feecc22a")
+    static let goldA6 = Color(lightHex: "#64440040", darkHex: "#feebcb37")
+    static let goldA7 = Color(lightHex: "#63420055", darkHex: "#ffedcd48")
+    static let goldA8 = Color(lightHex: "#633d0072", darkHex: "#fdeaca5f")
+    static let goldA9 = Color(lightHex: "#5332009a", darkHex: "#ffdba690")
+    static let goldA10 = Color(lightHex: "#492d00a1", darkHex: "#fedfb09d")
+    static let goldA11 = Color(lightHex: "#362100b4", darkHex: "#fee7c6c8")
+    static let goldA12 = Color(lightHex: "#130c00d4", darkHex: "#fef7ede7")
 }

@@ -23,16 +23,16 @@ public extension Color {
 }
 
 public extension Color {
-    static let indigoA1 = radixColorToSwift(name: "IndigoA1")
-    static let indigoA2 = radixColorToSwift(name: "IndigoA2")
-    static let indigoA3 = radixColorToSwift(name: "IndigoA3")
-    static let indigoA4 = radixColorToSwift(name: "IndigoA4")
-    static let indigoA5 = radixColorToSwift(name: "IndigoA5")
-    static let indigoA6 = radixColorToSwift(name: "IndigoA6")
-    static let indigoA7 = radixColorToSwift(name: "IndigoA7")
-    static let indigoA8 = radixColorToSwift(name: "IndigoA8")
-    static let indigoA9 = radixColorToSwift(name: "IndigoA9")
-    static let indigoA10 = radixColorToSwift(name: "IndigoA10")
-    static let indigoA11 = radixColorToSwift(name: "IndigoA11")
-    static let indigoA12 = radixColorToSwift(name: "IndigoA12")
+    static let indigoA1 = Color(lightHex: "#00008002", darkHex: "#1133ff0f")
+    static let indigoA2 = Color(lightHex: "#0040ff08", darkHex: "#3354fa17")
+    static let indigoA3 = Color(lightHex: "#0047f112", darkHex: "#2f62ff3c")
+    static let indigoA4 = Color(lightHex: "#0044ff1e", darkHex: "#3566ff57")
+    static let indigoA5 = Color(lightHex: "#0044ff2d", darkHex: "#4171fd6b")
+    static let indigoA6 = Color(lightHex: "#003eff3e", darkHex: "#5178fd7c")
+    static let indigoA7 = Color(lightHex: "#0037ed54", darkHex: "#5a7fff90")
+    static let indigoA8 = Color(lightHex: "#0034dc72", darkHex: "#5b81feac")
+    static let indigoA9 = Color(lightHex: "#0031d2c1", darkHex: "#4671ffdb")
+    static let indigoA10 = Color(lightHex: "#002ec9cc", darkHex: "#5c7efee3")
+    static let indigoA11 = Color(lightHex: "#002bb7c5", darkHex: "#9eb1ff")
+    static let indigoA12 = Color(lightHex: "#001046e0", darkHex: "#d6e1ff")
 }

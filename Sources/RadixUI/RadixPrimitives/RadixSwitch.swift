@@ -21,7 +21,6 @@ fileprivate struct RadixSwitch: ToggleStyle {
     let newThumbColor = thumbColor == nil ? colorScheme == .light ? .whiteA12 : .blackA12 : thumbColor!
     HStack {
       configuration.label
-        .font(.body)
       Spacer()
       RoundedRectangle(cornerRadius: 16, style: .circular)
         .fill(configuration.isOn ? newOnColor : newOffColor)

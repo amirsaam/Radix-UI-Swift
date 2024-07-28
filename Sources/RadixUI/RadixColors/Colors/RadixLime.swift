@@ -23,16 +23,16 @@ public extension Color {
 }
 
 public extension Color {
-    static let limeA1 = radixColorToSwift(name: "LimeA1")
-    static let limeA2 = radixColorToSwift(name: "LimeA2")
-    static let limeA3 = radixColorToSwift(name: "LimeA3")
-    static let limeA4 = radixColorToSwift(name: "LimeA4")
-    static let limeA5 = radixColorToSwift(name: "LimeA5")
-    static let limeA6 = radixColorToSwift(name: "LimeA6")
-    static let limeA7 = radixColorToSwift(name: "LimeA7")
-    static let limeA8 = radixColorToSwift(name: "LimeA8")
-    static let limeA9 = radixColorToSwift(name: "LimeA9")
-    static let limeA10 = radixColorToSwift(name: "LimeA10")
-    static let limeA11 = radixColorToSwift(name: "LimeA11")
-    static let limeA12 = radixColorToSwift(name: "LimeA12")
+    static let limeA1 = Color(lightHex: "#66990005", darkHex: "#11bb0003")
+    static let limeA2 = Color(lightHex: "#6b95000c", darkHex: "#78f7000a")
+    static let limeA3 = Color(lightHex: "#96c80029", darkHex: "#9bfd4c1a")
+    static let limeA4 = Color(lightHex: "#8fc60042", darkHex: "#a7fe5c29")
+    static let limeA5 = Color(lightHex: "#81bb0059", darkHex: "#affe6537")
+    static let limeA6 = Color(lightHex: "#72aa006e", darkHex: "#b2fe6d46")
+    static let limeA7 = Color(lightHex: "#61990087", darkHex: "#b6ff6f57")
+    static let limeA8 = Color(lightHex: "#559200ab", darkHex: "#b6fd6d6c")
+    static let limeA9 = Color(lightHex: "#93e4009c", darkHex: "#caff69ed")
+    static let limeA10 = Color(lightHex: "#8fdc00b3", darkHex: "#d4ff70")
+    static let limeA11 = Color(lightHex: "#375f00d0", darkHex: "#d1fe77e4")
+    static let limeA12 = Color(lightHex: "#1e2900e3", darkHex: "#e9febff7")
 }

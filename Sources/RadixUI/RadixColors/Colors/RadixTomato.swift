@@ -23,16 +23,16 @@ public extension Color {
 }
 
 public extension Color {
-    static let tomatoA1 = radixColorToSwift(name: "TomatoA1")
-    static let tomatoA2 = radixColorToSwift(name: "TomatoA2")
-    static let tomatoA3 = radixColorToSwift(name: "TomatoA3")
-    static let tomatoA4 = radixColorToSwift(name: "TomatoA4")
-    static let tomatoA5 = radixColorToSwift(name: "TomatoA5")
-    static let tomatoA6 = radixColorToSwift(name: "TomatoA6")
-    static let tomatoA7 = radixColorToSwift(name: "TomatoA7")
-    static let tomatoA8 = radixColorToSwift(name: "TomatoA8")
-    static let tomatoA9 = radixColorToSwift(name: "TomatoA9")
-    static let tomatoA10 = radixColorToSwift(name: "TomatoA10")
-    static let tomatoA11 = radixColorToSwift(name: "TomatoA11")
-    static let tomatoA12 = radixColorToSwift(name: "TomatoA12")
+    static let tomatoA1 = Color(lightHex: "#ff000003", darkHex: "#f1121208")
+    static let tomatoA2 = Color(lightHex: "#ff200008", darkHex: "#ff55330f")
+    static let tomatoA3 = Color(lightHex: "#f52b0018", darkHex: "#ff35232b")
+    static let tomatoA4 = Color(lightHex: "#ff35002c", darkHex: "#fd201142")
+    static let tomatoA5 = Color(lightHex: "#ff2e003d", darkHex: "#fe332153")
+    static let tomatoA6 = Color(lightHex: "#f92d0050", darkHex: "#ff4f3864")
+    static let tomatoA7 = Color(lightHex: "#e7280067", darkHex: "#fd644a7d")
+    static let tomatoA8 = Color(lightHex: "#db250084", darkHex: "#fe6d4ea7")
+    static let tomatoA9 = Color(lightHex: "#df2600d1", darkHex: "#fe5431e4")
+    static let tomatoA10 = Color(lightHex: "#d72400da", darkHex: "#ff6847eb")
+    static let tomatoA11 = Color(lightHex: "#cd2200ea", darkHex: "#ff977d")
+    static let tomatoA12 = Color(lightHex: "#460900e0", darkHex: "#ffd6cefb")
 }
