@@ -25,13 +25,13 @@ fileprivate struct RadixSwitch: ToggleStyle {
       RoundedRectangle(cornerRadius: 16, style: .circular)
         .fill(configuration.isOn ? newOnColor : newOffColor)
         .frame(width: 42, height: 25)
-        .shadow(color: .blackA7, radius: 5, x: 0, y: 2)
+        .radixShadow1()
         .overlay(
           Circle()
             .fill(newThumbColor)
             .frame(width: 21, height: 21)
             .offset(x: configuration.isOn ? 8 : -8)
-            .shadow(color: .blackA7, radius: 1, x: 0, y: 2)
+            .radixShadow1()
         )
         .onTapGesture {
           withAnimation(.smooth(duration: 0.2)) {
