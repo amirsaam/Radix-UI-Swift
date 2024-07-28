@@ -35,6 +35,14 @@ Text("RadixUI-Swift")
   .foregroundColor(.crimson1)
 ```
 
+In order to use your own custom color pallete head to [Radix Pallete Generator](https://www.radix-ui.com/colors/custom) and create your pallete and then use color hexes to have your own pallete with the following code:
+```swift
+public extension Color {
+    static let colorExampleSolid = Color(lightHex: "lightSixDigitHex", darkHex: "darkSixDigitHex")
+    static let colorExampleAlpha = Color(lightHex: "lightEightDigitHex", darkHex: "darkEightDigitHex")
+}
+```
+
 Use icons in `Image` with bundle name completely customisable
 ```swift
 Image("github-logo", bundle: .radixUI)
