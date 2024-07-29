@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct RadixSegmentedPicker {
+public struct RadixSegmentedPicker {
   let backgroundColor: Color
   let selectedColor: Color
   let foregroundColor: Color
-  @discardableResult init(backgroundColor: Color, selectedColor: Color, foregroundColor: Color) {
+  @discardableResult public init(backgroundColor: Color, selectedColor: Color, foregroundColor: Color) {
     self.backgroundColor = backgroundColor
     self.selectedColor = selectedColor
     self.foregroundColor = foregroundColor
