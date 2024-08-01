@@ -49,7 +49,7 @@ Image("github-logo", bundle: .radixUI)
   .resizable()
   .aspectRatio(contentMode: .fit)
   .frame(width: anySize, height: anySize)
-  .foregroundColor(.ruby1)
+  .foregroundColor(.ruby9)
 ```
 Or, make some custom extension to use `Label`
 ```swift
@@ -72,6 +72,45 @@ extension Label where Title == Text, Icon == SVGImage {
     self.init(title: titleView, icon: iconView)
   }
 }
+```
+Apply RadixSwitch style to SwiftUI Toggles:
+```swift
+Toggle(isOn: $toggleBinding) {
+    AnyLabel
+}
+.radixSwitch(onColor: .ruby9, offColor: .gray7, thumbColor: .ruby9)
+// or simply for Black and White
+.radixSwitch()
+```
+For changing Segmented Picker of SwiftUI to match Radix style create an `init` in `@main` struct of the app or just apply such `init` in any view you want: 
+```swift
+@main
+struct RadixApp: App {
+
+  init() {
+    RadixSegmentedPicker(
+      backgroundColor: .ruby3,
+      selectedColor: .ruby12,
+      foregroundColor: .ruby4
+    )
+  }
+
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+    }
+  }
+}
+```
+Radix Shadows are available as `ViewModifier` in 6 level:
+```swift
+AnyView
+.radixShadow1()
+.radixShadow2()
+.radixShadow3()
+.radixShadow4()
+.radixShadow5()
+.radixShadow6()
 ```
 
 ## To Do
