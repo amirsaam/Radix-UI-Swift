@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if canImport(UIKit)
 public struct RadixSegmentedPicker {
   let backgroundColor: Color
   let selectedColor: Color
@@ -21,3 +22,6 @@ public struct RadixSegmentedPicker {
     UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(foregroundColor)], for: .selected)
   }
 }
+#elseif canImport(AppKit)
+/// TODO: Add `RadixSegmentedPicker` for `macOS`
+#endif
