@@ -9,28 +9,27 @@ import SwiftUI
 
 fileprivate struct RadixTextFieldModifier: ViewModifier {
 
-  @Environment(\.colorScheme) private var colorScheme
-  @FocusState private var isFocused: Bool
+    @FocusState private var isFocused: Bool
 
-  var strokeFocusedColor: Color?
-  var strokeUnfocusedColor: Color?
+    var strokeFocusedColor: Color?
+    var strokeUnfocusedColor: Color?
 
-  func body(content: Content) -> some View {
-    let newOnColor = strokeFocusedColor == nil ? .gray12 : strokeFocusedColor!
-    let newOffColor = strokeUnfocusedColor == nil ? .gray7 : strokeUnfocusedColor!
-    content
-      .padding(.horizontal, 12)
-      .padding(.vertical, 8)
-      .background(
-        RoundedRectangle(cornerRadius: 8)
-          .stroke(isFocused ? newOnColor : newOffColor, lineWidth: 1)
-      )
-      .focused($isFocused)
-  }
+    func body(content: Content) -> some View {
+        let newOnColor = strokeFocusedColor == nil ? .gray12 : strokeFocusedColor!
+        let newOffColor = strokeUnfocusedColor == nil ? .gray7 : strokeUnfocusedColor!
+        content
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(isFocused ? newOnColor : newOffColor, lineWidth: 1)
+            )
+            .focused($isFocused)
+    }
 }
 
 extension View {
-  public func radixTextFieldStyle(unfocusedColor: Color? = nil, focusedColor: Color? = nil) -> some View {
-    self.modifier(RadixTextFieldModifier(strokeFocusedColor: focusedColor, strokeUnfocusedColor: unfocusedColor))
-  }
+    public func radixTextFieldStyle(unfocusedColor: Color? = nil, focusedColor: Color? = nil) -> some View {
+        self.modifier(RadixTextFieldModifier(strokeFocusedColor: focusedColor, strokeUnfocusedColor: unfocusedColor))
+    }
 }
