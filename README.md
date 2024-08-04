@@ -53,22 +53,24 @@ Image("github-logo", bundle: .radixUI)
 ```
 Or, make some custom extension to use `Label`
 ```swift
-struct SVGImage: View {
+struct ResizeableBundledImage: View {
+
   let imageName: String
+  let imageSize: CGFloat
   let bundle: Bundle
-  let size: CGFloat
+
   var body: some View {
     Image(imageName, bundle: bundle)
       .resizable()
       .aspectRatio(contentMode: .fit)
-      .frame(width: size, height: size)
+      .frame(width: imageSize, height: imageSize)
   }
 }
 
-extension Label where Title == Text, Icon == SVGImage {
-  init(_ title: LocalizedStringKey, image: String, bundle: Bundle, size: CGFloat) {
+extension Label where Title == Text, Icon == ResizeableBundledImage {
+  init(_ title: LocalizedStringKey, imageName: String, imageSize: CGFloat, bundle: Bundle) {
     let titleView: () -> Text = { Text(title) }
-    let iconView: () -> SVGImage = { SVGImage(imageName: image, bundle: bundle, size: size) }
+    let iconView: () -> ResizeableBundledImage = { ResizeableBundledImage(imageName: imageName, imageSize: imageSize, bundle: bundle) }
     self.init(title: titleView, icon: iconView)
   }
 }
@@ -79,7 +81,7 @@ Toggle(isOn: $toggleBinding) {
     AnyLabel
 }
 .radixSwitch(onColor: .ruby9, offColor: .gray7, thumbColor: .ruby9)
-// or simply for Black and White
+// Or simply for Black and White
 .radixSwitch()
 ```
 For changing Segmented Picker of SwiftUI to match Radix style create an `init` in `@main` struct of the app or just apply such `init` in any view you want: 
