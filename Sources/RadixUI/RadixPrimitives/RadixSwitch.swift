@@ -8,38 +8,38 @@
 import SwiftUI
 
 fileprivate struct RadixSwitch: ToggleStyle {
-  
-  @Environment(\.colorScheme) private var colorScheme
-  
-  var onColor: Color?
-  var offColor: Color?
-  var thumbColor: Color?
-  
-  func makeBody(configuration: Self.Configuration) -> some View {
-    let newOnColor = onColor == nil ? colorScheme == .light ? .blackA12 : .whiteA12 : onColor!
-    let newOffColor = offColor == nil ? colorScheme == .light ? .blackA9 : .whiteA9 : offColor!
-    let newThumbColor = thumbColor == nil ? colorScheme == .light ? .whiteA12 : .blackA12 : thumbColor!
-    HStack {
-      configuration.label
-      Spacer()
-      RoundedRectangle(cornerRadius: 16, style: .circular)
-        .fill(configuration.isOn ? newOnColor : newOffColor)
-        .frame(width: 42, height: 25)
-        .radixShadow1()
-        .overlay(
-          Circle()
-            .fill(newThumbColor)
-            .frame(width: 21, height: 21)
-            .offset(x: configuration.isOn ? 8 : -8)
-            .radixShadow1()
-        )
-        .onTapGesture {
-          withAnimation(.smooth(duration: 0.2)) {
-            configuration.isOn.toggle()
-          }
+
+    @Environment(\.colorScheme) private var colorScheme
+
+    var onColor: Color?
+    var offColor: Color?
+    var thumbColor: Color?
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+        let newOnColor = onColor == nil ? colorScheme == .light ? .blackA12 : .whiteA12 : onColor!
+        let newOffColor = offColor == nil ? colorScheme == .light ? .blackA9 : .whiteA9 : offColor!
+        let newThumbColor = thumbColor == nil ? colorScheme == .light ? .whiteA12 : .blackA12 : thumbColor!
+        HStack {
+            configuration.label
+            Spacer()
+            RoundedRectangle(cornerRadius: 16, style: .circular)
+                .fill(configuration.isOn ? newOnColor : newOffColor)
+                .frame(width: 42, height: 25)
+                .radixShadow1()
+                .overlay(
+                    Circle()
+                        .fill(newThumbColor)
+                        .frame(width: 21, height: 21)
+                        .offset(x: configuration.isOn ? 8 : -8)
+                        .radixShadow1()
+                )
+                .onTapGesture {
+                    withAnimation(.smooth(duration: 0.2)) {
+                        configuration.isOn.toggle()
+                    }
+                }
         }
     }
-  }
 }
 
 extension Toggle {

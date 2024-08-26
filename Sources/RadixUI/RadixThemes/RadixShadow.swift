@@ -44,7 +44,7 @@ extension View {
             )
         )
     }
-    
+
     public func radixShadow2() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -64,7 +64,7 @@ extension View {
             )
         )
     }
-    
+
     public func radixShadow3() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -82,7 +82,7 @@ extension View {
             )
         )
     }
-    
+
     public func radixShadow4() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -98,7 +98,7 @@ extension View {
             )
         )
     }
-    
+
     public func radixShadow5() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -114,7 +114,7 @@ extension View {
             )
         )
     }
-    
+
     public func radixShadow6() -> some View {
         self.modifier(
             RadixShadowModifier(

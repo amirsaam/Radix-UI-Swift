@@ -13,13 +13,15 @@ fileprivate struct RadixToggle: ToggleStyle {
 
     var onColor: Color?
     var offColor: Color?
+    var boxSize: CGFloat?
 
     func makeBody(configuration: Self.Configuration) -> some View {
         let newOnColor = onColor == nil ? colorScheme == .light ? .blackA12 : .whiteA12 : onColor!
         let newOffColor = offColor == nil ? colorScheme == .light ? .blackA9 : .whiteA9 : offColor!
+        let size = boxSize == nil ? 27.5 : boxSize!
         RoundedRectangle(cornerRadius: 4)
             .fill(configuration.isOn ? newOnColor : newOffColor)
-            .frame(width: 27.5, height: 27.5)
+            .frame(width: size, height: size)
             .radixShadow1()
             .onTapGesture {
                 configuration.isOn.toggle()
@@ -29,12 +31,13 @@ fileprivate struct RadixToggle: ToggleStyle {
 }
 
 extension Toggle {
-  public func radixToggle(onColor: Color? = nil, offColor: Color? = nil) -> some View {
-    self.toggleStyle(
-      RadixToggle(
-        onColor: onColor,
-        offColor: offColor
-      )
-    )
-  }
+    public func radixToggle(onColor: Color? = nil, offColor: Color? = nil, boxSize: CGFloat?) -> some View {
+        self.toggleStyle(
+            RadixToggle(
+                onColor: onColor,
+                offColor: offColor,
+                boxSize: boxSize
+            )
+        )
+    }
 }

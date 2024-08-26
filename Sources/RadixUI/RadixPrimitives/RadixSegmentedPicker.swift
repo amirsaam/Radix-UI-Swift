@@ -9,18 +9,48 @@ import SwiftUI
 
 #if canImport(UIKit)
 public struct RadixSegmentedPicker {
-  let backgroundColor: Color
-  let selectedColor: Color
-  let foregroundColor: Color
-  @discardableResult public init(backgroundColor: Color, selectedColor: Color, foregroundColor: Color) {
-    self.backgroundColor = backgroundColor
-    self.selectedColor = selectedColor
-    self.foregroundColor = foregroundColor
-    UISegmentedControl.appearance().backgroundColor = UIColor(backgroundColor)
-    UISegmentedControl.appearance().setDividerImage(UIImage(), forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-    UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(selectedColor)
-    UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(foregroundColor)], for: .selected)
-  }
+    let backgroundColor: Color
+    let selectedColor: Color
+    let foregroundColor: Color
+    let selectedFont: UIFont
+    let unselectedFont: UIFont
+
+    @discardableResult public init(
+        backgroundColor: Color,
+        selectedColor: Color,
+        foregroundColor: Color,
+        selectedFont: UIFont,
+        unselectedFont: UIFont
+    ) {
+        self.backgroundColor = backgroundColor
+        self.selectedColor = selectedColor
+        self.foregroundColor = foregroundColor
+        self.selectedFont = selectedFont
+        self.unselectedFont = unselectedFont
+
+        let appeareance = UISegmentedControl.appearance()
+
+        appeareance.backgroundColor = UIColor(backgroundColor)
+        appeareance.setDividerImage(
+            UIImage(),
+            forLeftSegmentState: .normal,
+            rightSegmentState: .normal,
+            barMetrics: .default
+        )
+        appeareance.selectedSegmentTintColor = UIColor(selectedColor)
+        appeareance.setTitleTextAttributes(
+            [
+                .foregroundColor: UIColor(foregroundColor),
+                .font: selectedFont
+            ],
+            for: .selected
+        )
+        appeareance.setTitleTextAttributes(
+            [.font: unselectedFont],
+            for: .normal
+        )
+
+    }
 }
 #elseif canImport(AppKit)
 /// TODO: Add `RadixSegmentedPicker` for `macOS`
