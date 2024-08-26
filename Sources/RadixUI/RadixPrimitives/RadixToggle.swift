@@ -31,7 +31,7 @@ fileprivate struct RadixToggle: ToggleStyle {
 }
 
 extension Toggle {
-    public func radixToggle(onColor: Color? = nil, offColor: Color? = nil, boxSize: CGFloat?) -> some View {
+    public func radixToggle(onColor: Color? = nil, offColor: Color? = nil, boxSize: CGFloat? = nil) -> some View {
         self.toggleStyle(
             RadixToggle(
                 onColor: onColor,

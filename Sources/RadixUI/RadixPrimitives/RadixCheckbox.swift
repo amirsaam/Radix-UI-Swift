@@ -36,7 +36,7 @@ fileprivate struct RadixCheckbox: ToggleStyle {
 }
 
 extension Toggle {
-    public func radixCheckbox(bgColor: Color? = nil, fgColor: Color? = nil, boxSize: CGFloat?) -> some View {
+    public func radixCheckbox(bgColor: Color? = nil, fgColor: Color? = nil, boxSize: CGFloat? = nil) -> some View {
         self.toggleStyle(
             RadixCheckbox(
                 backgroundColor: bgColor,
