@@ -34,7 +34,7 @@ fileprivate struct RadixSwitch: ToggleStyle {
                         .radixShadow1()
                 )
                 .onTapGesture {
-                    withAnimation(.smooth(duration: 0.2)) {
+                    withAnimation(.easeIn(duration: 0.2)) {
                         configuration.isOn.toggle()
                     }
                 }
