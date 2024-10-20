@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct RadixButton: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
+    public func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.97 : 1)
             .opacity(configuration.isPressed ? 0.8 : 1)
