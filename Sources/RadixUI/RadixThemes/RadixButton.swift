@@ -16,10 +16,8 @@ fileprivate struct RadixButton: ButtonStyle {
     }
 }
 
-extension Button {
+extension View {
     public func radixButton() -> some View {
-        self.buttonStyle(
-            RadixButton()
-        )
+        self.buttonStyle(RadixButton())
     }
 }
