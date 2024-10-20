@@ -13,10 +13,13 @@ fileprivate struct RadixButton: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .saturation(isEnabled ? 1 : 0)
             .scaleEffect(configuration.isPressed ? 0.97 : 1)
-            .opacity(configuration.isPressed ? 0.8 : 1)
-            .animation(.easeInOut(duration: 0.3), value: configuration.isPressed)
+            .opacity(
+                isEnabled
+                ? (configuration.isPressed ? 0.9 : 1)
+                : 0.6
+            )
+            .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
     }
 }
 
