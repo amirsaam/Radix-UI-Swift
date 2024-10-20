@@ -16,7 +16,7 @@ fileprivate struct RadixButton: ButtonStyle {
     }
 }
 
-extension Button {
+extension Button where Label == AnyView {
     public func radixButton() -> some View {
         self.buttonStyle(RadixButton())
     }
