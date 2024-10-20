@@ -8,11 +8,15 @@
 import SwiftUI
 
 fileprivate struct RadixButton: ButtonStyle {
+
+    @Environment(\.isEnabled) var isEnabled
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.92 : 1)
+            .saturation(isEnabled ? 1 : 0)
+            .scaleEffect(configuration.isPressed ? 0.97 : 1)
             .opacity(configuration.isPressed ? 0.8 : 1)
-            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+            .animation(.easeInOut(duration: 0.3), value: configuration.isPressed)
     }
 }
 
