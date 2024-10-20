@@ -24,9 +24,6 @@ let package = Package(
                 .process("RadixColors/RadixColors.xcassets"),
                 .process("RadixIcons/RadixIcons.xcassets")
             ]
-        ),
-        .testTarget(
-            name: "RadixUI-Tests",
-            dependencies: ["RadixUI"]),
+        )
     ]
 )
