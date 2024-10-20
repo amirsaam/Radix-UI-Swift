@@ -7,17 +7,11 @@
 
 import SwiftUI
 
-fileprivate struct RadixButton: ButtonStyle {
+public struct RadixButton: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.97 : 1)
             .opacity(configuration.isPressed ? 0.8 : 1)
             .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
-    }
-}
-
-extension Button where Label == AnyView {
-    public func radixButton() -> some View {
-        self.buttonStyle(RadixButton())
     }
 }
