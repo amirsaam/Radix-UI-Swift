@@ -10,6 +10,7 @@ import SwiftUI
 public struct RadixButton: ButtonStyle {
 
     @Environment(\.isEnabled) var isEnabled
+    @Environment(\.isLoading) var isLoading
 
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
