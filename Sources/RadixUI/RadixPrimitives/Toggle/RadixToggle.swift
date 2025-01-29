@@ -15,13 +15,27 @@ public struct RadixToggle: ToggleStyle {
     var offColor: Color?
     var boxSize: CGFloat?
 
+    private var newOnColor: Color {
+        guard let onColor else {
+            return colorScheme == .light ? .blackA12 : .whiteA12
+        }
+        return onColor
+    }
+    private var newOffColor: Color {
+        guard let offColor else {
+            return colorScheme == .light ? .blackA9 : .whiteA9
+        }
+        return offColor
+    }
+    private var newBoxSize: CGFloat {
+        guard let boxSize else { return 27.5 }
+        return boxSize
+    }
+
     public func makeBody(configuration: Self.Configuration) -> some View {
-        let newOnColor = onColor == nil ? colorScheme == .light ? .blackA12 : .whiteA12 : onColor!
-        let newOffColor = offColor == nil ? colorScheme == .light ? .blackA9 : .whiteA9 : offColor!
-        let size = boxSize == nil ? 27.5 : boxSize!
         RoundedRectangle(cornerRadius: 4)
             .fill(configuration.isOn ? newOnColor : newOffColor)
-            .frame(width: size, height: size)
+            .frame(width: newBoxSize, height: newBoxSize)
             .radixShadow1()
             .onTapGesture {
                 configuration.isOn.toggle()
