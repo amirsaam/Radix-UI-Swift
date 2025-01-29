@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-fileprivate struct RadixButton: ButtonStyle {
+public struct RadixButton: ButtonStyle {
 
     @Environment(\.isEnabled) var isEnabled
 
@@ -21,7 +21,7 @@ fileprivate struct RadixButton: ButtonStyle {
 }
 
 extension ButtonStyle where Self == RadixButton {
-  static func radixButton() -> RadixButton {
+  public static func radixButton() -> RadixButton {
       .init()
   }
 }

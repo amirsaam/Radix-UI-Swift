@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-fileprivate struct RadixToggle: ToggleStyle {
+public struct RadixToggle: ToggleStyle {
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -15,7 +15,7 @@ fileprivate struct RadixToggle: ToggleStyle {
     var offColor: Color?
     var boxSize: CGFloat?
 
-    func makeBody(configuration: Self.Configuration) -> some View {
+    public func makeBody(configuration: Self.Configuration) -> some View {
         let newOnColor = onColor == nil ? colorScheme == .light ? .blackA12 : .whiteA12 : onColor!
         let newOffColor = offColor == nil ? colorScheme == .light ? .blackA9 : .whiteA9 : offColor!
         let size = boxSize == nil ? 27.5 : boxSize!
@@ -31,7 +31,7 @@ fileprivate struct RadixToggle: ToggleStyle {
 }
 
 extension ToggleStyle where Self == RadixToggle {
-    static func radixToggle(
+    public static func radixToggle(
         onColor: Color? = nil,
         offColor: Color? = nil,
         boxSize: CGFloat? = nil

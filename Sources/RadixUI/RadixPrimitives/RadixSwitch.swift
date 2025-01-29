@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-fileprivate struct RadixSwitch: ToggleStyle {
+public struct RadixSwitch: ToggleStyle {
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -34,7 +34,7 @@ fileprivate struct RadixSwitch: ToggleStyle {
         return thumbColor
     }
 
-    func makeBody(configuration: Self.Configuration) -> some View {
+    public func makeBody(configuration: Self.Configuration) -> some View {
         HStack {
             configuration.label
             Spacer()
@@ -59,7 +59,7 @@ fileprivate struct RadixSwitch: ToggleStyle {
 }
 
 extension ToggleStyle where Self == RadixSwitch {
-    static func radixSwitch(
+    public static func radixSwitch(
         onColor: Color? = nil,
         offColor: Color? = nil,
         thumbColor: Color? = nil

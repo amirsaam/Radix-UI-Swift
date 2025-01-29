@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-fileprivate struct RadixCheckbox: ToggleStyle {
+public struct RadixCheckbox: ToggleStyle {
     
     @Environment(\.colorScheme) private var colorScheme
     
@@ -32,7 +32,7 @@ fileprivate struct RadixCheckbox: ToggleStyle {
         return boxSize
     }
 
-    func makeBody(configuration: Self.Configuration) -> some View {
+    public func makeBody(configuration: Self.Configuration) -> some View {
         RoundedRectangle(cornerRadius: 4)
             .fill(bgColor)
             .overlay {
@@ -50,7 +50,7 @@ fileprivate struct RadixCheckbox: ToggleStyle {
 }
 
 extension ToggleStyle where Self == RadixCheckbox {
-    static func radixCheckbox(
+    public static func radixCheckbox(
         bgColor: Color? = nil,
         fgColor: Color? = nil,
         boxSize: CGFloat? = nil
