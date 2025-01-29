@@ -14,11 +14,25 @@ fileprivate struct RadixCheckbox: ToggleStyle {
     var backgroundColor: Color?
     var foregroundColor: Color?
     var boxSize: CGFloat?
-    
+
+    private var bgColor: Color {
+        guard let backgroundColor else {
+            return colorScheme == .light ? .blackA12 : .whiteA12
+        }
+        return backgroundColor
+    }
+    private var fgColor: Color {
+        guard let foregroundColor else {
+            return colorScheme == .light ? .blackA9 : .whiteA9
+        }
+        return foregroundColor
+    }
+    private var size: CGFloat {
+        guard let boxSize else { return 27.5 }
+        return boxSize
+    }
+
     func makeBody(configuration: Self.Configuration) -> some View {
-        let bgColor = backgroundColor == nil ? colorScheme == .light ? .blackA12 : .whiteA12 : backgroundColor!
-        let fgColor = foregroundColor == nil ? colorScheme == .light ? .blackA9 : .whiteA9 : foregroundColor!
-        let size = boxSize == nil ? 27.5 : boxSize!
         RoundedRectangle(cornerRadius: 4)
             .fill(bgColor)
             .overlay {
@@ -35,14 +49,16 @@ fileprivate struct RadixCheckbox: ToggleStyle {
     }
 }
 
-extension Toggle {
-    public func radixCheckbox(bgColor: Color? = nil, fgColor: Color? = nil, boxSize: CGFloat? = nil) -> some View {
-        self.toggleStyle(
-            RadixCheckbox(
-                backgroundColor: bgColor,
-                foregroundColor: fgColor,
-                boxSize: boxSize
-            )
+extension ToggleStyle where Self == RadixCheckbox {
+    static func radixCheckbox(
+        bgColor: Color? = nil,
+        fgColor: Color? = nil,
+        boxSize: CGFloat? = nil
+    ) -> RadixCheckbox {
+        .init(
+            backgroundColor: bgColor,
+            foregroundColor: fgColor,
+            boxSize: boxSize
         )
     }
 }

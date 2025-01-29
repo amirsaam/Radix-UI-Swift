@@ -30,14 +30,16 @@ fileprivate struct RadixToggle: ToggleStyle {
     }
 }
 
-extension Toggle {
-    public func radixToggle(onColor: Color? = nil, offColor: Color? = nil, boxSize: CGFloat? = nil) -> some View {
-        self.toggleStyle(
-            RadixToggle(
-                onColor: onColor,
-                offColor: offColor,
-                boxSize: boxSize
-            )
+extension ToggleStyle where Self == RadixToggle {
+    static func radixToggle(
+        onColor: Color? = nil,
+        offColor: Color? = nil,
+        boxSize: CGFloat? = nil
+    ) -> RadixToggle {
+        .init(
+            onColor: onColor,
+            offColor: offColor,
+            boxSize: boxSize
         )
     }
 }

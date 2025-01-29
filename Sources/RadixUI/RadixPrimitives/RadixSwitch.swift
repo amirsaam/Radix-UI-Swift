@@ -15,10 +15,26 @@ fileprivate struct RadixSwitch: ToggleStyle {
     var offColor: Color?
     var thumbColor: Color?
 
+    private var newOnColor: Color {
+        guard let onColor else {
+            return colorScheme == .light ? .blackA12 : .whiteA12
+        }
+        return onColor
+    }
+    private var newOffColor: Color {
+        guard let offColor else {
+            return colorScheme == .light ? .blackA9 : .whiteA9
+        }
+        return offColor
+    }
+    private var newThumbColor: Color {
+        guard let thumbColor else {
+            return colorScheme == .light ? .whiteA12 : .blackA12
+        }
+        return thumbColor
+    }
+
     func makeBody(configuration: Self.Configuration) -> some View {
-        let newOnColor = onColor == nil ? colorScheme == .light ? .blackA12 : .whiteA12 : onColor!
-        let newOffColor = offColor == nil ? colorScheme == .light ? .blackA9 : .whiteA9 : offColor!
-        let newThumbColor = thumbColor == nil ? colorScheme == .light ? .whiteA12 : .blackA12 : thumbColor!
         HStack {
             configuration.label
             Spacer()
@@ -42,14 +58,16 @@ fileprivate struct RadixSwitch: ToggleStyle {
     }
 }
 
-extension Toggle {
-    public func radixSwitch(onColor: Color? = nil, offColor: Color? = nil, thumbColor: Color? = nil) -> some View {
-        self.toggleStyle(
-            RadixSwitch(
-                onColor: onColor,
-                offColor: offColor,
-                thumbColor: thumbColor
-            )
+extension ToggleStyle where Self == RadixSwitch {
+    static func radixSwitch(
+        onColor: Color? = nil,
+        offColor: Color? = nil,
+        thumbColor: Color? = nil
+    ) -> RadixSwitch {
+        .init(
+            onColor: onColor,
+            offColor: offColor,
+            thumbColor: thumbColor
         )
     }
 }

@@ -11,7 +11,7 @@ fileprivate struct RadixButton: ButtonStyle {
 
     @Environment(\.isEnabled) var isEnabled
 
-    func makeBody(configuration: Configuration) -> some View {
+    public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .opacity(isEnabled ? 1 : 0.4)
             .scaleEffect(configuration.isPressed ? 0.97 : 1)
@@ -20,8 +20,8 @@ fileprivate struct RadixButton: ButtonStyle {
     }
 }
 
-public extension Button {
-  func radixButton() -> some View {
-    self.buttonStyle(RadixButton())
+extension ButtonStyle where Self == RadixButton {
+  static func radixButton() -> RadixButton {
+      .init()
   }
 }

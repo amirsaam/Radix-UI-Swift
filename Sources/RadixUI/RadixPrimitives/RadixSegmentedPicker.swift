@@ -53,5 +53,5 @@ public struct RadixSegmentedPicker {
     }
 }
 #elseif canImport(AppKit)
-/// TODO: Add `RadixSegmentedPicker` for `macOS`
+#warning("TODO: Add RadixSegmentedPicker for macOS")
 #endif

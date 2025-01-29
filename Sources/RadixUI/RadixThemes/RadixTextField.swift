@@ -14,9 +14,17 @@ fileprivate struct RadixTextFieldModifier: ViewModifier {
     var strokeFocusedColor: Color?
     var strokeUnfocusedColor: Color?
 
+    private var newOnColor: Color {
+        guard let strokeFocusedColor else { return .gray12 }
+        return strokeFocusedColor
+    }
+
+    private var newOffColor: Color {
+        guard let strokeUnfocusedColor else { return .gray7 }
+        return strokeUnfocusedColor
+    }
+
     func body(content: Content) -> some View {
-        let newOnColor = strokeFocusedColor == nil ? .gray12 : strokeFocusedColor!
-        let newOffColor = strokeUnfocusedColor == nil ? .gray7 : strokeUnfocusedColor!
         content
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
@@ -29,7 +37,15 @@ fileprivate struct RadixTextFieldModifier: ViewModifier {
 }
 
 extension View {
-    public func radixTextFieldStyle(unfocusedColor: Color? = nil, focusedColor: Color? = nil) -> some View {
-        self.modifier(RadixTextFieldModifier(strokeFocusedColor: focusedColor, strokeUnfocusedColor: unfocusedColor))
+    public func radixTextFieldStyle(
+        unfocusedColor: Color? = nil,
+        focusedColor: Color? = nil
+    ) -> some View {
+        self.modifier(
+            RadixTextFieldModifier(
+                strokeFocusedColor: focusedColor,
+                strokeUnfocusedColor: unfocusedColor
+            )
+        )
     }
 }
