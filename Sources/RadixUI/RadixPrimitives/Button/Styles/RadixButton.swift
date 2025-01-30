@@ -146,32 +146,29 @@ extension ButtonStyle where Self == RadixButton {
 
     /// Creates Ghost style for RadixButton
     public static func radix(
-        variant: RadixButtonVariant = .ghost,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
-        radius: RadixButtonRadius,
         fgColor: Color
     ) -> Self {
         return RadixButton(
-            variant: variant,
+            variant: .ghost,
             layout: layout,
             size: size,
-            radius: radius,
+            radius: .none,
             fgColor: fgColor
         )
     }
 
     /// Creates Soft style for RadixButton
     public static func radix(
-        variant: RadixButtonVariant = .soft,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
         fgColor: Color,
         shadeColor: Color
     ) -> Self {
-        return RadixButton(
-            variant: variant,
+        .init(
+            variant: .soft,
             layout: layout,
             size: size,
             radius: radius,
@@ -182,15 +179,14 @@ extension ButtonStyle where Self == RadixButton {
 
     /// Creates Solid style for RadixButton
     public static func radix(
-        variant: RadixButtonVariant = .solid,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
         fgColor: Color,
         solidColor: Color
     ) -> Self {
-        return RadixButton(
-            variant: variant,
+        .init(
+            variant: .solid,
             layout: layout,
             size: size,
             radius: radius,
@@ -201,7 +197,6 @@ extension ButtonStyle where Self == RadixButton {
 
     /// Creates Surface style for RadixButton
     public static func radix(
-        variant: RadixButtonVariant = .surface,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
@@ -209,8 +204,8 @@ extension ButtonStyle where Self == RadixButton {
         strokeColor: Color,
         shadeColor: Color
     ) -> Self {
-        return RadixButton(
-            variant: variant,
+        .init(
+            variant: .surface,
             layout: layout,
             size: size,
             radius: radius,
@@ -222,15 +217,14 @@ extension ButtonStyle where Self == RadixButton {
 
     /// Creates Outline style for RadixButton
     public static func radix(
-        variant: RadixButtonVariant = .outline,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
         fgColor: Color,
         strokeColor: Color
     ) -> Self {
-        return RadixButton(
-            variant: variant,
+        .init(
+            variant: .outline,
             layout: layout,
             size: size,
             radius: radius,
@@ -240,9 +234,9 @@ extension ButtonStyle where Self == RadixButton {
     }
 
     /// Custom style RadixButton, accepts any Label
-    public static func radix(variant: RadixButtonVariant = .custom) -> Self {
-        return RadixButton(
-            variant: variant,
+    public static func radix() -> Self {
+        .init(
+            variant: .custom,
             layout: .none,
             size: .full,
             radius: .none,

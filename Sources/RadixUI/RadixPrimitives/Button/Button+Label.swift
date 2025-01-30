@@ -121,7 +121,7 @@ extension LabelStyle where Self == RadixLabelStyle {
         radius: RadixButtonRadius,
         fgColor: Color
     ) -> Self {
-        return RadixLabelStyle(
+        .init(
             variant: variant,
             layout: layout,
             size: size,
@@ -139,7 +139,7 @@ extension LabelStyle where Self == RadixLabelStyle {
         fgColor: Color,
         shadeColor: Color
     ) -> Self {
-        return RadixLabelStyle(
+        .init(
             variant: variant,
             layout: layout,
             size: size,
@@ -158,7 +158,7 @@ extension LabelStyle where Self == RadixLabelStyle {
         fgColor: Color,
         solidColor: Color
     ) -> Self {
-        return RadixLabelStyle(
+        .init(
             variant: variant,
             layout: layout,
             size: size,
@@ -178,7 +178,7 @@ extension LabelStyle where Self == RadixLabelStyle {
         strokeColor: Color,
         shadeColor: Color
     ) -> Self {
-        return RadixLabelStyle(
+        .init(
             variant: variant,
             layout: layout,
             size: size,
@@ -198,7 +198,7 @@ extension LabelStyle where Self == RadixLabelStyle {
         fgColor: Color,
         strokeColor: Color
     ) -> Self {
-        return RadixLabelStyle(
+        .init(
             variant: variant,
             layout: layout,
             size: size,
