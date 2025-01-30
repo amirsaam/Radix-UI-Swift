@@ -13,20 +13,14 @@ public struct RadixButton: ButtonStyle {
     @Environment(\.isLoading) var isLoading
 
     private var variant: RadixButtonVariant
-    private var size: RadixButtonSize
     private var layout: RadixButtonLayout
-    private var radius: RadixButtonRadius
 
     init(
         variant: RadixButtonVariant,
-        size: RadixButtonSize,
-        layout: RadixButtonLayout,
-        radius: RadixButtonRadius
+        layout: RadixButtonLayout
     ) {
         self.variant = variant
-        self.size = size
         self.layout = layout
-        self.radius = radius
     }
 
     private var opacityValue: Double {
@@ -37,12 +31,10 @@ public struct RadixButton: ButtonStyle {
     public func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .labelStyle(
-                .radixLabel(
+                .radix(
                     isPressed: configuration.isPressed,
                     variant: variant,
-                    size: size,
-                    layout: layout,
-                    radius: radius
+                    layout: layout
                 ),
                 isLoading: isLoading
             )
@@ -51,17 +43,13 @@ public struct RadixButton: ButtonStyle {
 }
 
 extension ButtonStyle where Self == RadixButton {
-    public static func radixButton(
+    public static func radix(
         variant: RadixButtonVariant,
-        size: RadixButtonSize,
-        layout: RadixButtonLayout,
-        radius: RadixButtonRadius
+        layout: RadixButtonLayout
     ) -> Self {
         return RadixButton(
             variant: variant,
-            size: size,
-            layout: layout,
-            radius: radius
+            layout: layout
         )
     }
 }

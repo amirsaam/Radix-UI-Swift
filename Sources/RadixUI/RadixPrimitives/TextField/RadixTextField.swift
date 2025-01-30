@@ -38,7 +38,7 @@ public struct RadixTextField: TextFieldStyle {
 }
 
 extension TextFieldStyle where Self == RadixTextField {
-    public static func radixTextFieldStyle(
+    public static func radix(
         iconImage: Image? = nil,
         iconSize: CGFloat = 15,
         unfocusedColor: Color = .gray7,
