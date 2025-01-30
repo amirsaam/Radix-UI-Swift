@@ -9,5 +9,5 @@ import Foundation
 import SwiftUI
 
 public enum RadixButtonVariant {
-    case ghost, solid, soft, surface, outline
+    case ghost, solid, soft, surface, outline, custom
 }

@@ -68,25 +68,32 @@ public struct RadixButton: ButtonStyle {
             switch variant {
                 case .ghost:
                     label(config: configuration)
+                        .foregroundStyle(fgColor)
                 case .solid:
                     label(config: configuration)
                         .background(newSolidColor)
+                        .foregroundStyle(fgColor)
                 case .soft:
                     label(config: configuration)
                         .background(newShadeColor)
+                        .foregroundStyle(fgColor)
                 case .surface:
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(newStrokeColor, lineWidth: 1)
                         .background(newShadeColor)
                         .overlay {
                             label(config: configuration)
+                                .foregroundStyle(fgColor)
                         }
                 case .outline:
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(newStrokeColor, lineWidth: 1)
                         .overlay {
                             label(config: configuration)
+                                .foregroundStyle(fgColor)
                         }
+                case .custom:
+                    label(config: configuration)
             }
         }
     }
@@ -97,13 +104,13 @@ public struct RadixButton: ButtonStyle {
             .scaleEffect(config.isPressed ? 0.97 : 1)
             .saturation(config.isPressed ? 1.2 : 1)
             .animation(.easeInOut(duration: 0.2), value: config.isPressed)
-            .foregroundStyle(fgColor)
     }
 
 }
 
 extension ButtonStyle where Self == RadixButton {
 
+    /// Creates Ghost style for RadixButton
     public static func radix(
         variant: RadixButtonVariant = .ghost,
         fgColor: Color
@@ -114,10 +121,11 @@ extension ButtonStyle where Self == RadixButton {
         )
     }
 
+    /// Creates Solid style for RadixButton
     public static func radix(
         variant: RadixButtonVariant = .solid,
         fgColor: Color,
-        solidColor: Color? = nil
+        solidColor: Color
     ) -> Self {
         return RadixButton(
             variant: variant,
@@ -126,10 +134,11 @@ extension ButtonStyle where Self == RadixButton {
         )
     }
 
+    /// Creates Soft style for RadixButton
     public static func radix(
         variant: RadixButtonVariant = .soft,
         fgColor: Color,
-        shadeColor: Color? = nil
+        shadeColor: Color
     ) -> Self {
         return RadixButton(
             variant: variant,
@@ -138,11 +147,12 @@ extension ButtonStyle where Self == RadixButton {
         )
     }
 
+    /// Creates Surface style for RadixButton
     public static func radix(
         variant: RadixButtonVariant = .surface,
         fgColor: Color,
-        strokeColor: Color? = nil,
-        shadeColor: Color? = nil
+        strokeColor: Color,
+        shadeColor: Color
     ) -> Self {
         return RadixButton(
             variant: variant,
@@ -152,15 +162,21 @@ extension ButtonStyle where Self == RadixButton {
         )
     }
 
+    /// Creates Outline style for RadixButton
     public static func radix(
         variant: RadixButtonVariant = .outline,
         fgColor: Color,
-        strokeColor: Color? = nil
+        strokeColor: Color
     ) -> Self {
         return RadixButton(
             variant: variant,
             fgColor: fgColor,
             strokeColor: strokeColor
         )
+    }
+
+    /// Custom style RadixButton, accepts any Label
+    public static func radix(variant: RadixButtonVariant = .custom) -> Self {
+        return RadixButton(variant: variant, fgColor: .clear)
     }
 }
