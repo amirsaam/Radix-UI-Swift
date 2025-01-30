@@ -1,17 +1,16 @@
 //
-//  RadixButton.swift
+//  Button+Label.swift
 //  RadixUI
 //
-//  Created by Amir Mohammadi on 7/29/1403 AP.
+//  Created by Amir Mohammadi on 11/12/1403 AP.
 //
 
 import SwiftUI
 
-public struct RadixButton: ButtonStyle {
+public struct RadixLabelStyle: LabelStyle {
 
+    @Environment(\.isLoading) var isLoading
     @Environment(\.colorScheme) private var colorScheme
-    @Environment(\.isEnabled) private var isEnabled
-    @Environment(\.isLoading) private var isLoading
 
     private var variant: RadixButtonVariant
     private var layout: RadixButtonLayout
@@ -42,25 +41,20 @@ public struct RadixButton: ButtonStyle {
         self.strokeColor = strokeColor
     }
 
-    private var opacityValue: Double {
-        guard !isEnabled || isLoading.wrappedValue else { return 1.0 }
-        return 0.4
-    }
-
+    private var strokeVariants: [RadixButtonVariant] = [.surface, .outline]
+    private var shadeVariants: [RadixButtonVariant] = [.soft, .surface]
     private var newSolidColor: Color {
         guard let solidColor else {
             return colorScheme == .light ? .blackA2 : .whiteA2
         }
         return solidColor
     }
-
     private var newStrokeColor: Color {
         guard let strokeColor else {
             return colorScheme == .light ? .blackA2 : .whiteA2
         }
         return strokeColor
     }
-
     private var newShadeColor: Color {
         guard let shadeColor else {
             return colorScheme == .light ? .blackA9 : .whiteA9
@@ -68,85 +62,47 @@ public struct RadixButton: ButtonStyle {
         return shadeColor
     }
 
-    public func makeBody(configuration: Configuration) -> some View {
-        switch variant {
-            case .custom:
-                label(config: configuration)
-            case .ghost:
-                label(config: configuration)
-                    .labelStyle(
-                        .radix(
-                            layout: layout,
-                            size: size,
-                            radius: radius,
-                            fgColor: fgColor
-                        ),
-                        isLoading: isLoading
-                    )
-            case .soft:
-                label(config: configuration)
-                    .labelStyle(
-                        .radix(
-                            layout: layout,
-                            size: size,
-                            radius: radius,
-                            fgColor: fgColor,
-                            shadeColor: newShadeColor
-                        ),
-                        isLoading: isLoading
-                    )
-            case .solid:
-                label(config: configuration)
-                    .labelStyle(
-                        .radix(
-                            layout: layout,
-                            size: size,
-                            radius: radius,
-                            fgColor: fgColor,
-                            solidColor: newSolidColor
-                        ),
-                        isLoading: isLoading
-                    )
-            case .surface:
-                label(config: configuration)
-                    .labelStyle(
-                        .radix(
-                            layout: layout,
-                            size: size,
-                            radius: radius,
-                            fgColor: fgColor,
-                            strokeColor: newStrokeColor,
-                            shadeColor: newShadeColor
-                        ),
-                        isLoading: isLoading
-                    )
-            case .outline:
-                label(config: configuration)
-                    .labelStyle(
-                        .radix(
-                            layout: layout,
-                            size: size,
-                            radius: radius,
-                            fgColor: fgColor,
-                            strokeColor: newStrokeColor
-                        ),
-                        isLoading: isLoading
-                    )
+    public func makeBody(configuration: Self.Configuration) -> some View {
+        ZStack {
+            if isLoading.wrappedValue {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .tint(.gray9)
+            } else {
+                Group {
+                    switch layout {
+                        case .leading:
+                            HStack(spacing: 5) {
+                                configuration.icon
+                                configuration.title
+                            }
+                        case .trailing:
+                            HStack(spacing: 5) {
+                                configuration.title
+                                configuration.icon
+                            }
+                        case .none:
+                            HStack {
+                                configuration.title
+                            }
+                    }
+                }
+            }
+        }
+        .frame(width: size.dimension.width, height: size.dimension.height)
+        .foregroundStyle(fgColor)
+        .background(shadeVariants.contains(variant) ? newShadeColor : variant == .solid ? newSolidColor : .clear)
+        .clipShape(radius.clipShape())
+        .overlay {
+            if strokeVariants.contains(variant) {
+                radius.clipShape()
+                    .stroke(newStrokeColor, lineWidth: 1)
+            }
         }
     }
-
-    private func label(config: Configuration) -> some View {
-        config.label
-            .opacity(opacityValue)
-            .scaleEffect(config.isPressed ? 0.97 : 1)
-            .saturation(config.isPressed ? 1.2 : 1)
-            .animation(.easeInOut(duration: 0.2), value: config.isPressed)
-    }
-
 }
 
-extension ButtonStyle where Self == RadixButton {
-
+extension LabelStyle where Self == RadixLabelStyle {
     /// Creates Ghost style for RadixButton
     public static func radix(
         variant: RadixButtonVariant = .ghost,
@@ -155,7 +111,7 @@ extension ButtonStyle where Self == RadixButton {
         radius: RadixButtonRadius,
         fgColor: Color
     ) -> Self {
-        return RadixButton(
+        return RadixLabelStyle(
             variant: variant,
             layout: layout,
             size: size,
@@ -173,7 +129,7 @@ extension ButtonStyle where Self == RadixButton {
         fgColor: Color,
         shadeColor: Color
     ) -> Self {
-        return RadixButton(
+        return RadixLabelStyle(
             variant: variant,
             layout: layout,
             size: size,
@@ -192,7 +148,7 @@ extension ButtonStyle where Self == RadixButton {
         fgColor: Color,
         solidColor: Color
     ) -> Self {
-        return RadixButton(
+        return RadixLabelStyle(
             variant: variant,
             layout: layout,
             size: size,
@@ -212,7 +168,7 @@ extension ButtonStyle where Self == RadixButton {
         strokeColor: Color,
         shadeColor: Color
     ) -> Self {
-        return RadixButton(
+        return RadixLabelStyle(
             variant: variant,
             layout: layout,
             size: size,
@@ -232,24 +188,13 @@ extension ButtonStyle where Self == RadixButton {
         fgColor: Color,
         strokeColor: Color
     ) -> Self {
-        return RadixButton(
+        return RadixLabelStyle(
             variant: variant,
             layout: layout,
             size: size,
             radius: radius,
             fgColor: fgColor,
             strokeColor: strokeColor
-        )
-    }
-
-    /// Custom style RadixButton, accepts any Label
-    public static func radix(variant: RadixButtonVariant = .custom) -> Self {
-        return RadixButton(
-            variant: variant,
-            layout: .none,
-            size: .full,
-            radius: .none,
-            fgColor: .clear
         )
     }
 }
