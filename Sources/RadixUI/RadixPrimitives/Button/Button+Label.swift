@@ -114,7 +114,7 @@ public struct RadixLabelStyle: LabelStyle {
 
 extension LabelStyle where Self == RadixLabelStyle {
     /// Creates Ghost style for RadixButton
-    public static func radix(
+    public static func radixGhost(
         variant: RadixButtonVariant = .ghost,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
@@ -131,7 +131,7 @@ extension LabelStyle where Self == RadixLabelStyle {
     }
 
     /// Creates Soft style for RadixButton
-    public static func radix(
+    public static func radixSoft(
         variant: RadixButtonVariant = .soft,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
@@ -150,7 +150,7 @@ extension LabelStyle where Self == RadixLabelStyle {
     }
 
     /// Creates Solid style for RadixButton
-    public static func radix(
+    public static func radixSolid(
         variant: RadixButtonVariant = .solid,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
@@ -169,7 +169,7 @@ extension LabelStyle where Self == RadixLabelStyle {
     }
 
     /// Creates Surface style for RadixButton
-    public static func radix(
+    public static func radixSurface(
         variant: RadixButtonVariant = .surface,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
@@ -190,7 +190,7 @@ extension LabelStyle where Self == RadixLabelStyle {
     }
 
     /// Creates Outline style for RadixButton
-    public static func radix(
+    public static func radixOutline(
         variant: RadixButtonVariant = .outline,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
