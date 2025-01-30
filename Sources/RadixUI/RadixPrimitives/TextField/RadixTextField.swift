@@ -29,8 +29,9 @@ public struct RadixTextField: TextFieldStyle {
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(
-            RoundedRectangle(cornerRadius: 8)
+            Rectangle()
                 .stroke(isFocused ? strokeFocusedColor : strokeUnfocusedColor, lineWidth: 1)
+                .radixRadius4()
         )
         .focused($isFocused)
     }

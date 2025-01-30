@@ -7,19 +7,14 @@
 
 import SwiftUI
 
-private struct LoadingKey: EnvironmentKey {
-    static let defaultValue: Binding<Bool> = .constant(false)
-}
-
-public extension EnvironmentValues {
-    var isLoading: Binding<Bool> {
-        get { self[LoadingKey.self] }
-        set { self[LoadingKey.self] = newValue }
+extension View {
+    public func buttonStyle<S: ButtonStyle>(_ style: S, isLoading: Binding<Bool>) -> some View {
+        self.buttonStyle(style).environment(\.isLoading, isLoading)
     }
 }
 
-public extension View {
-    func buttonStyle<S: ButtonStyle>(_ style: S, isLoading: Binding<Bool>) -> some View {
-        self.buttonStyle(style).environment(\.isLoading, isLoading)
+extension View {
+    public func labelStyle<S: LabelStyle>(_ style: S, isLoading: Binding<Bool>) -> some View {
+        self.labelStyle(style).environment(\.isLoading, isLoading)
     }
 }

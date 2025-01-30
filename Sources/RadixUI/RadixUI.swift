@@ -55,16 +55,23 @@ extension Color {
             Scanner(string: hex).scanHexInt64(&rgba)
 
             let r, g, b, a: CGFloat
-            if hex.count == 8 {
-                r = CGFloat((rgba & 0xff000000) >> 24) / 255.0
-                g = CGFloat((rgba & 0x00ff0000) >> 16) / 255.0
-                b = CGFloat((rgba & 0x0000ff00) >> 8) / 255.0
-                a = CGFloat(rgba & 0x000000ff) / 255.0
-            } else {
-                r = CGFloat((rgba & 0xff0000) >> 16) / 255.0
-                g = CGFloat((rgba & 0x00ff00) >> 8) / 255.0
-                b = CGFloat(rgba & 0x0000ff) / 255.0
-                a = 1.0
+            switch hex.count {
+                case 6:
+                    r = CGFloat((rgba & 0xff0000) >> 16) / 255.0
+                    g = CGFloat((rgba & 0x00ff00) >> 8) / 255.0
+                    b = CGFloat(rgba & 0x0000ff) / 255.0
+                    a = 1.0
+                case 8:
+                    r = CGFloat((rgba & 0xff000000) >> 24) / 255.0
+                    g = CGFloat((rgba & 0x00ff0000) >> 16) / 255.0
+                    b = CGFloat((rgba & 0x0000ff00) >> 8) / 255.0
+                    a = CGFloat(rgba & 0x000000ff) / 255.0
+                default:
+                    // Fallback to White if Hex is not correct
+                    r = 255
+                    g = 255
+                    b = 255
+                    a = 1.0
             }
             return PlatformColor(red: r, green: g, blue: b, alpha: a)
         }
@@ -85,5 +92,17 @@ extension Color {
             }
         )
 #endif
+    }
+}
+
+// MARK: - isLoading EnvironmentKey
+fileprivate struct LoadingKey: EnvironmentKey {
+    static let defaultValue: Binding<Bool> = .constant(false)
+}
+
+public extension EnvironmentValues {
+    var isLoading: Binding<Bool> {
+        get { self[LoadingKey.self] }
+        set { self[LoadingKey.self] = newValue }
     }
 }
