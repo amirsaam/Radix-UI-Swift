@@ -8,10 +8,10 @@
 import SwiftUI
 
 public struct RadixLabelStyle: LabelStyle {
-
+    
     @Environment(\.isLoading) var isLoading
     @Environment(\.colorScheme) private var colorScheme
-
+    
     private var variant: RadixButtonVariant
     private var layout: RadixButtonLayout
     private var size: RadixButtonSize
@@ -20,7 +20,7 @@ public struct RadixLabelStyle: LabelStyle {
     private var solidColor: Color?
     private var shadeColor: Color?
     private var strokeColor: Color?
-
+    
     init(
         variant: RadixButtonVariant,
         layout: RadixButtonLayout,
@@ -40,7 +40,7 @@ public struct RadixLabelStyle: LabelStyle {
         self.shadeColor = shadeColor
         self.strokeColor = strokeColor
     }
-
+    
     private var strokeVariants: [RadixButtonVariant] = [.surface, .outline]
     private var shadeVariants: [RadixButtonVariant] = [.soft, .surface]
     private var newSolidColor: Color {
@@ -61,16 +61,40 @@ public struct RadixLabelStyle: LabelStyle {
         }
         return shadeColor
     }
-
+    private var backgroundColor: Color {
+        switch variant {
+            case .solid:
+                return newSolidColor
+            case .soft, .surface:
+                return newShadeColor
+            default:
+                return .clear
+        }
+    }
+    private var shapeStrokeColor: Color {
+        switch variant {
+            case .surface, .outline:
+                return newStrokeColor
+            default:
+                return .clear
+        }
+    }
+    
     public func makeBody(configuration: Self.Configuration) -> some View {
-        ZStack {
-            if isLoading.wrappedValue {
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .tint(.gray9)
-            } else {
-                Group {
+        radius.clipShape()
+            .stroke(shapeStrokeColor, lineWidth: 1)
+            .background(backgroundColor)
+            .frame(width: size.dimension.width, height: size.dimension.height)
+            .overlay {
+                if isLoading.wrappedValue {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                } else {
                     switch layout {
+                        case .none:
+                            HStack {
+                                configuration.title
+                            }
                         case .leading:
                             HStack(spacing: 5) {
                                 configuration.icon
@@ -81,24 +105,10 @@ public struct RadixLabelStyle: LabelStyle {
                                 configuration.title
                                 configuration.icon
                             }
-                        case .none:
-                            HStack {
-                                configuration.title
-                            }
                     }
                 }
             }
-        }
-        .frame(width: size.dimension.width, height: size.dimension.height)
-        .foregroundStyle(fgColor)
-        .background(shadeVariants.contains(variant) ? newShadeColor : variant == .solid ? newSolidColor : .clear)
-        .clipShape(radius.clipShape())
-        .overlay {
-            if strokeVariants.contains(variant) {
-                radius.clipShape()
-                    .stroke(newStrokeColor, lineWidth: 1)
-            }
-        }
+            .foregroundStyle(fgColor)
     }
 }
 
