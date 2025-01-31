@@ -10,7 +10,6 @@ import SwiftUI
 public struct RadixSoftButton: ButtonStyle {
 
     @Environment(\.isEnabled) private var isEnabled
-    @Environment(\.isLoading) private var isLoading
 
     private var layout: RadixButtonLayout
     private var size: RadixButtonSize

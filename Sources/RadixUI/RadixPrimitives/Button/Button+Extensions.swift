@@ -7,14 +7,3 @@
 
 import SwiftUI
 
-extension View {
-    public func buttonStyle<S: ButtonStyle>(_ style: S, isLoading: Binding<Bool>) -> some View {
-        self.buttonStyle(style).environment(\.isLoading, isLoading)
-    }
-}
-
-extension View {
-    public func labelStyle<S: LabelStyle>(_ style: S, isLoading: Binding<Bool>) -> some View {
-        self.labelStyle(style).environment(\.isLoading, isLoading)
-    }
-}

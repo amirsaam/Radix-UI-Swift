@@ -9,8 +9,6 @@ import SwiftUI
 
 public struct RadixSolidLabel: LabelStyle {
 
-    @Environment(\.isLoading) var isLoading
-
     private var isPressed: Bool
     private var isEnabled: Bool
     
@@ -23,13 +21,4 @@ public struct RadixSolidLabel: LabelStyle {
         
     }
 
-    @ViewBuilder
-    private func icon(_ icon: LabelStyleConfiguration.Icon) -> some View {
-        if isLoading.wrappedValue {
-            ProgressView()
-                .progressViewStyle(.circular)
-        } else {
-            icon
-        }
-    }
 }

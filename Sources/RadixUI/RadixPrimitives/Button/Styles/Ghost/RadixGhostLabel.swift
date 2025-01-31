@@ -9,8 +9,6 @@ import SwiftUI
 
 public struct RadixGhostLabel: LabelStyle {
 
-    @Environment(\.isLoading) var isLoading
-
     private var isPressed: Bool
     private var isEnabled: Bool
     
@@ -36,7 +34,7 @@ public struct RadixGhostLabel: LabelStyle {
     }
 
     private var opacityValue: Double {
-        guard !isEnabled || isLoading.wrappedValue else { return 1.0 }
+        guard !isEnabled else { return 1.0 }
         return 0.4
     }
 
@@ -61,11 +59,11 @@ public struct RadixGhostLabel: LabelStyle {
             }
             HStack(spacing: 8) {
                 if layout == .leading {
-                    icon(configuration.icon)
+                    configuration.icon
                 }
                 configuration.title
                 if layout == .trailing {
-                    icon(configuration.icon)
+                    configuration.icon
                 }
             }
             .foregroundStyle(isPressed ? color.text1 : color.text2)
@@ -74,16 +72,6 @@ public struct RadixGhostLabel: LabelStyle {
         .scaleEffect(isPressed ? 0.97 : 1)
         .saturation(isPressed ? 1.2 : 1)
         .animation(.easeInOut(duration: 0.2), value: isPressed)
-    }
-
-    @ViewBuilder
-    private func icon(_ icon: LabelStyleConfiguration.Icon) -> some View {
-        if isLoading.wrappedValue {
-            ProgressView()
-                .progressViewStyle(.circular)
-        } else {
-            icon
-        }
     }
 }
 
