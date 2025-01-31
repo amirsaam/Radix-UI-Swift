@@ -96,7 +96,7 @@ extension Color {
 }
 
 // MARK: - isLoading EnvironmentKey
-fileprivate struct LoadingKey: EnvironmentKey {
+struct LoadingKey: EnvironmentKey {
     static let defaultValue: Binding<Bool> = .constant(false)
 }
 
