@@ -10,6 +10,7 @@ import SwiftUI
 public struct RadixGhostButton: ButtonStyle {
 
     @Environment(\.isEnabled) private var isEnabled
+    @Environment(\.isLoading) private var isLoading
 
     private var layout: RadixButtonLayout
     private var size: RadixButtonSize
@@ -38,7 +39,8 @@ public struct RadixGhostButton: ButtonStyle {
                     size: size,
                     radius: radius,
                     color: color
-                )
+                ),
+                isLoading: isLoading
             )
     }
 }
