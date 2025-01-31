@@ -15,7 +15,7 @@ public struct RadixGhostButton: ButtonStyle {
     private var layout: RadixButtonLayout
     private var size: RadixButtonSize
     private var radius: RadixButtonRadius
-    private var color: AutoColor
+    private var color: RadixAutoColor
 
     init(
         layout: RadixButtonLayout,
@@ -50,7 +50,7 @@ extension ButtonStyle where Self == RadixGhostButton {
         layout: RadixButtonLayout = .leading,
         size: RadixButtonSize = .medium,
         radius: RadixButtonRadius = .large,
-        color: AutoColor = .black
+        color: RadixAutoColor = .black
     ) -> Self {
         .init(
             layout: layout,
