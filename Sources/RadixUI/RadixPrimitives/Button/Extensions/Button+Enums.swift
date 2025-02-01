@@ -9,7 +9,11 @@ import Foundation
 import SwiftUI
 
 public enum RadixButtonLayout {
-    case none, leading, trailing
+    case icon, title, leading, trailing
+}
+
+public enum RadixButtonRadius {
+    case none, large, full
 }
 
 public enum RadixButtonSize {
@@ -18,17 +22,17 @@ public enum RadixButtonSize {
     var dimension: CGSize {
         switch self {
             case .small:
-                return .init(width: 72, height: 32)
+                return .init(width: 80, height: 40)
             case .medium:
-                return .init(width: 84, height: 44)
+                return .init(width: 100, height: 50)
             case .large:
-                return .init(width: 96, height: 56)
+                return .init(width: 120, height: 60)
             case .custom(let size):
                 return size
         }
     }
 }
 
-public enum RadixButtonRadius {
-    case none, large, full
+public enum RadixButtonVariant {
+    case custom, ghost, outline, soft, solid, surface
 }
