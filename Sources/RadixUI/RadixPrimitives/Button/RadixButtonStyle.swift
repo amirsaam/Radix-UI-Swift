@@ -12,14 +12,14 @@ public struct RadixButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
     @Environment(\.isLoading) private var isLoading
 
-    private var color: RadixAutoColor
+    private var color: RadixAutoColor?
     private var layout: RadixButtonLayout
     private var size: RadixButtonSize
     private var radius: RadixButtonRadius
     private var variant: RadixButtonVariant
 
     init(
-        color: RadixAutoColor,
+        color: RadixAutoColor?,
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
@@ -32,13 +32,21 @@ public struct RadixButtonStyle: ButtonStyle {
         self.variant = variant
     }
 
+    private var newColor: RadixAutoColor {
+        guard let color else { return .blue }
+        return color
+    }
+
     public func makeBody(configuration: Configuration) -> some View {
         switch variant {
             case .custom:
                 configuration.label
-                    .opacity(isEnabled ? 1.0 : 0.4)
-                    .scaleEffect(configuration.isPressed ? 0.97 : 1)
-                    .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
+                    .opacity(isEnabled ? 1.0 : 0.6)
+                    .scaleEffect(configuration.isPressed ? 0.98 : 1)
+                    .animation(
+                        .easeIn(duration: 0.2),
+                        value: configuration.isPressed
+                    )
             default:
                 configuration.label
                     .labelStyle(
@@ -46,7 +54,7 @@ public struct RadixButtonStyle: ButtonStyle {
                             isLoading: isLoading,
                             isPressed: configuration.isPressed,
                             isEnabled: isEnabled,
-                            color: color,
+                            color: newColor,
                             layout: layout,
                             size: size,
                             radius: radius,
@@ -73,7 +81,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
-        color: RadixAutoColor
+        color: RadixAutoColor? = nil
     ) -> Self {
         .init(
             color: color,
@@ -88,7 +96,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
-        color: RadixAutoColor
+        color: RadixAutoColor? = nil
     ) -> Self {
         .init(
             color: color,
@@ -103,7 +111,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
-        color: RadixAutoColor
+        color: RadixAutoColor? = nil
     ) -> Self {
         .init(
             color: color,
@@ -118,7 +126,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
-        color: RadixAutoColor
+        color: RadixAutoColor? = nil
     ) -> Self {
         .init(
             color: color,
@@ -133,7 +141,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         size: RadixButtonSize,
         radius: RadixButtonRadius,
-        color: RadixAutoColor
+        color: RadixAutoColor? = nil
     ) -> Self {
         .init(
             color: color,
