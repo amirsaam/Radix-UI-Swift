@@ -61,7 +61,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
 
     public static func raduxCustom() -> Self {
         .init(
-            color: .black,
+            color: .blackA,
             layout: .leading,
             size: .large,
             radius: .full,

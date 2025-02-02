@@ -32,7 +32,7 @@ struct ButtonDemoView: View {
                     layout: .leading,
                     size: .large,
                     radius: .large,
-                    color: .gold
+                    color: .grass
                 ),
                 isLoading: $isLoading1
             )
@@ -51,7 +51,7 @@ struct ButtonDemoView: View {
                     layout: .leading,
                     size: .large,
                     radius: .large,
-                    color: .gold
+                    color: .grass
                 ),
                 isLoading: $isLoading2
             )
@@ -70,7 +70,7 @@ struct ButtonDemoView: View {
                     layout: .leading,
                     size: .large,
                     radius: .large,
-                    color: .gold
+                    color: .grass
                 ),
                 isLoading: $isLoading3
             )
@@ -89,7 +89,7 @@ struct ButtonDemoView: View {
                     layout: .leading,
                     size: .large,
                     radius: .large,
-                    color: .gold
+                    color: .grass
                 ),
                 isLoading: $isLoading4
             )
@@ -108,7 +108,7 @@ struct ButtonDemoView: View {
                     layout: .leading,
                     size: .large,
                     radius: .large,
-                    color: .gold
+                    color: .grass
                 ),
                 isLoading: $isLoading5
             )

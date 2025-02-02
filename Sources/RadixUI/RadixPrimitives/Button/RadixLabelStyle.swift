@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct RadixLabelStyle: LabelStyle {
 
+    @Environment(\.colorScheme) private var colorScheme
+
     private var isLoading: Binding<Bool>
     private var isPressed: Bool
     private var isEnabled: Bool
@@ -40,8 +42,10 @@ public struct RadixLabelStyle: LabelStyle {
     }
 
     private var opacityValue: Double {
-        guard !isEnabled || isLoading.wrappedValue else { return 1.0 }
-        return 0.4
+        guard !isEnabled || isLoading.wrappedValue else {
+            return 1.0
+        }
+        return 0.6
     }
 
     public func makeBody(configuration: Configuration) -> some View {
@@ -50,28 +54,46 @@ public struct RadixLabelStyle: LabelStyle {
                 case .none:
                     Rectangle()
                         .fill(buttonColor(variant).first!)
-                        .frame(width: size.dimension.width, height: size.dimension.height)
+                        .frame(
+                            width: size.dimension.width,
+                            height: size.dimension.height
+                        )
                         .overlay {
                             Rectangle()
-                                .stroke(buttonColor(variant).last!, lineWidth: 1)
+                                .stroke(
+                                    buttonColor(variant).last!,
+                                    lineWidth: 1
+                                )
                                 .background(.clear)
                         }
                 case .large:
                     RoundedRectangle(cornerRadius: 8)
                         .fill(buttonColor(variant).first!)
-                        .frame(width: size.dimension.width, height: size.dimension.height)
+                        .frame(
+                            width: size.dimension.width,
+                            height: size.dimension.height
+                        )
                         .overlay {
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(buttonColor(variant).last!, lineWidth: 1)
+                                .stroke(
+                                    buttonColor(variant).last!,
+                                    lineWidth: 1
+                                )
                                 .background(.clear)
                         }
                 case .full:
                     Capsule()
                         .fill(buttonColor(variant).first!)
-                        .frame(width: size.dimension.width, height: size.dimension.height)
+                        .frame(
+                            width: size.dimension.width,
+                            height: size.dimension.height
+                        )
                         .overlay {
                             Capsule()
-                                .stroke(buttonColor(variant).last!, lineWidth: 1)
+                                .stroke(
+                                    buttonColor(variant).last!,
+                                    lineWidth: 1
+                                )
                                 .background(.clear)
                         }
             }
@@ -93,13 +115,18 @@ public struct RadixLabelStyle: LabelStyle {
                         }
                 }
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 8)
-            .foregroundStyle(variant == .solid ? color.text2 : color.text1)
+            .foregroundStyle(
+                variant == .solid
+                ? (colorScheme == .light ? color.background2 : color.text2)
+                : color.text1
+            )
         }
         .opacity(opacityValue)
-        .scaleEffect(isPressed ? 0.97 : 1)
-        .animation(.easeIn(duration: 0.2), value: isPressed)
+        .scaleEffect(isPressed ? 0.98 : 1)
+        .animation(
+            .easeIn(duration: 0.2),
+            value: isPressed
+        )
     }
 
     @ViewBuilder
@@ -107,6 +134,11 @@ public struct RadixLabelStyle: LabelStyle {
         if isLoading.wrappedValue {
             ProgressView()
                 .progressViewStyle(.circular)
+                .tint(
+                    variant == .solid
+                    ? (colorScheme == .light ? color.background2 : color.text2)
+                    : color.text1
+                )
         } else {
             icon
         }
@@ -114,30 +146,31 @@ public struct RadixLabelStyle: LabelStyle {
 
     private func buttonColor(_ variant: RadixButtonVariant) -> [Color] {
         switch variant {
+                // 1st Entry is Fill and 2nd is Stroke Colors
             case .ghost:
                 [
-                    isPressed ? color.component2 : .clear, // fill
-                    .clear // stroke
+                    isPressed ? color.component1 : .clear,
+                    .clear
                 ]
             case .outline:
                 [
-                    isPressed ? color.component3 : .clear, // fill
-                    isPressed ? color.solid2 : color.solid1 // stroke
+                    isPressed ? color.component3 : .clear,
+                    isPressed ? color.solid2 : color.solid1
                 ]
             case .soft:
                 [
-                    isPressed ? color.component3 : color.component2, // fill
-                    .clear // stroke
+                    isPressed ? color.component2 : color.component1,
+                    .clear
                 ]
             case .solid:
                 [
-                    isPressed ? color.solid1 : color.border3, // fill
-                    .clear // stroke
+                    isPressed ? color.solid1 : color.border3,
+                    .clear
                 ]
             case .surface:
                 [
-                    isPressed ? color.component2 : color.component1, // fill
-                    isPressed ? color.solid2 : color.solid1 // stroke
+                    isPressed ? color.component1 : color.background2,
+                    isPressed ? color.solid2 : color.solid1
                 ]
             case .custom: []
         }

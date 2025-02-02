@@ -11,26 +11,38 @@ public struct RadixTextField: TextFieldStyle {
     
     @FocusState private var isFocused: Bool
     
+    var color: RadixAutoColor
     var iconImage: Image?
     var iconSize: CGFloat
-    var strokeUnfocusedColor: Color
-    var strokeFocusedColor: Color
-    
+
+    init(
+        color: RadixAutoColor,
+        iconImage: Image?,
+        iconSize: CGFloat
+    ) {
+        self.color = color
+        self.iconImage = iconImage
+        self.iconSize = iconSize
+    }
+
     public func _body(configuration: TextField<Self._Label>) -> some View {
-        HStack {
-            if let iconImage {
-                iconImage
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: iconSize, height: iconSize)
+        VStack(alignment: .leading) {
+            HStack(spacing: 8) {
+                if let iconImage {
+                    iconImage
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: iconSize, height: iconSize)
+                }
+                configuration
             }
-            configuration
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
+        .foregroundStyle(isFocused ? color.solid1 : color.border2)
         .background(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(isFocused ? strokeFocusedColor : strokeUnfocusedColor, lineWidth: 1)
+                .stroke(isFocused ? color.solid1 : color.border2, lineWidth: 1)
         )
         .focused($isFocused)
     }
@@ -38,16 +50,14 @@ public struct RadixTextField: TextFieldStyle {
 
 extension TextFieldStyle where Self == RadixTextField {
     public static func radix(
+        color: RadixAutoColor,
         iconImage: Image? = nil,
-        iconSize: CGFloat = 15,
-        unfocusedColor: Color = .gray7,
-        focusedColor: Color = .gray12
-    ) -> RadixTextField {
+        iconSize: CGFloat = 20
+    ) -> Self {
         .init(
+            color: color,
             iconImage: iconImage,
-            iconSize: iconSize,
-            strokeUnfocusedColor: unfocusedColor,
-            strokeFocusedColor: focusedColor
+            iconSize: iconSize
         )
     }
 }

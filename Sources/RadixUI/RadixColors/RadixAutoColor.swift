@@ -11,7 +11,7 @@ import SwiftUI
 public enum RadixAutoColor {
 
     case amber
-    case black
+    case blackA
     case blue
     case bronze
     case brown
@@ -41,7 +41,7 @@ public enum RadixAutoColor {
     case teal
     case tomato
     case violet
-    case white
+    case whiteA
     case yellow
     case custom(String)
 
