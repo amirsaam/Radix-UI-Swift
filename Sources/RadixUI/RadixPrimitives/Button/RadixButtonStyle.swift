@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct RadixButton: ButtonStyle {
+public struct RadixButtonStyle: ButtonStyle {
 
     @Environment(\.isEnabled) private var isEnabled
     @Environment(\.isLoading) private var isLoading
@@ -57,7 +57,7 @@ public struct RadixButton: ButtonStyle {
     }
 }
 
-extension ButtonStyle where Self == RadixButton {
+extension ButtonStyle where Self == RadixButtonStyle {
 
     public static func raduxCustom() -> Self {
         .init(

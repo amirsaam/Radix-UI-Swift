@@ -94,7 +94,7 @@ public struct RadixLabelStyle: LabelStyle {
                 }
             }
             .padding(.horizontal, 12)
-            .padding(.vertical, 4)
+            .padding(.vertical, 8)
             .foregroundStyle(variant == .solid ? color.text2 : color.text1)
         }
         .opacity(opacityValue)
