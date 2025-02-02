@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct ResizableBundledImage: View {
+public struct ResizableBundledImage: View {
 
   let imageName: String
   let imageSize: CGFloat
   let bundle: Bundle
 
-  var body: some View {
+    public var body: some View {
     Image(imageName, bundle: bundle)
           .resizable()
           .aspectRatio(contentMode: .fit)
