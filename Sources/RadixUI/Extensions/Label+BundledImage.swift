@@ -9,22 +9,40 @@ import SwiftUI
 
 public struct ResizableBundledImage: View {
 
-  let imageName: String
-  let imageSize: CGFloat
-  let bundle: Bundle
+    let imageName: String
+    let imageSize: CGFloat
+    let bundle: Bundle
 
     public var body: some View {
-    Image(imageName, bundle: bundle)
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(width: imageSize, height: imageSize)
-  }
+        Image(imageName, bundle: bundle)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: imageSize, height: imageSize)
+    }
+
 }
 
 extension Label where Title == Text, Icon == ResizableBundledImage {
-  init(_ title: LocalizedStringKey, imageName: String, imageSize: CGFloat, bundle: Bundle) {
-    let titleView: () -> Text = { Text(title) }
-    let iconView: () -> ResizableBundledImage = { ResizableBundledImage(imageName: imageName, imageSize: imageSize, bundle: bundle) }
-    self.init(title: titleView, icon: iconView)
-  }
+
+    init(
+        _ title: LocalizedStringKey,
+        imageName: String,
+        imageSize: CGFloat,
+        bundle: Bundle
+    ) {
+        let titleView: () -> Text = { Text(title) }
+        let iconView: () -> ResizableBundledImage = {
+            ResizableBundledImage(
+                imageName: imageName,
+                imageSize: imageSize,
+                bundle: bundle
+            )
+        }
+
+        self.init(
+            title: titleView,
+            icon: iconView
+        )
+
+    }
 }

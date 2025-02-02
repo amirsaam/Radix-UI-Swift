@@ -19,6 +19,7 @@ struct TextFieldDemoView: View {
                     iconImage: Image("quote", bundle: .module)
                 )
             )
+            .frame(width: 300)
             .padding()
     }
 }
