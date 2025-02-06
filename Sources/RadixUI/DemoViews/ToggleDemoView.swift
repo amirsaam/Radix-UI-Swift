@@ -9,19 +9,19 @@ import SwiftUI
 
 struct ToggleDemoView: View {
 
-    @State private var toggle1 = false
-    @State private var toggle2 = false
-    @State private var toggle3 = true
+    @State private var checkbox = false
+    @State private var `switch` = false
+    @State private var toggle = false
 
     private var radixColor = RadixAutoColor.self
 
     var body: some View {
-        VStack(alignment: .trailing, spacing: 25) {
+        VStack(alignment: .leading, spacing: 25) {
             HStack {
                 Text("Label Text")
                     .foregroundStyle(radixColor.grass.text2)
                 Spacer()
-                Toggle(isOn: $toggle1) {
+                Toggle(isOn: $checkbox) {
                     ResizableBundledImage(
                         imageName: "check",
                         imageSize: 20,
@@ -35,22 +35,22 @@ struct ToggleDemoView: View {
                     )
                 )
             }
-            Toggle(isOn: $toggle2) {
+            Toggle(isOn: $switch) {
                 Text("Label Text")
                     .foregroundStyle(radixColor.grass.text2)
             }
             .toggleStyle(
                 .radixSwitch(
-                    bgColor: .grass,
+                    onColor: .grass,
                     thumbColor: .whiteA
                 )
             )
             HStack {
                 Text("Label Text")
                     .foregroundStyle(radixColor.grass.text2)
-                    .font(toggle3 ? .body.italic() : .body)
+                    .font(toggle ? .body.italic() : .body)
                 Spacer()
-                Toggle(isOn: $toggle3) {
+                Toggle(isOn: $toggle) {
                     ResizableBundledImage(
                         imageName: "font-italic",
                         imageSize: 20,

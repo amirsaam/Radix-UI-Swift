@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ButtonDemoView: View {
 
-    @State var isLoading1 = false
-    @State var isLoading2 = false
-    @State var isLoading3 = false
-    @State var isLoading4 = false
-    @State var isLoading5 = false
+    @State private var isLoading1 = false
+    @State private var isLoading2 = false
+    @State private var isLoading3 = false
+    @State private var isLoading4 = false
+    @State private var isLoading5 = false
 
     var body: some View {
         VStack(spacing: 15) {
@@ -30,7 +30,6 @@ struct ButtonDemoView: View {
             .buttonStyle(
                 .radixGhost(
                     layout: .leading,
-                    size: .large,
                     radius: .large,
                     color: .grass
                 ),
@@ -49,7 +48,6 @@ struct ButtonDemoView: View {
             .buttonStyle(
                 .radixOutline(
                     layout: .leading,
-                    size: .large,
                     radius: .large,
                     color: .grass
                 ),
@@ -68,7 +66,6 @@ struct ButtonDemoView: View {
             .buttonStyle(
                 .radixSoft(
                     layout: .leading,
-                    size: .large,
                     radius: .large,
                     color: .grass
                 ),
@@ -87,7 +84,6 @@ struct ButtonDemoView: View {
             .buttonStyle(
                 .radixSolid(
                     layout: .leading,
-                    size: .large,
                     radius: .large,
                     color: .grass
                 ),
@@ -106,7 +102,6 @@ struct ButtonDemoView: View {
             .buttonStyle(
                 .radixSurface(
                     layout: .leading,
-                    size: .large,
                     radius: .large,
                     color: .grass
                 ),

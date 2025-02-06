@@ -1,5 +1,5 @@
 //
-//  RadixGhostLabel.swift
+//  RadixButtonLabelStyle.swift
 //  RadixUI
 //
 //  Created by Amir Mohammadi on 11/12/1403 AP.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct RadixLabelStyle: LabelStyle {
+public struct RadixButtonLabelStyle: LabelStyle {
 
     @Environment(\.colorScheme) private var colorScheme
 
@@ -15,30 +15,27 @@ public struct RadixLabelStyle: LabelStyle {
     private var isPressed: Bool
     private var isEnabled: Bool
 
-    private var color: RadixAutoColor
-    private var layout: RadixButtonLayout
-    private var size: RadixButtonSize
-    private var radius: RadixButtonRadius
     private var variant: RadixButtonVariant
+    private var layout: RadixButtonLayout
+    private var radius: RadixElementRadius
+    private var color: RadixAutoColor
 
     init(
         isLoading: Binding<Bool>,
         isPressed: Bool,
         isEnabled: Bool,
-        color: RadixAutoColor,
+        variant: RadixButtonVariant,
         layout: RadixButtonLayout,
-        size: RadixButtonSize,
-        radius: RadixButtonRadius,
-        variant: RadixButtonVariant
+        radius: RadixElementRadius,
+        color: RadixAutoColor
     ) {
         self.isLoading = isLoading
         self.isPressed = isPressed
         self.isEnabled = isEnabled
-        self.color = color
-        self.layout = layout
-        self.size = size
-        self.radius = radius
         self.variant = variant
+        self.layout = layout
+        self.radius = radius
+        self.color = color
     }
 
     private var opacityValue: Double {
@@ -50,53 +47,6 @@ public struct RadixLabelStyle: LabelStyle {
 
     public func makeBody(configuration: Configuration) -> some View {
         ZStack {
-            switch radius {
-                case .none:
-                    Rectangle()
-                        .fill(buttonColor(variant).first!)
-                        .frame(
-                            width: size.dimension.width,
-                            height: size.dimension.height
-                        )
-                        .overlay {
-                            Rectangle()
-                                .stroke(
-                                    buttonColor(variant).last!,
-                                    lineWidth: 1
-                                )
-                                .background(.clear)
-                        }
-                case .large:
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(buttonColor(variant).first!)
-                        .frame(
-                            width: size.dimension.width,
-                            height: size.dimension.height
-                        )
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(
-                                    buttonColor(variant).last!,
-                                    lineWidth: 1
-                                )
-                                .background(.clear)
-                        }
-                case .full:
-                    Capsule()
-                        .fill(buttonColor(variant).first!)
-                        .frame(
-                            width: size.dimension.width,
-                            height: size.dimension.height
-                        )
-                        .overlay {
-                            Capsule()
-                                .stroke(
-                                    buttonColor(variant).last!,
-                                    lineWidth: 1
-                                )
-                                .background(.clear)
-                        }
-            }
             Group {
                 switch layout {
                     case .icon:
@@ -121,6 +71,9 @@ public struct RadixLabelStyle: LabelStyle {
                 : color.text1
             )
         }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(shape())
         .opacity(opacityValue)
         .scaleEffect(isPressed ? 0.98 : 1)
         .animation(
@@ -139,12 +92,52 @@ public struct RadixLabelStyle: LabelStyle {
                     ? (colorScheme == .light ? color.background2 : color.text2)
                     : color.text1
                 )
+                .controlSize(.small)
         } else {
             icon
         }
     }
 
-    private func buttonColor(_ variant: RadixButtonVariant) -> [Color] {
+    @ViewBuilder
+    private func shape() -> some View {
+        switch radius {
+            case .none:
+                Rectangle()
+                    .fill(buttonColor().first!)
+                    .overlay {
+                        Rectangle()
+                            .stroke(
+                                buttonColor().last!,
+                                lineWidth: 1
+                            )
+                            .background(.clear)
+                    }
+            case .large:
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(buttonColor().first!)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(
+                                buttonColor().last!,
+                                lineWidth: 1
+                            )
+                            .background(.clear)
+                    }
+            case .full:
+                Capsule()
+                    .fill(buttonColor().first!)
+                    .overlay {
+                        Capsule()
+                            .stroke(
+                                buttonColor().last!,
+                                lineWidth: 1
+                            )
+                            .background(.clear)
+                    }
+        }
+    }
+
+    private func buttonColor() -> [Color] {
         switch variant {
                 // 1st Entry is Fill and 2nd is Stroke Colors
             case .ghost:
@@ -172,32 +165,32 @@ public struct RadixLabelStyle: LabelStyle {
                     isPressed ? color.component1 : color.background2,
                     isPressed ? color.solid2 : color.solid1
                 ]
-            case .custom: []
+            default: []
         }
     }
 
 }
 
-extension LabelStyle where Self == RadixLabelStyle {
-    public static func radix(
+extension LabelStyle where Self == RadixButtonLabelStyle {
+
+    public static func radixButton(
         isLoading: Binding<Bool>,
         isPressed: Bool,
         isEnabled: Bool,
         color: RadixAutoColor,
         layout: RadixButtonLayout,
-        size: RadixButtonSize,
-        radius: RadixButtonRadius,
+        radius: RadixElementRadius,
         variant: RadixButtonVariant
     ) -> Self {
         .init(
             isLoading: isLoading,
             isPressed: isPressed,
             isEnabled: isEnabled,
-            color: color,
+            variant: variant,
             layout: layout,
-            size: size,
             radius: radius,
-            variant: variant
+            color: color
         )
     }
+
 }

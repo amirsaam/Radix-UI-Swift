@@ -68,7 +68,7 @@ public struct RadixToggleStyle: ToggleStyle {
                     configuration.label
                     Spacer()
                     RoundedRectangle(cornerRadius: 16, style: .circular)
-                        .fill(configuration.isOn ? newBackgroundColor.solid2 : newBackgroundColor.component3)
+                        .fill(configuration.isOn ? newBackgroundColor.solid2 : .gray6)
                         .frame(width: 42, height: 25)
                         .radixShadow1()
                         .overlay {
@@ -116,12 +116,12 @@ extension ToggleStyle where Self == RadixToggleStyle {
     }
 
     public static func radixSwitch(
-        bgColor: RadixAutoColor? = nil,
+        onColor: RadixAutoColor? = nil,
         thumbColor: RadixAutoColor? = nil
     ) -> Self {
         .init(
             variant: .switch,
-            backgroundColor: bgColor,
+            backgroundColor: onColor,
             foregroundColor: thumbColor,
             size: nil
         )

@@ -1,5 +1,5 @@
 //
-//  RadixGhostButton.swift
+//  RadixButtonStyle.swift
 //  RadixUI
 //
 //  Created by Amir Mohammadi on 11/12/1403 AP.
@@ -12,24 +12,21 @@ public struct RadixButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled
     @Environment(\.isLoading) private var isLoading
 
-    private var color: RadixAutoColor?
-    private var layout: RadixButtonLayout
-    private var size: RadixButtonSize
-    private var radius: RadixButtonRadius
     private var variant: RadixButtonVariant
+    private var layout: RadixButtonLayout
+    private var radius: RadixElementRadius
+    private var color: RadixAutoColor?
 
     init(
-        color: RadixAutoColor?,
+        variant: RadixButtonVariant,
         layout: RadixButtonLayout,
-        size: RadixButtonSize,
-        radius: RadixButtonRadius,
-        variant: RadixButtonVariant
+        radius: RadixElementRadius,
+        color: RadixAutoColor?
     ) {
-        self.color = color
-        self.layout = layout
-        self.size = size
-        self.radius = radius
         self.variant = variant
+        self.layout = layout
+        self.radius = radius
+        self.color = color
     }
 
     private var newColor: RadixAutoColor {
@@ -50,13 +47,12 @@ public struct RadixButtonStyle: ButtonStyle {
             default:
                 configuration.label
                     .labelStyle(
-                        .radix(
+                        .radixButton(
                             isLoading: isLoading,
                             isPressed: configuration.isPressed,
                             isEnabled: isEnabled,
                             color: newColor,
                             layout: layout,
-                            size: size,
                             radius: radius,
                             variant: variant
                         )
@@ -69,86 +65,75 @@ extension ButtonStyle where Self == RadixButtonStyle {
 
     public static func raduxCustom() -> Self {
         .init(
-            color: .blackA,
+            variant: .custom,
             layout: .leading,
-            size: .large,
             radius: .full,
-            variant: .custom
+            color: .blackA
         )
     }
 
     public static func radixGhost(
         layout: RadixButtonLayout,
-        size: RadixButtonSize,
-        radius: RadixButtonRadius,
+        radius: RadixElementRadius,
         color: RadixAutoColor? = nil
     ) -> Self {
         .init(
-            color: color,
+            variant: .ghost,
             layout: layout,
-            size: size,
             radius: radius,
-            variant: .ghost
+            color: color
         )
     }
 
     public static func radixOutline(
         layout: RadixButtonLayout,
-        size: RadixButtonSize,
-        radius: RadixButtonRadius,
+        radius: RadixElementRadius,
         color: RadixAutoColor? = nil
     ) -> Self {
         .init(
-            color: color,
+            variant: .outline,
             layout: layout,
-            size: size,
             radius: radius,
-            variant: .outline
+            color: color
         )
     }
 
     public static func radixSoft(
         layout: RadixButtonLayout,
-        size: RadixButtonSize,
-        radius: RadixButtonRadius,
+        radius: RadixElementRadius,
         color: RadixAutoColor? = nil
     ) -> Self {
         .init(
-            color: color,
+            variant: .soft,
             layout: layout,
-            size: size,
             radius: radius,
-            variant: .soft
+            color: color
         )
     }
 
     public static func radixSolid(
         layout: RadixButtonLayout,
-        size: RadixButtonSize,
-        radius: RadixButtonRadius,
+        radius: RadixElementRadius,
         color: RadixAutoColor? = nil
     ) -> Self {
         .init(
-            color: color,
+            variant: .solid,
             layout: layout,
-            size: size,
             radius: radius,
-            variant: .solid
+            color: color
         )
     }
 
     public static func radixSurface(
         layout: RadixButtonLayout,
-        size: RadixButtonSize,
-        radius: RadixButtonRadius,
+        radius: RadixElementRadius,
         color: RadixAutoColor? = nil
     ) -> Self {
         .init(
-            color: color,
+            variant: .surface,
             layout: layout,
-            size: size,
             radius: radius,
-            variant: .surface
+            color: color
         )
     }
 }
