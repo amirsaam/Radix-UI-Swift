@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+#if canImport(UIKit)
 struct PickerDemoView: View {
 
     init() {
@@ -37,4 +38,4 @@ struct PickerDemoView: View {
 #Preview {
     PickerDemoView()
 }
-
+#endif
