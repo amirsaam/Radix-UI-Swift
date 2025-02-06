@@ -164,27 +164,3 @@ public struct RadixButtonLabelStyle: LabelStyle {
     }
 
 }
-
-extension LabelStyle where Self == RadixButtonLabelStyle {
-
-    public static func radixButton(
-        isLoading: Binding<Bool>,
-        isPressed: Bool,
-        isEnabled: Bool,
-        color: RadixAutoColor,
-        layout: RadixButtonLayout,
-        radius: RadixElementShapeRadius,
-        variant: RadixButtonVariant
-    ) -> Self {
-        .init(
-            isLoading: isLoading,
-            isPressed: isPressed,
-            isEnabled: isEnabled,
-            variant: variant,
-            layout: layout,
-            radius: radius,
-            color: color
-        )
-    }
-
-}

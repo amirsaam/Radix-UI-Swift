@@ -1,0 +1,98 @@
+//
+//  Button+Extensions.swift
+//  RadixUI
+//
+//  Created by Amir Mohammadi on 11/18/1403 AP.
+//
+
+import SwiftUI
+
+extension Button {
+
+    public func buttonStyle<S: ButtonStyle>(
+        _ style: S,
+        isLoading: Binding<Bool>
+    ) -> some View {
+        self
+            .buttonStyle(style)
+            .environment(\.isLoading, isLoading)
+    }
+
+}
+
+extension ButtonStyle where Self == RadixButtonStyle {
+
+    public static func raduxCustom() -> Self {
+        .init(
+            variant: .custom,
+            layout: .leading,
+            radius: .full,
+            color: .blackA
+        )
+    }
+
+    public static func radixGhost(
+        layout: RadixButtonLayout,
+        radius: RadixElementShapeRadius,
+        color: RadixAutoColor? = nil
+    ) -> Self {
+        .init(
+            variant: .ghost,
+            layout: layout,
+            radius: radius,
+            color: color
+        )
+    }
+
+    public static func radixOutline(
+        layout: RadixButtonLayout,
+        radius: RadixElementShapeRadius,
+        color: RadixAutoColor? = nil
+    ) -> Self {
+        .init(
+            variant: .outline,
+            layout: layout,
+            radius: radius,
+            color: color
+        )
+    }
+
+    public static func radixSoft(
+        layout: RadixButtonLayout,
+        radius: RadixElementShapeRadius,
+        color: RadixAutoColor? = nil
+    ) -> Self {
+        .init(
+            variant: .soft,
+            layout: layout,
+            radius: radius,
+            color: color
+        )
+    }
+
+    public static func radixSolid(
+        layout: RadixButtonLayout,
+        radius: RadixElementShapeRadius,
+        color: RadixAutoColor? = nil
+    ) -> Self {
+        .init(
+            variant: .solid,
+            layout: layout,
+            radius: radius,
+            color: color
+        )
+    }
+
+    public static func radixSurface(
+        layout: RadixButtonLayout,
+        radius: RadixElementShapeRadius,
+        color: RadixAutoColor? = nil
+    ) -> Self {
+        .init(
+            variant: .surface,
+            layout: layout,
+            radius: radius,
+            color: color
+        )
+    }
+}

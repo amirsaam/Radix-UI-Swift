@@ -28,6 +28,7 @@ fileprivate struct RadixShadowModifier: ViewModifier {
 }
 
 extension View {
+
     public func radixShadow1() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -138,4 +139,5 @@ extension View {
             )
         )
     }
+
 }
