@@ -15,8 +15,8 @@ public struct RadixTextFieldStyle: TextFieldStyle {
     @FocusState private var isFocused: Bool
 
     private var variant: RadixTextFieldVariant
-    private var color: RadixAutoColor?
     private var radius: RadixElementRadius
+    private var color: RadixAutoColor?
     private var iconLabel: Image?
     private var iconButton: Image?
     private var iconSize: CGFloat
@@ -24,16 +24,16 @@ public struct RadixTextFieldStyle: TextFieldStyle {
 
     init(
         variant: RadixTextFieldVariant,
-        color: RadixAutoColor?,
         radius: RadixElementRadius,
+        color: RadixAutoColor?,
         iconLabel: Image?,
         iconButton: Image?,
         iconSize: CGFloat,
         action: (() -> Void)?
     ) {
         self.variant = variant
-        self.color = color
         self.radius = radius
+        self.color = color
         self.iconLabel = iconLabel
         self.iconButton = iconButton
         self.iconSize = iconSize
@@ -171,8 +171,8 @@ public struct RadixTextFieldStyle: TextFieldStyle {
 extension TextFieldStyle where Self == RadixTextFieldStyle {
 
     public static func radixSoft(
-        color: RadixAutoColor? = nil,
         radius: RadixElementRadius = .large,
+        color: RadixAutoColor? = nil,
         iconLabel: Image? = nil,
         iconButton: Image? = nil,
         iconSize: CGFloat = 20,
@@ -180,8 +180,8 @@ extension TextFieldStyle where Self == RadixTextFieldStyle {
     ) -> Self {
         .init(
             variant: .soft,
-            color: color,
             radius: radius,
+            color: color,
             iconLabel: iconLabel,
             iconButton: iconButton,
             iconSize: iconSize,
@@ -190,8 +190,8 @@ extension TextFieldStyle where Self == RadixTextFieldStyle {
     }
 
     public static func radixSurface(
-        color: RadixAutoColor? = nil,
         radius: RadixElementRadius = .large,
+        color: RadixAutoColor? = nil,
         iconLabel: Image? = nil,
         iconButton: Image? = nil,
         iconSize: CGFloat = 20,
@@ -199,8 +199,8 @@ extension TextFieldStyle where Self == RadixTextFieldStyle {
     ) -> Self {
         .init(
             variant: .surface,
-            color: color,
             radius: radius,
+            color: color,
             iconLabel: iconLabel,
             iconButton: iconButton,
             iconSize: iconSize,

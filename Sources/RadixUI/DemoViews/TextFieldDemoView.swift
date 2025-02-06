@@ -19,8 +19,8 @@ struct TextFieldDemoView: View {
             TextField("Placeholder1", text: $input1)
                 .textFieldStyle(
                     .radixSurface(
-                        color: .grass,
                         radius: .large,
+                        color: .grass,
                         iconLabel: Image("quote", bundle: .module),
                         iconButton: Image("arrow-right", bundle: .module),
                         action: toggleLoading1
@@ -30,8 +30,8 @@ struct TextFieldDemoView: View {
             TextField("Placeholder2", text: $input2)
                 .textFieldStyle(
                     .radixSoft(
-                        color: .grass,
                         radius: .large,
+                        color: .grass,
                         iconLabel: Image("quote", bundle: .module),
                         iconButton: Image("arrow-right", bundle: .module),
                         action: toggleLoading2

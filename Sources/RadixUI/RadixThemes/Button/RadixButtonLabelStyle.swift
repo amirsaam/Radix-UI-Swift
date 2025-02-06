@@ -46,31 +46,25 @@ public struct RadixButtonLabelStyle: LabelStyle {
     }
 
     public func makeBody(configuration: Configuration) -> some View {
-        ZStack {
-            Group {
-                switch layout {
-                    case .icon:
-                        icon(configuration.icon)
-                    case .title:
-                        configuration.title
-                    case .leading:
-                        HStack(spacing: 8) {
-                            icon(configuration.icon)
-                            configuration.title
-                        }
-                    case .trailing:
-                        HStack(spacing: 8) {
-                            configuration.title
-                            icon(configuration.icon)
-                        }
-                }
+        HStack(spacing: 8) {
+            switch layout {
+                case .icon:
+                    icon(configuration.icon)
+                case .title:
+                    configuration.title
+                case .leading:
+                    icon(configuration.icon)
+                    configuration.title
+                case .trailing:
+                    configuration.title
+                    icon(configuration.icon)
             }
-            .foregroundStyle(
-                variant == .solid
-                ? (colorScheme == .light ? color.background2 : color.text2)
-                : color.text1
-            )
         }
+        .foregroundStyle(
+            variant == .solid
+            ? (colorScheme == .light ? color.background2 : color.text2)
+            : color.text1
+        )
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(shape())
@@ -142,17 +136,17 @@ public struct RadixButtonLabelStyle: LabelStyle {
                 // 1st Entry is Fill and 2nd is Stroke Colors
             case .ghost:
                 [
-                    isPressed ? color.component1 : .clear,
+                    isPressed ? color.component2 : .clear,
                     .clear
                 ]
             case .outline:
                 [
-                    isPressed ? color.component3 : .clear,
+                    isPressed ? color.component2 : .clear,
                     isPressed ? color.solid2 : color.solid1
                 ]
             case .soft:
                 [
-                    isPressed ? color.component2 : color.component1,
+                    isPressed ? color.component3 : color.component2,
                     .clear
                 ]
             case .solid:
@@ -162,7 +156,7 @@ public struct RadixButtonLabelStyle: LabelStyle {
                 ]
             case .surface:
                 [
-                    isPressed ? color.component1 : color.background2,
+                    isPressed ? color.component2 : color.background2,
                     isPressed ? color.solid2 : color.solid1
                 ]
             default: []
