@@ -15,7 +15,7 @@ public struct RadixTextFieldStyle: TextFieldStyle {
     @FocusState private var isFocused: Bool
 
     private var variant: RadixTextFieldVariant
-    private var radius: RadixElementRadius
+    private var radius: RadixElementShapeRadius
     private var color: RadixAutoColor?
     private var iconLabel: Image?
     private var iconButton: Image?
@@ -24,7 +24,7 @@ public struct RadixTextFieldStyle: TextFieldStyle {
 
     init(
         variant: RadixTextFieldVariant,
-        radius: RadixElementRadius,
+        radius: RadixElementShapeRadius,
         color: RadixAutoColor?,
         iconLabel: Image?,
         iconButton: Image?,
@@ -171,7 +171,7 @@ public struct RadixTextFieldStyle: TextFieldStyle {
 extension TextFieldStyle where Self == RadixTextFieldStyle {
 
     public static func radixSoft(
-        radius: RadixElementRadius = .large,
+        radius: RadixElementShapeRadius = .large,
         color: RadixAutoColor? = nil,
         iconLabel: Image? = nil,
         iconButton: Image? = nil,
@@ -190,7 +190,7 @@ extension TextFieldStyle where Self == RadixTextFieldStyle {
     }
 
     public static func radixSurface(
-        radius: RadixElementRadius = .large,
+        radius: RadixElementShapeRadius = .large,
         color: RadixAutoColor? = nil,
         iconLabel: Image? = nil,
         iconButton: Image? = nil,

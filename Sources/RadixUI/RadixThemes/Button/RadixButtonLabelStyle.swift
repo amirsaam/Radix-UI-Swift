@@ -17,7 +17,7 @@ public struct RadixButtonLabelStyle: LabelStyle {
 
     private var variant: RadixButtonVariant
     private var layout: RadixButtonLayout
-    private var radius: RadixElementRadius
+    private var radius: RadixElementShapeRadius
     private var color: RadixAutoColor
 
     init(
@@ -26,7 +26,7 @@ public struct RadixButtonLabelStyle: LabelStyle {
         isEnabled: Bool,
         variant: RadixButtonVariant,
         layout: RadixButtonLayout,
-        radius: RadixElementRadius,
+        radius: RadixElementShapeRadius,
         color: RadixAutoColor
     ) {
         self.isLoading = isLoading
@@ -173,7 +173,7 @@ extension LabelStyle where Self == RadixButtonLabelStyle {
         isEnabled: Bool,
         color: RadixAutoColor,
         layout: RadixButtonLayout,
-        radius: RadixElementRadius,
+        radius: RadixElementShapeRadius,
         variant: RadixButtonVariant
     ) -> Self {
         .init(
