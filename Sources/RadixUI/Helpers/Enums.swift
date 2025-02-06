@@ -1,5 +1,5 @@
 //
-//  RadixUI+Enums.swift
+//  Enums.swift
 //  RadixUI
 //
 //  Created by Amir Mohammadi on 11/17/1403 AP.
