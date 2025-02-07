@@ -22,7 +22,7 @@ extension Button {
 
 extension ButtonStyle where Self == RadixButtonStyle {
 
-    public static func raduxCustom() -> Self {
+    public static func radixCustom() -> Self {
         .init(
             variant: .custom,
             layout: .leading,

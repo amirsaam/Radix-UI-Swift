@@ -26,8 +26,7 @@ public enum RadixTextFieldVariant {
     case surface, soft
 }
 
-// MARK: Enums used in ToggleStyle
+// MARK: - Enums used in ToggleStyle
 public enum RadixToggleVariant {
     case checkbox, `switch`, toggle
 }
-
