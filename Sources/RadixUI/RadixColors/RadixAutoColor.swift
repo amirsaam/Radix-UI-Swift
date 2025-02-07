@@ -46,7 +46,7 @@ public enum RadixAutoColor {
     case custom(String)
 
     /// 1st level of RadixColor
-    var background1: Color {
+    public var background1: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -60,7 +60,7 @@ public enum RadixAutoColor {
     }
 
     /// 2nd level of RadixColor
-    var background2: Color {
+    public var background2: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -74,7 +74,7 @@ public enum RadixAutoColor {
     }
 
     /// 3rd level of RadixColor
-    var component1: Color {
+    public var component1: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -88,7 +88,7 @@ public enum RadixAutoColor {
     }
 
     /// 4th level of RadixColor
-    var component2: Color {
+    public var component2: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -102,7 +102,7 @@ public enum RadixAutoColor {
     }
 
     /// 5th level of RadixColor
-    var component3: Color {
+    public var component3: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -116,7 +116,7 @@ public enum RadixAutoColor {
     }
 
     /// 6th level of RadixColor
-    var border1: Color {
+    public var border1: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -130,7 +130,7 @@ public enum RadixAutoColor {
     }
 
     /// 7th level of RadixColor
-    var border2: Color {
+    public var border2: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -144,7 +144,7 @@ public enum RadixAutoColor {
     }
 
     /// 8th level of RadixColor
-    var border3: Color {
+    public var border3: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -158,7 +158,7 @@ public enum RadixAutoColor {
     }
 
     /// 9th level of RadixColor
-    var solid1: Color {
+    public var solid1: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -172,7 +172,7 @@ public enum RadixAutoColor {
     }
 
     /// 10th level of RadixColor
-    var solid2: Color {
+    public var solid2: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -186,7 +186,7 @@ public enum RadixAutoColor {
     }
 
     /// 11th level of RadixColor
-    var text1: Color {
+    public var text1: Color {
         switch self {
             case .custom(let name):
                 return Color(
@@ -200,7 +200,7 @@ public enum RadixAutoColor {
     }
 
     /// 12th level of RadixColor
-    var text2: Color {
+    public var text2: Color {
         switch self {
             case .custom(let name):
                 return Color(
