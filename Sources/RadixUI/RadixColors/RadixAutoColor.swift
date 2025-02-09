@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public enum RadixAutoColor {
+public enum RadixAutoColor: Equatable {
 
     case amber
     case blackA

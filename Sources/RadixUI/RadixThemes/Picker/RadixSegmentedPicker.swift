@@ -9,44 +9,44 @@ import SwiftUI
 
 #if canImport(UIKit)
 public struct RadixSegmentedPicker {
-    let backgroundColor: Color
-    let selectedColor: Color
-    let foregroundColor: Color
+    let color: RadixAutoColor
     let selectedFont: UIFont
-    let unselectedFont: UIFont
+    let notSelectedFont: UIFont
 
     @discardableResult public init(
-        backgroundColor: Color,
-        selectedColor: Color,
-        foregroundColor: Color,
+        color: RadixAutoColor,
         selectedFont: UIFont,
-        unselectedFont: UIFont
+        notSelectedFont: UIFont
     ) {
-        self.backgroundColor = backgroundColor
-        self.selectedColor = selectedColor
-        self.foregroundColor = foregroundColor
+        self.color = color
         self.selectedFont = selectedFont
-        self.unselectedFont = unselectedFont
+        self.notSelectedFont = notSelectedFont
+
+        var fgColor: Color {
+            guard color != .blackA else { return .whiteA12 }
+            guard color != .whiteA else { return .blackA12 }
+            return color.background2
+        }
 
         let appeareance = UISegmentedControl.appearance()
 
-        appeareance.backgroundColor = UIColor(backgroundColor)
+        appeareance.backgroundColor = UIColor(color.component1)
         appeareance.setDividerImage(
-            UIImage(),
+            UIImage(named: "divider-vertical", in: .module, compatibleWith: nil),
             forLeftSegmentState: .normal,
             rightSegmentState: .normal,
-            barMetrics: .default
+            barMetrics: .compact
         )
-        appeareance.selectedSegmentTintColor = UIColor(selectedColor)
+        appeareance.selectedSegmentTintColor = UIColor(color.solid2)
         appeareance.setTitleTextAttributes(
             [
-                .foregroundColor: UIColor(foregroundColor),
+                .foregroundColor: UIColor(fgColor),
                 .font: selectedFont
             ],
             for: .selected
         )
         appeareance.setTitleTextAttributes(
-            [.font: unselectedFont],
+            [.font: notSelectedFont],
             for: .normal
         )
 

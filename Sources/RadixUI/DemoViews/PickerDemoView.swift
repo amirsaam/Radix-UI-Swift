@@ -12,11 +12,9 @@ struct PickerDemoView: View {
 
     init() {
         RadixSegmentedPicker(
-            backgroundColor: RadixAutoColor.tomato.component1,
-            selectedColor: RadixAutoColor.tomato.solid2,
-            foregroundColor: RadixAutoColor.tomato.background2,
-            selectedFont: .systemFont(ofSize: 15),
-            unselectedFont: .systemFont(ofSize: 15)
+            color: .grass,
+            selectedFont: .systemFont(ofSize: 15, weight: .semibold),
+            notSelectedFont: .systemFont(ofSize: 15, weight: .light)
         )
     }
 

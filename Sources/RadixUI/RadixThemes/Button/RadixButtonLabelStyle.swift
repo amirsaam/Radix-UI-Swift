@@ -45,6 +45,15 @@ public struct RadixButtonLabelStyle: LabelStyle {
         return 0.6
     }
 
+    private var fgColor: Color {
+        guard color != .blackA else { return .whiteA11 }
+        guard color != .whiteA else { return .blackA11 }
+        guard variant != .solid else {
+            return colorScheme == .light ? color.background2 : color.text2
+        }
+        return color.text1
+    }
+
     public func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: 8) {
             switch layout {
@@ -60,11 +69,7 @@ public struct RadixButtonLabelStyle: LabelStyle {
                     icon(configuration.icon)
             }
         }
-        .foregroundStyle(
-            variant == .solid
-            ? (colorScheme == .light ? color.background2 : color.text2)
-            : color.text1
-        )
+        .foregroundStyle(fgColor)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
         .background(shape())
