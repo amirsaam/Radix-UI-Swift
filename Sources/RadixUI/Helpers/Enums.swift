@@ -21,6 +21,19 @@ public enum RadixButtonVariant {
     case custom, ghost, outline, soft, solid, surface
 }
 
+// MARK: - Enums used in SliderStyle
+public enum RadixSliderType {
+    case ranged, single
+}
+
+public enum RadixSliderSize {
+    case small, medium, large
+}
+
+public enum RadixSliderVariant {
+    case soft, surface
+}
+
 // MARK: - Enums used in TextFieldStyle
 public enum RadixTextFieldVariant {
     case surface, soft

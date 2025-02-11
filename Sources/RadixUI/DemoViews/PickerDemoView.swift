@@ -18,7 +18,6 @@ struct PickerDemoView: View {
         )
     }
 
-    @State private var selection: [RadixToggleVariant] = [.checkbox, .switch, .toggle]
     @State private var selected: RadixToggleVariant = .switch
 
     var body: some View {
