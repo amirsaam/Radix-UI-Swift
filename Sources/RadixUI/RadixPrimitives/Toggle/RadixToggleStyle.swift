@@ -76,7 +76,7 @@ public struct RadixToggleStyle: ToggleStyle {
                                 .fill(newForegroundColor.text2)
                                 .frame(width: 21, height: 21)
                                 .offset(x: configuration.isOn ? 8 : -8)
-                                .radixShadow1()
+                                .radixShadow4()
                         }
                         .onTapGesture {
                             withAnimation(.easeIn(duration: 0.2)) {

@@ -72,7 +72,7 @@ public struct RadixButtonLabelStyle: LabelStyle {
         .foregroundStyle(fgColor)
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .background(shape())
+        .background(shape)
         .opacity(opacityValue)
         .scaleEffect(isPressed ? 0.98 : 1)
         .animation(
@@ -98,7 +98,7 @@ public struct RadixButtonLabelStyle: LabelStyle {
     }
 
     @ViewBuilder
-    private func shape() -> some View {
+    private var shape: some View {
         switch radius {
             case .none:
                 Rectangle()

@@ -29,6 +29,7 @@ fileprivate struct RadixShadowModifier: ViewModifier {
 
 extension View {
 
+    /// Inset shadow
     public func radixShadow1() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -47,6 +48,7 @@ extension View {
         )
     }
 
+    /// Shadow for "classic" variant of panels, like Card
     public func radixShadow2() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -68,6 +70,7 @@ extension View {
         )
     }
 
+    /// Shadow for "classic" variant of panels, like Card
     public func radixShadow3() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -87,6 +90,7 @@ extension View {
         )
     }
 
+    /// Shadow for smaller overlay panels, like Hover Card and Popover
     public func radixShadow4() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -104,6 +108,7 @@ extension View {
         )
     }
 
+    /// Shadow for smaller overlay panels, like Hover Card and Popover
     public func radixShadow5() -> some View {
         self.modifier(
             RadixShadowModifier(
@@ -121,6 +126,7 @@ extension View {
         )
     }
 
+    /// Shadow for larger overlay panels, like Dialog
     public func radixShadow6() -> some View {
         self.modifier(
             RadixShadowModifier(

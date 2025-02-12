@@ -84,7 +84,7 @@ public struct RadixTextFieldStyle: TextFieldStyle {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
-        .background(shape())
+        .background(shape)
         .focused($isFocused)
         .onSubmit {
             if let action {
@@ -94,7 +94,7 @@ public struct RadixTextFieldStyle: TextFieldStyle {
     }
 
     @ViewBuilder
-    private func shape() -> some View {
+    private var shape: some View {
         switch radius {
             case .none:
                 Rectangle()
