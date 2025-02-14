@@ -26,6 +26,55 @@ public struct RadixSliderStyle: RxSliderStyle {
         self.color = color
     }
 
+    public func makeThumb(configuration: Configuration) -> some View {
+        ZStack {
+            thumbBorder(size: thumbSize)
+            if configuration.isActive {
+                thumbActive(
+                    size: .init(
+                        width: thumbSize.width + 10,
+                        height: thumbSize.height + 10
+                    )
+                )
+            }
+            thumb(size: thumbSize)
+        }
+    }
+
+    public func makeTrack(configuration: Configuration) -> some View {
+        ZStack(alignment: .leading) {
+            switch variant {
+                case .soft:
+                    trackBase(
+                        size: trackSize,
+                        color: RadixAutoColor.gray.component3
+                    )
+                    trackFill(
+                        percentage: configuration.filledPercentage,
+                        size: trackSize,
+                        color: newColor.border2
+                    )
+                case .surface:
+                    trackBase(
+                        size: trackSize,
+                        color: RadixAutoColor.gray.component2
+                    )
+                    trackBorder(size: trackSize)
+                    trackFill(
+                        percentage: configuration.filledPercentage,
+                        size: trackSize,
+                        color: newColor.solid2
+                    )
+            }
+        }
+        .opacity(configuration.isDisabled ? 0.6 : 1.0)
+    }
+
+}
+
+// MARK: - Computed Variables
+extension RadixSliderStyle {
+
     private var newColor: RadixAutoColor {
         guard let color else { return .blue }
         return color
@@ -36,51 +85,7 @@ public struct RadixSliderStyle: RxSliderStyle {
         return size
     }
 
-    public func makeThumb(configuration: Configuration) -> some View {
-        ZStack {
-            thumbBorder(size: thumbSize())
-            if configuration.isActive {
-                thumbActive(
-                    size: .init(
-                        width: thumbSize().width + 10,
-                        height: thumbSize().height + 10
-                    )
-                )
-            }
-            thumb(size: thumbSize())
-        }
-    }
-
-    public func makeTrack(configuration: Configuration) -> some View {
-        ZStack(alignment: .leading) {
-            switch variant {
-                case .soft:
-                    trackBase(
-                        size: trackSize(),
-                        color: RadixAutoColor.gray.component3
-                    )
-                    trackFill(
-                        percentage: configuration.filledPercentage,
-                        size: trackSize(),
-                        color: newColor.border2
-                    )
-                case .surface:
-                    trackBase(
-                        size: trackSize(),
-                        color: RadixAutoColor.gray.component2
-                    )
-                    trackBorder(size: trackSize())
-                    trackFill(
-                        percentage: configuration.filledPercentage,
-                        size: trackSize(),
-                        color: newColor.solid2
-                    )
-            }
-        }
-        .opacity(configuration.isDisabled ? 0.6 : 1.0)
-    }
-
-    private func trackSize() -> CGFloat {
+    private var trackSize: CGFloat {
         switch newSize {
             case .small: 6
             case .medium: 8
@@ -88,22 +93,22 @@ public struct RadixSliderStyle: RxSliderStyle {
         }
     }
 
-    private func roundedRectangleRadius() -> CGFloat {
+    private var roundedRectangleRadius: CGFloat {
         switch newSize {
             case .small: 1
             case .medium: 2
             case .large: 3
         }
     }
-    private func thumbSize() -> CGSize {
+    private var thumbSize: CGSize {
         switch newSize {
             case .small: .init(width: 12, height: 12)
             case .medium: .init(width: 16, height: 16)
             case .large: .init(width: 20, height: 20)
         }
     }
-}
 
+}
 // MARK: - Thumb ViewBuilders
 extension RadixSliderStyle {
 
@@ -114,7 +119,7 @@ extension RadixSliderStyle {
                 Rectangle()
                     .thumbShapeModifier(size: size)
             case .large:
-                RoundedRectangle(cornerRadius: roundedRectangleRadius())
+                RoundedRectangle(cornerRadius: roundedRectangleRadius)
                     .thumbShapeModifier(size: size)
             case .full:
                 Circle()
@@ -134,7 +139,7 @@ extension RadixSliderStyle {
                 Rectangle()
                     .thumbBorderShapeModifier(size: size)
             case .large:
-                RoundedRectangle(cornerRadius: roundedRectangleRadius())
+                RoundedRectangle(cornerRadius: roundedRectangleRadius)
                     .thumbBorderShapeModifier(size: size)
             case .full:
                 Circle()
@@ -154,7 +159,7 @@ extension RadixSliderStyle {
                 Rectangle()
                     .thumbActiveShapeModifier(size: size)
             case .large:
-                RoundedRectangle(cornerRadius: roundedRectangleRadius())
+                RoundedRectangle(cornerRadius: roundedRectangleRadius)
                     .thumbActiveShapeModifier(size: size)
             case .full:
                 Circle()
@@ -179,7 +184,7 @@ extension RadixSliderStyle {
                 Rectangle()
                     .trackShapeBaseModifier(size: size, color: color)
             case .large:
-                RoundedRectangle(cornerRadius: roundedRectangleRadius())
+                RoundedRectangle(cornerRadius: roundedRectangleRadius)
                     .trackShapeBaseModifier(size: size, color: color)
             case .full:
                 Capsule()
@@ -194,7 +199,7 @@ extension RadixSliderStyle {
                 Rectangle()
                     .trackShapeBorderModifier(size: size)
             case .large:
-                RoundedRectangle(cornerRadius: roundedRectangleRadius())
+                RoundedRectangle(cornerRadius: roundedRectangleRadius)
                     .trackShapeBorderModifier(size: size)
             case .full:
                 Capsule()
@@ -209,7 +214,7 @@ extension RadixSliderStyle {
                 Rectangle()
                     .trackShapeFillModifier(color, percentage, size)
             case .large:
-                RoundedRectangle(cornerRadius: roundedRectangleRadius())
+                RoundedRectangle(cornerRadius: roundedRectangleRadius)
                     .trackShapeFillModifier(color, percentage, size)
             case .full:
                 Capsule()

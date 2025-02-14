@@ -28,25 +28,6 @@ public struct RadixToggleStyle: ToggleStyle {
         self.size = size
     }
 
-    private var newBackgroundColor: RadixAutoColor {
-        guard let backgroundColor else {
-            return colorScheme == .light ? .blackA : .whiteA
-        }
-        return backgroundColor
-    }
-
-    private var newForegroundColor: RadixAutoColor {
-        guard let foregroundColor else {
-            return colorScheme == .light ? .whiteA : .blackA
-        }
-        return foregroundColor
-    }
-
-    private var newSize: CGFloat {
-        guard let size else { return 27.5 }
-        return size
-    }
-
     public func makeBody(configuration: Configuration) -> some View {
         switch variant {
             case .checkbox:
@@ -98,4 +79,28 @@ public struct RadixToggleStyle: ToggleStyle {
                     }
         }
     }
+
+}
+
+extension RadixToggleStyle {
+
+    private var newBackgroundColor: RadixAutoColor {
+        guard let backgroundColor else {
+            return colorScheme == .light ? .blackA : .whiteA
+        }
+        return backgroundColor
+    }
+
+    private var newForegroundColor: RadixAutoColor {
+        guard let foregroundColor else {
+            return colorScheme == .light ? .whiteA : .blackA
+        }
+        return foregroundColor
+    }
+
+    private var newSize: CGFloat {
+        guard let size else { return 27.5 }
+        return size
+    }
+
 }

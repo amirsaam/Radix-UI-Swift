@@ -40,11 +40,6 @@ public struct RadixTextFieldStyle: TextFieldStyle {
         self.action = action
     }
 
-    private var newColor: RadixAutoColor {
-        guard let color else { return .blue }
-        return color
-    }
-
     public func _body(configuration: TextField<Self._Label>) -> some View {
         VStack(alignment: .leading) {
             HStack(spacing: 8) {
@@ -76,7 +71,7 @@ public struct RadixTextFieldStyle: TextFieldStyle {
                         }
                     }
                     .buttonStyle(
-                        buttonStyle(),
+                        buttonStyle,
                         isLoading: .constant(false)
                     )
                 }
@@ -98,33 +93,33 @@ public struct RadixTextFieldStyle: TextFieldStyle {
         switch radius {
             case .none:
                 Rectangle()
-                    .fill(textfieldColor().first!)
+                    .fill(textfieldColor.first!)
                     .overlay {
                         Rectangle()
                             .stroke(
-                                textfieldColor().last!,
+                                textfieldColor.last!,
                                 lineWidth: 1
                             )
                             .background(.clear)
                     }
             case .large:
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(textfieldColor().first!)
+                    .fill(textfieldColor.first!)
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(
-                                textfieldColor().last!,
+                                textfieldColor.last!,
                                 lineWidth: 1
                             )
                             .background(.clear)
                     }
             case .full:
                 Capsule()
-                    .fill(textfieldColor().first!)
+                    .fill(textfieldColor.first!)
                     .overlay {
                         Capsule()
                             .stroke(
-                                textfieldColor().last!,
+                                textfieldColor.last!,
                                 lineWidth: 1
                             )
                             .background(.clear)
@@ -132,7 +127,16 @@ public struct RadixTextFieldStyle: TextFieldStyle {
         }
     }
 
-    private func textfieldColor() -> [Color] {
+}
+
+extension RadixTextFieldStyle {
+
+    private var newColor: RadixAutoColor {
+        guard let color else { return .blue }
+        return color
+    }
+
+    private var textfieldColor: [Color] {
         switch variant {
                 // 1st Entry is Fill and 2nd is Stroke Colors
             case .soft:
@@ -148,7 +152,7 @@ public struct RadixTextFieldStyle: TextFieldStyle {
         }
     }
 
-    private func buttonStyle() -> RadixButtonStyle {
+    private var buttonStyle: RadixButtonStyle {
         switch variant {
             case .soft:
                 return RadixButtonStyle(

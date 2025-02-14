@@ -38,22 +38,6 @@ public struct RadixButtonLabelStyle: LabelStyle {
         self.color = color
     }
 
-    private var opacityValue: Double {
-        guard !isEnabled || isLoading.wrappedValue else {
-            return 1.0
-        }
-        return 0.6
-    }
-
-    private var fgColor: Color {
-        guard color != .blackA else { return .whiteA11 }
-        guard color != .whiteA else { return .blackA11 }
-        guard variant != .solid else {
-            return colorScheme == .light ? color.background2 : color.text2
-        }
-        return color.text1
-    }
-
     public func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: 8) {
             switch layout {
@@ -102,33 +86,33 @@ public struct RadixButtonLabelStyle: LabelStyle {
         switch radius {
             case .none:
                 Rectangle()
-                    .fill(buttonColor().first!)
+                    .fill(buttonColor.first!)
                     .overlay {
                         Rectangle()
                             .stroke(
-                                buttonColor().last!,
+                                buttonColor.last!,
                                 lineWidth: 1
                             )
                             .background(.clear)
                     }
             case .large:
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(buttonColor().first!)
+                    .fill(buttonColor.first!)
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
                             .stroke(
-                                buttonColor().last!,
+                                buttonColor.last!,
                                 lineWidth: 1
                             )
                             .background(.clear)
                     }
             case .full:
                 Capsule()
-                    .fill(buttonColor().first!)
+                    .fill(buttonColor.first!)
                     .overlay {
                         Capsule()
                             .stroke(
-                                buttonColor().last!,
+                                buttonColor.last!,
                                 lineWidth: 1
                             )
                             .background(.clear)
@@ -136,7 +120,27 @@ public struct RadixButtonLabelStyle: LabelStyle {
         }
     }
 
-    private func buttonColor() -> [Color] {
+}
+
+extension RadixButtonLabelStyle {
+
+    private var opacityValue: Double {
+        guard !isEnabled || isLoading.wrappedValue else {
+            return 1.0
+        }
+        return 0.6
+    }
+
+    private var fgColor: Color {
+        guard color != .blackA else { return .whiteA11 }
+        guard color != .whiteA else { return .blackA11 }
+        guard variant != .solid else {
+            return colorScheme == .light ? color.background2 : color.text2
+        }
+        return color.text1
+    }
+
+    private var buttonColor: [Color] {
         switch variant {
                 // 1st Entry is Fill and 2nd is Stroke Colors
             case .ghost:
