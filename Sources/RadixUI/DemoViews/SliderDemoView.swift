@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SliderDemo: View {
+struct SliderDemoView: View {
 
     @State private var value1 = 5.0
     @State private var value2 = 50.0
@@ -45,5 +45,5 @@ struct SliderDemo: View {
 }
 
 #Preview {
-    SliderDemo()
+    SliderDemoView()
 }

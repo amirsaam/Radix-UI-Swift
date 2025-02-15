@@ -22,25 +22,25 @@ public struct RadixSegmentedPicker {
         self.selectedFont = selectedFont
         self.notSelectedFont = notSelectedFont
 
-        var fgColor: Color {
-            guard color != .blackA else { return .whiteA12 }
-            guard color != .whiteA else { return .blackA12 }
-            return color.background2
+        var fgColor: RadixAutoColor {
+            guard color != .blackA else { return .whiteA }
+            guard color != .whiteA else { return .blackA }
+            return color
         }
 
         let appeareance = UISegmentedControl.appearance()
 
-        appeareance.backgroundColor = UIColor(color.component1)
+        appeareance.backgroundColor = UIColor(color.component2)
         appeareance.setDividerImage(
             UIImage(named: "divider-vertical", in: .module, compatibleWith: nil),
             forLeftSegmentState: .normal,
             rightSegmentState: .normal,
             barMetrics: .compact
         )
-        appeareance.selectedSegmentTintColor = UIColor(color.solid2)
+        appeareance.selectedSegmentTintColor = UIColor(color.text2)
         appeareance.setTitleTextAttributes(
             [
-                .foregroundColor: UIColor(fgColor),
+                .foregroundColor: UIColor(fgColor.background2),
                 .font: selectedFont
             ],
             for: .selected
