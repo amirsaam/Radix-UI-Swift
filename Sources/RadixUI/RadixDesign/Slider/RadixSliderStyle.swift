@@ -46,23 +46,23 @@ public struct RadixSliderStyle: RxSliderStyle {
             switch variant {
                 case .soft:
                     trackBase(
-                        size: trackSize,
+                        height: trackSize,
                         color: RadixAutoColor.gray.component3
                     )
                     trackFill(
                         percentage: configuration.filledPercentage,
-                        size: trackSize,
+                        height: trackSize,
                         color: newColor.border2
                     )
                 case .surface:
                     trackBase(
-                        size: trackSize,
+                        height: trackSize,
                         color: RadixAutoColor.gray.component2
                     )
-                    trackBorder(size: trackSize)
+                    trackBorder(height: trackSize)
                     trackFill(
                         percentage: configuration.filledPercentage,
-                        size: trackSize,
+                        height: trackSize,
                         color: newColor.solid2
                     )
             }
@@ -117,17 +117,21 @@ extension RadixSliderStyle {
         switch radius {
             case .none:
                 Rectangle()
-                    .thumbShapeModifier(size: size)
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.whiteA.text2,
+                        width: size.width, height: size.height
+                    )
             case .large:
                 RoundedRectangle(cornerRadius: roundedRectangleRadius)
-                    .thumbShapeModifier(size: size)
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.whiteA.text2,
+                        width: size.width, height: size.height
+                    )
             case .full:
                 Circle()
-                    .thumbShapeModifier(
-                        size: .init(
-                            width: size.width + 6,
-                            height: size.width + 6
-                        )
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.whiteA.text2,
+                        width: size.width + 6, height: size.height + 6
                     )
         }
     }
@@ -137,17 +141,21 @@ extension RadixSliderStyle {
         switch radius {
             case .none:
                 Rectangle()
-                    .thumbBorderShapeModifier(size: size)
+                    .radixShapeBorderApplier(
+                        color: RadixAutoColor.gray.border3,
+                        width: size.width, height: size.height
+                    )
             case .large:
                 RoundedRectangle(cornerRadius: roundedRectangleRadius)
-                    .thumbBorderShapeModifier(size: size)
+                    .radixShapeBorderApplier(
+                        color: RadixAutoColor.gray.border3,
+                        width: size.width, height: size.height
+                    )
             case .full:
                 Circle()
-                    .thumbBorderShapeModifier(
-                        size: .init(
-                            width: size.width + 6,
-                            height: size.width + 6
-                        )
+                    .radixShapeBorderApplier(
+                        color: RadixAutoColor.gray.border3,
+                        width: size.width + 6, height: size.height + 6
                     )
         }
     }
@@ -157,17 +165,21 @@ extension RadixSliderStyle {
         switch radius {
             case .none:
                 Rectangle()
-                    .thumbActiveShapeModifier(size: size)
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.blackA.border2,
+                        width: size.width, height: size.height
+                    )
             case .large:
                 RoundedRectangle(cornerRadius: roundedRectangleRadius)
-                    .thumbActiveShapeModifier(size: size)
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.blackA.border2,
+                        width: size.width, height: size.height
+                    )
             case .full:
                 Circle()
-                    .thumbActiveShapeModifier(
-                        size: .init(
-                            width: size.width + 6,
-                            height: size.width + 6
-                        )
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.blackA.border2,
+                        width: size.width + 6, height: size.height + 6
                     )
         }
     }
@@ -178,47 +190,74 @@ extension RadixSliderStyle {
 extension RadixSliderStyle {
 
     @ViewBuilder
-    private func trackBase(size: CGFloat, color: Color) -> some View {
+    private func trackBase(height: CGFloat, color: Color) -> some View {
         switch radius {
             case .none:
                 Rectangle()
-                    .trackShapeBaseModifier(size: size, color: color)
+                    .radixShapeFillApplier(
+                        color: color,
+                        width: nil, height: height
+                    )
             case .large:
                 RoundedRectangle(cornerRadius: roundedRectangleRadius)
-                    .trackShapeBaseModifier(size: size, color: color)
+                    .radixShapeFillApplier(
+                        color: color,
+                        width: nil, height: height
+                    )
             case .full:
                 Capsule()
-                    .trackShapeBaseModifier(size: size, color: color)
+                    .radixShapeFillApplier(
+                        color: color,
+                        width: nil, height: height
+                    )
         }
     }
 
     @ViewBuilder
-    private func trackBorder(size: CGFloat) -> some View {
+    private func trackBorder(height: CGFloat) -> some View {
         switch radius {
             case .none:
                 Rectangle()
-                    .trackShapeBorderModifier(size: size)
+                    .radixShapeBorderApplier(
+                        color: RadixAutoColor.gray.border2,
+                        width: nil, height: height
+                    )
             case .large:
                 RoundedRectangle(cornerRadius: roundedRectangleRadius)
-                    .trackShapeBorderModifier(size: size)
+                    .radixShapeBorderApplier(
+                        color: RadixAutoColor.gray.border2,
+                        width: nil, height: height
+                    )
             case .full:
                 Capsule()
-                    .trackShapeBorderModifier(size: size)
+                    .radixShapeBorderApplier(
+                        color: RadixAutoColor.gray.border2,
+                        width: nil, height: height
+                    )
         }
     }
 
     @ViewBuilder
-    private func trackFill(percentage: CGFloat, size: CGFloat, color: Color) -> some View {
+    private func trackFill(percentage: CGFloat, height: CGFloat, color: Color) -> some View {
         switch radius {
             case .none:
                 Rectangle()
-                    .trackShapeFillModifier(color, percentage, size)
+                    .radixShapeFillApplier(
+                        color: color,
+                        width: percentage, height: height
+                    )
             case .large:
                 RoundedRectangle(cornerRadius: roundedRectangleRadius)
-                    .trackShapeFillModifier(color, percentage, size)
+                    .radixShapeFillApplier(
+                        color: color,
+                        width: percentage, height: height
+                    )
             case .full:
                 Capsule()
-                    .trackShapeFillModifier(color, percentage, size)
+                    .radixShapeFillApplier(
+                        color: color,
+                        width: percentage, height: height
+                    )
         }
     }
 

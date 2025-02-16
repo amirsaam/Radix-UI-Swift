@@ -15,7 +15,8 @@ extension ToggleStyle where Self == RadixToggleStyle {
         boxSize: CGFloat? = nil
     ) -> Self {
         .init(
-            variant: .checkbox,
+            type: .checkbox,
+            switchStyle: nil,
             backgroundColor: bgColor,
             foregroundColor: iconColor,
             size: boxSize
@@ -23,11 +24,16 @@ extension ToggleStyle where Self == RadixToggleStyle {
     }
 
     public static func radixSwitch(
+        style: (
+            variant: RadixSwitchVariant,
+            radius: RadixElementShapeRadius
+        ),
         onColor: RadixAutoColor? = nil,
         thumbColor: RadixAutoColor? = nil
     ) -> Self {
         .init(
-            variant: .switch,
+            type: .switch,
+            switchStyle: style,
             backgroundColor: onColor,
             foregroundColor: thumbColor,
             size: nil
@@ -40,7 +46,8 @@ extension ToggleStyle where Self == RadixToggleStyle {
         boxSize: CGFloat? = nil
     ) -> Self {
         .init(
-            variant: .toggle,
+            type: .toggle,
+            switchStyle: nil,
             backgroundColor: bgColor,
             foregroundColor: iconColor,
             size: boxSize

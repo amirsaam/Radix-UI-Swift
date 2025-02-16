@@ -86,36 +86,42 @@ public struct RadixButtonLabelStyle: LabelStyle {
         switch radius {
             case .none:
                 Rectangle()
-                    .fill(buttonColor.first!)
+                    .radixShapeFillApplier(
+                        color: buttonColor.first!,
+                        width: nil, height: nil
+                    )
                     .overlay {
                         Rectangle()
-                            .stroke(
-                                buttonColor.last!,
-                                lineWidth: 1
+                            .radixShapeBorderApplier(
+                                color: buttonColor.last!,
+                                width: nil, height: nil
                             )
-                            .background(.clear)
                     }
             case .large:
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(buttonColor.first!)
+                    .radixShapeFillApplier(
+                        color: buttonColor.first!,
+                        width: nil, height: nil
+                    )
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(
-                                buttonColor.last!,
-                                lineWidth: 1
+                            .radixShapeBorderApplier(
+                                color: buttonColor.last!,
+                                width: nil, height: nil
                             )
-                            .background(.clear)
                     }
             case .full:
                 Capsule()
-                    .fill(buttonColor.first!)
+                    .radixShapeFillApplier(
+                        color: buttonColor.first!,
+                        width: nil, height: nil
+                    )
                     .overlay {
                         Capsule()
-                            .stroke(
-                                buttonColor.last!,
-                                lineWidth: 1
+                            .radixShapeBorderApplier(
+                                color: buttonColor.last!,
+                                width: nil, height: nil
                             )
-                            .background(.clear)
                     }
         }
     }

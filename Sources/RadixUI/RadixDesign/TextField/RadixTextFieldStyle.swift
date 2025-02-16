@@ -93,36 +93,42 @@ public struct RadixTextFieldStyle: TextFieldStyle {
         switch radius {
             case .none:
                 Rectangle()
-                    .fill(textfieldColor.first!)
+                    .radixShapeFillApplier(
+                        color: textfieldColor.first!,
+                        width: nil, height: nil
+                    )
                     .overlay {
                         Rectangle()
-                            .stroke(
-                                textfieldColor.last!,
-                                lineWidth: 1
+                            .radixShapeBorderApplier(
+                                color: textfieldColor.last!,
+                                width: nil, height: nil
                             )
-                            .background(.clear)
                     }
             case .large:
                 RoundedRectangle(cornerRadius: 8)
-                    .fill(textfieldColor.first!)
+                    .radixShapeFillApplier(
+                        color: textfieldColor.first!,
+                        width: nil, height: nil
+                    )
                     .overlay {
                         RoundedRectangle(cornerRadius: 8)
-                            .stroke(
-                                textfieldColor.last!,
-                                lineWidth: 1
+                            .radixShapeBorderApplier(
+                                color: textfieldColor.last!,
+                                width: nil, height: nil
                             )
-                            .background(.clear)
                     }
             case .full:
                 Capsule()
-                    .fill(textfieldColor.first!)
+                    .radixShapeFillApplier(
+                        color: textfieldColor.first!,
+                        width: nil, height: nil
+                    )
                     .overlay {
                         Capsule()
-                            .stroke(
-                                textfieldColor.last!,
-                                lineWidth: 1
+                            .radixShapeBorderApplier(
+                                color: textfieldColor.last!,
+                                width: nil, height: nil
                             )
-                            .background(.clear)
                     }
         }
     }

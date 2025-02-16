@@ -18,13 +18,13 @@ struct PickerDemoView: View {
         )
     }
 
-    @State private var selected: RadixToggleVariant = .switch
+    @State private var selected: RadixToggleType = .switch
 
     var body: some View {
         Picker(String(""), selection: $selected) {
-            Text("Checkbox").tag(RadixToggleVariant.checkbox)
-            Text("Switch").tag(RadixToggleVariant.switch)
-            Text("Toggle").tag(RadixToggleVariant.toggle)
+            Text("Checkbox").tag(RadixToggleType.checkbox)
+            Text("Switch").tag(RadixToggleType.switch)
+            Text("Toggle").tag(RadixToggleType.toggle)
         }
         .pickerStyle(.segmented)
         .padding()

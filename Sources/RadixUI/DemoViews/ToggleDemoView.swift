@@ -10,7 +10,8 @@ import SwiftUI
 struct ToggleDemoView: View {
 
     @State private var checkbox = false
-    @State private var `switch` = false
+    @State private var switchSurface = false
+    @State private var switchSoft = false
     @State private var toggle = false
 
     private var radixColor = RadixAutoColor.self
@@ -35,12 +36,24 @@ struct ToggleDemoView: View {
                     )
                 )
             }
-            Toggle(isOn: $switch) {
+            Toggle(isOn: $switchSurface) {
                 Text("Label Text")
                     .foregroundStyle(radixColor.grass.text2)
             }
             .toggleStyle(
                 .radixSwitch(
+                    style: (variant: .surface, radius: .full),
+                    onColor: .grass,
+                    thumbColor: .whiteA
+                )
+            )
+            Toggle(isOn: $switchSoft) {
+                Text("Label Text")
+                    .foregroundStyle(radixColor.grass.text2)
+            }
+            .toggleStyle(
+                .radixSwitch(
+                    style: (variant: .soft, radius: .full),
                     onColor: .grass,
                     thumbColor: .whiteA
                 )

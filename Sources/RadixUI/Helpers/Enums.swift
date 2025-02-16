@@ -6,6 +6,12 @@
 //
 
 import Foundation
+import SwiftUI
+
+// MARK: -
+public enum DismissSwipeDirection {
+    case up, down
+}
 
 // MARK: - Globally used Enums in RadixUI Elements
 public enum RadixElementShapeRadius {
@@ -34,12 +40,32 @@ public enum RadixSliderVariant {
     case soft, surface
 }
 
+// MARK: - Enums used in RadixToast
+public enum RadixToastPosition {
+    case top, bottom
+
+    var edge: Edge {
+        switch self {
+            case .top: .top
+            case .bottom: .bottom
+        }
+    }
+}
+
+public enum RadixToastVariant {
+    case soft, surface
+}
+
 // MARK: - Enums used in TextFieldStyle
 public enum RadixTextFieldVariant {
     case surface, soft
 }
 
 // MARK: - Enums used in ToggleStyle
-public enum RadixToggleVariant {
+public enum RadixToggleType {
     case checkbox, `switch`, toggle
+}
+
+public enum RadixSwitchVariant {
+    case surface, soft
 }
