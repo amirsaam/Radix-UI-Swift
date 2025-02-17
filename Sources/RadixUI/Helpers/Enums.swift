@@ -18,6 +18,20 @@ public enum RadixElementShapeRadius {
     case none, large, full
 }
 
+// MARK: - Enums used in RadixBadge
+public enum RadixBadgeVariant {
+    case outline, soft, solid, surface
+}
+
+// MARK: - Enums used in RadixCollout
+public enum RadixCalloutRole {
+    case alert, info
+}
+
+public enum RadixCalloutVariant {
+    case outline, soft, surface
+}
+
 // MARK: - Enums used in ButtonStyle
 public enum RadixButtonLayout {
     case icon, title, leading, trailing

@@ -52,7 +52,7 @@ struct ToastDemoView: View {
             )
         }
         .radixInfoToast(
-            isPresented: $presentInfoToast,
+            $presentInfoToast,
             variant: .surface,
             position: .bottom,
             color: .grass,
@@ -66,7 +66,7 @@ struct ToastDemoView: View {
             )
         }
         .radixActionToast(
-            isPresented: $presentActionToast,
+            $presentActionToast,
             variant: .soft,
             position: .top,
             color: .grass,

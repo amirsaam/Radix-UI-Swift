@@ -10,7 +10,7 @@ import SwiftUI
 extension View {
 
     /// Make any presented modals dismissable
-    func radixSwipeToDismiss(
+    public func radixSwipeToDismiss(
         _ isPresented: Binding<Bool>,
         direction: DismissSwipeDirection
     ) -> some View {
@@ -23,9 +23,9 @@ extension View {
             )
     }
 
-    /// Shows a Toast on any View of your choice with a Dismiss Button Action, use it on highest container in your view hierarchy
+    /// Shows a Toast on any View of your choice with a Dismiss Button Action, use it on highest container in your view hierarchy, duration == 0 will disable auto dismiss
     public func radixInfoToast<ToastLabel: View>(
-        isPresented: Binding<Bool>,
+        _ isPresented: Binding<Bool>,
         variant: RadixToastVariant,
         position: RadixToastPosition,
         color: RadixAutoColor?,
@@ -45,9 +45,9 @@ extension View {
             )
     }
     
-    /// Shows a Toast on any View of your choice with a Custom Button Action, use it on highest container in your view hierarchy
+    /// Shows a Toast on any View of your choice with a Custom Button Action, use it on highest container in your view hierarchy, duration == 0 will disable auto dismiss
     public func radixActionToast<ButtonLabel: View, ToastLabel: View>(
-        isPresented: Binding<Bool>,
+        _ isPresented: Binding<Bool>,
         variant: RadixToastVariant,
         position: RadixToastPosition,
         color: RadixAutoColor?,
@@ -71,4 +71,51 @@ extension View {
             )
     }
     
+}
+
+extension View where Self == Text {
+
+    ///
+    public func radixBadge(
+        variant: RadixBadgeVariant,
+        radius: RadixElementShapeRadius,
+        color: RadixAutoColor
+    ) -> some View {
+        self
+            .modifier(
+                RadixBadge(
+                    variant: variant,
+                    radius: radius,
+                    color: color
+                )
+            )
+    }
+
+    /// Modifies a Text View to become an Info Callout with Customizable Color
+    public func radixInfoCallout(
+        variant: RadixCalloutVariant,
+        color: RadixAutoColor
+    ) -> some View {
+        self
+            .modifier(
+                RadixCallout(
+                    variant: variant,
+                    role: .info,
+                    color: color
+                )
+            )
+    }
+
+    /// Modifies a Text View to become an Alert Callout with Red Color
+    public func radixAlertCallout(variant: RadixCalloutVariant) -> some View {
+        self
+            .modifier(
+                RadixCallout(
+                    variant: variant,
+                    role: .alert,
+                    color: .red
+                )
+            )
+    }
+
 }
