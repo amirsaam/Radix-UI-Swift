@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+struct Option: Identifiable, Equatable {
+    let id = UUID()
+    let title: LocalizedStringKey
+}
+
+
 struct ToggleDemoView: View {
 
     @State private var checkbox = false
@@ -16,8 +22,23 @@ struct ToggleDemoView: View {
 
     private var radixColor = RadixAutoColor.self
 
+    @State private var selectedOption: Option? = nil
+    private let options = [
+        Option(title: "Option 1"),
+        Option(title: "Option 2"),
+        Option(title: "Option 3")
+    ]
+
     var body: some View {
         VStack(alignment: .leading, spacing: 25) {
+            RadixRadioGroup(
+                options: options,
+                selected: $selectedOption,
+                style: (variant: .surface, layout: .trailing, color: .grass)
+            ) {
+                Text($0.title)
+                    .foregroundStyle(radixColor.grass.text2)
+            }
             HStack {
                 Text("Label Text")
                     .foregroundStyle(radixColor.grass.text2)
@@ -31,8 +52,8 @@ struct ToggleDemoView: View {
                 }
                 .toggleStyle(
                     .radixCheckbox(
-                        bgColor: .grass,
-                        iconColor: .whiteA
+                        variant: .surface,
+                        color: .grass
                     )
                 )
             }
@@ -42,9 +63,9 @@ struct ToggleDemoView: View {
             }
             .toggleStyle(
                 .radixSwitch(
-                    style: (variant: .surface, radius: .full),
-                    onColor: .grass,
-                    thumbColor: .whiteA
+                    variant: .surface,
+                    radius: .full,
+                    color: .grass
                 )
             )
             Toggle(isOn: $switchSoft) {
@@ -53,9 +74,9 @@ struct ToggleDemoView: View {
             }
             .toggleStyle(
                 .radixSwitch(
-                    style: (variant: .soft, radius: .full),
-                    onColor: .grass,
-                    thumbColor: .whiteA
+                    variant: .soft,
+                    radius: .full,
+                    color: .grass
                 )
             )
             HStack {
@@ -72,8 +93,7 @@ struct ToggleDemoView: View {
                 }
                 .toggleStyle(
                     .radixToggle(
-                        bgColor: .grass,
-                        iconColor: .whiteA
+                        color: .grass
                     )
                 )
             }

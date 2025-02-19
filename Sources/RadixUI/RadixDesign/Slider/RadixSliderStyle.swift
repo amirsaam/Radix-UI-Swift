@@ -52,7 +52,7 @@ public struct RadixSliderStyle: RxSliderStyle {
                     trackFill(
                         percentage: configuration.filledPercentage,
                         height: trackSize,
-                        color: newColor.border2
+                        color: unwrappedColor.border2
                     )
                 case .surface:
                     trackBase(
@@ -63,7 +63,7 @@ public struct RadixSliderStyle: RxSliderStyle {
                     trackFill(
                         percentage: configuration.filledPercentage,
                         height: trackSize,
-                        color: newColor.solid2
+                        color: unwrappedColor.solid2
                     )
             }
         }
@@ -75,18 +75,18 @@ public struct RadixSliderStyle: RxSliderStyle {
 // MARK: - Computed Variables
 extension RadixSliderStyle {
 
-    private var newColor: RadixAutoColor {
+    private var unwrappedColor: RadixAutoColor {
         guard let color else { return .blue }
         return color
     }
 
-    private var newSize: RadixSliderSize {
+    private var unwrappedSize: RadixSliderSize {
         guard let size else { return .medium }
         return size
     }
 
     private var trackSize: CGFloat {
-        switch newSize {
+        switch unwrappedSize {
             case .small: 6
             case .medium: 8
             case .large: 10
@@ -94,14 +94,14 @@ extension RadixSliderStyle {
     }
 
     private var roundedRectangleRadius: CGFloat {
-        switch newSize {
+        switch unwrappedSize {
             case .small: 1
             case .medium: 2
             case .large: 3
         }
     }
     private var thumbSize: CGSize {
-        switch newSize {
+        switch unwrappedSize {
             case .small: .init(width: 12, height: 12)
             case .medium: .init(width: 16, height: 16)
             case .large: .init(width: 20, height: 20)

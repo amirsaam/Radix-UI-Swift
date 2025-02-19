@@ -10,46 +10,60 @@ import SwiftUI
 extension ToggleStyle where Self == RadixToggleStyle {
 
     public static func radixCheckbox(
-        bgColor: RadixAutoColor? = nil,
-        iconColor: RadixAutoColor? = nil,
+        variant: RadixToggleVariant,
+        color: RadixAutoColor? = nil,
         boxSize: CGFloat? = nil
     ) -> Self {
         .init(
             type: .checkbox,
-            switchStyle: nil,
-            backgroundColor: bgColor,
-            foregroundColor: iconColor,
+            variant: variant,
+            layout: .leading,
+            radius: .large,
+            color: color,
             size: boxSize
         )
     }
 
+    public static func radixRadio(
+        variant: RadixToggleVariant,
+        layout: RadixToggleLayout,
+        color: RadixAutoColor?
+    ) -> Self {
+        .init(
+            type: .radio,
+            variant: variant,
+            layout: layout,
+            radius: .full,
+            color: color,
+            size: nil
+        )
+    }
+
     public static func radixSwitch(
-        style: (
-            variant: RadixSwitchVariant,
-            radius: RadixElementShapeRadius
-        ),
-        onColor: RadixAutoColor? = nil,
-        thumbColor: RadixAutoColor? = nil
+        variant: RadixToggleVariant,
+        radius: RadixElementShapeRadius,
+        color: RadixAutoColor? = nil
     ) -> Self {
         .init(
             type: .switch,
-            switchStyle: style,
-            backgroundColor: onColor,
-            foregroundColor: thumbColor,
+            variant: variant,
+            layout: .leading,
+            radius: radius,
+            color: color,
             size: nil
         )
     }
 
     public static func radixToggle(
-        bgColor: RadixAutoColor? = nil,
-        iconColor: RadixAutoColor? = nil,
+        color: RadixAutoColor? = nil,
         boxSize: CGFloat? = nil
     ) -> Self {
         .init(
             type: .toggle,
-            switchStyle: nil,
-            backgroundColor: bgColor,
-            foregroundColor: iconColor,
+            variant: .soft,
+            layout: .leading,
+            radius: .large,
+            color: color,
             size: boxSize
         )
     }

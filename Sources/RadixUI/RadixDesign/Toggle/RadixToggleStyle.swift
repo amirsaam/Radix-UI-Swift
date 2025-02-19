@@ -12,28 +12,32 @@ public struct RadixToggleStyle: ToggleStyle {
     @Environment(\.colorScheme) private var colorScheme
 
     private var type: RadixToggleType
-    private var switchStyle: (RadixSwitchVariant, RadixElementShapeRadius)?
-    private var backgroundColor: RadixAutoColor?
-    private var foregroundColor: RadixAutoColor?
+    private var variant: RadixToggleVariant
+    private var layout: RadixToggleLayout
+    private var radius: RadixElementShapeRadius
+    private var color: RadixAutoColor?
     private var size: CGFloat?
 
     init(
         type: RadixToggleType,
-        switchStyle: (RadixSwitchVariant, RadixElementShapeRadius)?,
-        backgroundColor: RadixAutoColor?,
-        foregroundColor: RadixAutoColor?,
+        variant: RadixToggleVariant,
+        layout: RadixToggleLayout,
+        radius: RadixElementShapeRadius,
+        color: RadixAutoColor?,
         size: CGFloat?
     ) {
         self.type = type
-        self.switchStyle = switchStyle
-        self.backgroundColor = backgroundColor
-        self.foregroundColor = foregroundColor
+        self.variant = variant
+        self.layout = layout
+        self.radius = radius
+        self.color = color
         self.size = size
     }
 
     public func makeBody(configuration: Configuration) -> some View {
         switch type {
             case .checkbox: checkbox(configuration: configuration)
+            case .radio: radio(configuration: configuration)
             case .switch: escapedSwitch(configuration: configuration)
             case .toggle: toggle(configuration: configuration)
         }
@@ -44,23 +48,64 @@ public struct RadixToggleStyle: ToggleStyle {
 // MARK: - RaddixToggle Computed Variables
 extension RadixToggleStyle {
 
-    private var newBackgroundColor: RadixAutoColor {
-        guard let backgroundColor else {
+    private var unwrappedColor: RadixAutoColor {
+        guard let color else {
             return colorScheme == .light ? .blackA : .whiteA
         }
-        return backgroundColor
+        return color
     }
 
-    private var newForegroundColor: RadixAutoColor {
-        guard let foregroundColor else {
-            return colorScheme == .light ? .whiteA : .blackA
-        }
-        return foregroundColor
-    }
-
-    private var newSize: CGFloat {
+    private var unwrappedSize: CGFloat {
         guard let size else { return 27.5 }
         return size
+    }
+
+    private func checkboxStyleColor(_ configuration: Configuration) -> [Color] {
+        switch variant {
+                // 1st Entry is Background and 2nd is Foreground Colors
+            case .soft:
+                return [
+                    unwrappedColor.component3,
+                    configuration.isOn ? unwrappedColor.solid2 : .clear
+                ]
+            case .surface:
+                return [
+                    configuration.isOn ? unwrappedColor.solid2 : .clear,
+                    configuration.isOn ? unwrappedColor.text2 : .clear
+                ]
+        }
+    }
+
+    private func radioStyleColor(_ configuration: Configuration) -> [Color] {
+        switch variant {
+                // 1st Entry is Fill and 2nd is Stroke Colors
+            case .soft:
+                return [
+                    unwrappedColor.component3,
+                    .clear
+                ]
+            case .surface:
+                return [
+                    configuration.isOn ? unwrappedColor.solid2 : .clear,
+                    configuration.isOn ? .clear : RadixAutoColor.gray.border2
+                ]
+        }
+    }
+
+    private func switchStyleColor(_ configuration: Configuration) -> [Color] {
+        switch variant {
+                // 1st Entry is Fill and 2nd is Stroke Colors
+            case .soft:
+                return [
+                    configuration.isOn ? unwrappedColor.solid2 : RadixAutoColor.gray.component3,
+                    .clear
+                ]
+            case .surface:
+                return [
+                    configuration.isOn ? unwrappedColor.solid2 : RadixAutoColor.gray.component2,
+                    configuration.isOn ? .clear : RadixAutoColor.gray.border2
+                ]
+        }
     }
 
 }
@@ -71,18 +116,52 @@ extension RadixToggleStyle {
     @ViewBuilder
     private func checkbox(configuration: Configuration) -> some View {
         RoundedRectangle(cornerRadius: 8)
-            .fill(newBackgroundColor.solid2)
+            .fill(checkboxStyleColor(configuration).first!)
             .overlay {
+                if variant == .surface {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(RadixAutoColor.gray.border2, lineWidth: 1)
+                }
                 if configuration.isOn {
                     configuration.label
-                        .foregroundColor(newForegroundColor.text2)
+                        .foregroundColor(
+                            variant == .surface
+                            ? unwrappedColor.background2
+                            : checkboxStyleColor(configuration).last!
+                        )
                 }
             }
-            .frame(width: newSize, height: newSize)
+            .frame(width: unwrappedSize, height: unwrappedSize)
             .radixShadow1()
             .onTapGesture {
                 configuration.isOn.toggle()
             }
+    }
+
+    @ViewBuilder
+    private func radio(configuration: Configuration) -> some View {
+        HStack(spacing: 15) {
+            if layout == .leading {
+                radioShape(
+                    configuration,
+                    size: .init(width: 22, height: 22)
+                )
+                .onTapGesture {
+                    configuration.isOn.toggle()
+                }
+            }
+            configuration.label
+            if layout == .trailing {
+                Spacer()
+                radioShape(
+                    configuration,
+                    size: .init(width: 22, height: 22)
+                )
+                .onTapGesture {
+                    configuration.isOn.toggle()
+                }
+            }
+        }
     }
 
     @ViewBuilder
@@ -110,16 +189,47 @@ extension RadixToggleStyle {
     @ViewBuilder
     private func toggle(configuration: Configuration) -> some View {
         RoundedRectangle(cornerRadius: 8)
-            .fill(configuration.isOn ? newBackgroundColor.solid2 : newBackgroundColor.component3)
-            .frame(width: newSize, height: newSize)
+            .fill(configuration.isOn ? unwrappedColor.solid2 : unwrappedColor.component3)
+            .frame(width: unwrappedSize, height: unwrappedSize)
             .radixShadow1()
             .overlay {
                 configuration.label
-                    .foregroundColor(newForegroundColor.text2)
+                    .foregroundColor(unwrappedColor.background2)
             }
             .onTapGesture {
                 configuration.isOn.toggle()
             }
+    }
+
+}
+
+// MARK: - RadixToggle Builders where Type == Radio
+extension RadixToggleStyle {
+    
+    @ViewBuilder
+    private func radioShape(_ configuration: Configuration, size: CGSize) -> some View {
+        ZStack {
+            Circle()
+                .radixShapeFillApplier(
+                    color: radioStyleColor(configuration).first!,
+                    width: size.width, height: size.height
+                )
+            Circle()
+                .radixShapeBorderApplier(
+                    color: radioStyleColor(configuration).last!,
+                    width: size.width, height: size.height
+                )
+            if configuration.isOn {
+                Circle()
+                    .radixShapeFillApplier(
+                        color: variant == .soft
+                        ? unwrappedColor.solid2
+                        : unwrappedColor.background2,
+                        width: size.width - 12, height: size.height - 12
+                    )
+            }
+        }
+        .compositingGroup()
     }
 
 }
@@ -129,105 +239,76 @@ extension RadixToggleStyle {
 
     @ViewBuilder
     private func switchBase(_ configuration: Configuration, size: CGSize) -> some View {
-        if let switchStyle {
-            switch switchStyle.1 {
-                case .none:
-                    Rectangle()
-                        .radixShapeFillApplier(
-                            color: switchStyleColor(configuration).first!,
-                            width: size.width, height: size.height
-                        )
-                case .large:
-                    RoundedRectangle(cornerRadius: 4)
-                        .radixShapeFillApplier(
-                            color: switchStyleColor(configuration).first!,
-                            width: size.width, height: size.height
-                        )
-                case .full:
-                    Capsule()
-                        .radixShapeFillApplier(
-                            color: switchStyleColor(configuration).first!,
-                            width: size.width, height: size.height
-                        )
-            }
-        } else {
-            EmptyView()
+        switch radius {
+            case .none:
+                Rectangle()
+                    .radixShapeFillApplier(
+                        color: switchStyleColor(configuration).first!,
+                        width: size.width, height: size.height
+                    )
+            case .large:
+                RoundedRectangle(cornerRadius: 4)
+                    .radixShapeFillApplier(
+                        color: switchStyleColor(configuration).first!,
+                        width: size.width, height: size.height
+                    )
+            case .full:
+                Capsule()
+                    .radixShapeFillApplier(
+                        color: switchStyleColor(configuration).first!,
+                        width: size.width, height: size.height
+                    )
         }
     }
 
     @ViewBuilder
     private func switchBaseBorder(_ configuration: Configuration, size: CGSize) -> some View {
-        if let switchStyle {
-            switch switchStyle.1 {
-                case .none:
-                    Rectangle()
-                        .radixShapeBorderApplier(
-                            color: switchStyleColor(configuration).last!,
-                            width: size.width, height: size.height
-                        )
-                case .large:
-                    RoundedRectangle(cornerRadius: 4)
-                        .radixShapeBorderApplier(
-                            color: switchStyleColor(configuration).last!,
-                            width: size.width, height: size.height
-                        )
-                case .full:
-                    Capsule()
-                        .radixShapeBorderApplier(
-                            color: switchStyleColor(configuration).last!,
-                            width: size.width, height: size.height
-                        )
-            }
-        } else {
-            EmptyView()
+        switch radius {
+            case .none:
+                Rectangle()
+                    .radixShapeBorderApplier(
+                        color: switchStyleColor(configuration).last!,
+                        width: size.width, height: size.height
+                    )
+            case .large:
+                RoundedRectangle(cornerRadius: 4)
+                    .radixShapeBorderApplier(
+                        color: switchStyleColor(configuration).last!,
+                        width: size.width, height: size.height
+                    )
+            case .full:
+                Capsule()
+                    .radixShapeBorderApplier(
+                        color: switchStyleColor(configuration).last!,
+                        width: size.width, height: size.height
+                    )
         }
     }
 
     @ViewBuilder
     private func switchThumb(_ configuration: Configuration, size: CGSize) -> some View {
-        if let switchStyle {
-            switch switchStyle.1 {
-                case .none:
-                    Rectangle()
-                        .radixShapeFillApplier(
-                            color: newForegroundColor.text2,
-                            width: size.width, height: size.height
-                        )
-                        .radixShadow3()
-                case .large:
-                    RoundedRectangle(cornerRadius: 4)
-                        .radixShapeFillApplier(
-                            color: newForegroundColor.text2,
-                            width: size.width, height: size.height
-                        )
-                        .radixShadow3()
-                case .full:
-                    Circle()
-                        .radixShapeFillApplier(
-                            color: newForegroundColor.text2,
-                            width: size.width, height: size.height
-                        )
-                        .radixShadow3()
-            }
-        } else {
-            EmptyView()
-        }
-    }
-
-    private func switchStyleColor(_ configuration: Configuration) -> [Color] {
-        guard let switchStyle else { return [] }
-        switch switchStyle.0 {
-                // 1st Entry is Fill and 2nd is Stroke Colors
-            case .soft:
-                return [
-                    configuration.isOn ? newBackgroundColor.solid2 : RadixAutoColor.gray.component3,
-                    .clear
-                ]
-            case .surface:
-                return [
-                    configuration.isOn ? newBackgroundColor.solid2 : RadixAutoColor.gray.component2,
-                    configuration.isOn ? .clear : RadixAutoColor.gray.border2
-                ]
+        switch radius {
+            case .none:
+                Rectangle()
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.whiteA.text2,
+                        width: size.width, height: size.height
+                    )
+                    .radixShadow3()
+            case .large:
+                RoundedRectangle(cornerRadius: 4)
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.whiteA.text2,
+                        width: size.width, height: size.height
+                    )
+                    .radixShadow3()
+            case .full:
+                Circle()
+                    .radixShapeFillApplier(
+                        color: RadixAutoColor.whiteA.text2,
+                        width: size.width, height: size.height
+                    )
+                    .radixShadow3()
         }
     }
 

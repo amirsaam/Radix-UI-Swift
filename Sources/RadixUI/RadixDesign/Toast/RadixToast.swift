@@ -17,7 +17,7 @@ public struct RadixToast<ButtonLabel: View, ToastLabel: View>: View {
     private var duration: Int
     private var buttonAction: (() -> Void)?
     private var buttonLabel: (() -> ButtonLabel)?
-    @ViewBuilder private var toastLabel: () -> ToastLabel
+    private var toastLabel: () -> ToastLabel
 
     public var body: some View {
         HStack {
@@ -63,7 +63,7 @@ public struct RadixToast<ButtonLabel: View, ToastLabel: View>: View {
                         )
                 }
         }
-        .foregroundStyle(newColor.solid2)
+        .foregroundStyle(unwrappedColor.solid2)
         .task {
             guard duration != 0 else { return }
             try? await Task.sleep(nanoseconds: UInt64(duration) * 1000000000)
@@ -82,8 +82,8 @@ extension RadixToast {
         color: RadixAutoColor?,
         duration: Int,
         buttonAction: @escaping () -> Void,
-        buttonLabel: @escaping () -> ButtonLabel,
-        toastLabel: @escaping () -> ToastLabel
+        @ViewBuilder buttonLabel: @escaping () -> ButtonLabel,
+        @ViewBuilder toastLabel: @escaping () -> ToastLabel
     ) {
         self._isPresented = isPresented
         self.variant = variant
@@ -101,7 +101,7 @@ extension RadixToast {
         position: RadixToastPosition,
         color: RadixAutoColor?,
         duration: Int,
-        toastLabel: @escaping () -> ToastLabel
+        @ViewBuilder toastLabel: @escaping () -> ToastLabel
     ) where ButtonLabel == Never {
         self._isPresented = isPresented
         self.variant = variant
@@ -115,7 +115,7 @@ extension RadixToast {
 
 extension RadixToast {
 
-    private var newColor: RadixAutoColor {
+    private var unwrappedColor: RadixAutoColor {
         guard let color else { return .blue }
         return color
     }
@@ -123,16 +123,8 @@ extension RadixToast {
     private var toastColor: [Color] {
         switch variant {
                 // 1st Entry is Fill and 2nd is Stroke Colors
-            case .soft:
-                [
-                    newColor.component1,
-                    .clear
-                ]
-            case .surface:
-                [
-                    newColor.background2,
-                    newColor.border2
-                ]
+            case .soft: [ unwrappedColor.component1, .clear ]
+            case .surface: [unwrappedColor.background2, unwrappedColor.border2]
         }
     }
 
@@ -143,14 +135,14 @@ extension RadixToast {
                     variant: .solid,
                     layout: .icon,
                     radius: .large,
-                    color: newColor
+                    color: unwrappedColor
                 )
             case .surface:
                 return RadixButtonStyle(
                     variant: .soft,
                     layout: .icon,
                     radius: .large,
-                    color: newColor
+                    color: unwrappedColor
                 )
         }
     }

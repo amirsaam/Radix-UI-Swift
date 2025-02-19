@@ -47,18 +47,18 @@ public struct RadixTextFieldStyle: TextFieldStyle {
                     if isLoading.wrappedValue {
                         ProgressView()
                             .progressViewStyle(.circular)
-                            .tint(isFocused ? newColor.solid1 : newColor.border2)
+                            .tint(isFocused ? unwrappedColor.solid1 : unwrappedColor.border2)
                             .controlSize(.regular)
                     } else {
                         iconLabel
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: iconSize, height: iconSize)
-                            .foregroundStyle(isFocused ? newColor.solid1 : newColor.border2)
+                            .foregroundStyle(isFocused ? unwrappedColor.solid1 : unwrappedColor.border2)
                     }
                 }
                 configuration
-                    .foregroundStyle(newColor.text2)
+                    .foregroundStyle(unwrappedColor.text2)
                 if let action {
                     Spacer()
                     Button(action: action) {
@@ -137,7 +137,7 @@ public struct RadixTextFieldStyle: TextFieldStyle {
 
 extension RadixTextFieldStyle {
 
-    private var newColor: RadixAutoColor {
+    private var unwrappedColor: RadixAutoColor {
         guard let color else { return .blue }
         return color
     }
@@ -147,13 +147,13 @@ extension RadixTextFieldStyle {
                 // 1st Entry is Fill and 2nd is Stroke Colors
             case .soft:
                 [
-                    newColor.component1,
-                    isFocused ? newColor.solid1 : newColor.border2
+                    unwrappedColor.component1,
+                    isFocused ? unwrappedColor.solid1 : unwrappedColor.border2
                 ]
             case .surface:
                 [
                     .clear,
-                    isFocused ? newColor.solid1 : newColor.border2
+                    isFocused ? unwrappedColor.solid1 : unwrappedColor.border2
                 ]
         }
     }
@@ -165,14 +165,14 @@ extension RadixTextFieldStyle {
                     variant: .solid,
                     layout: .icon,
                     radius: radius,
-                    color: newColor
+                    color: unwrappedColor
                 )
             case .surface:
                 return RadixButtonStyle(
                     variant: .soft,
                     layout: .icon,
                     radius: radius,
-                    color: newColor
+                    color: unwrappedColor
                 )
         }
     }

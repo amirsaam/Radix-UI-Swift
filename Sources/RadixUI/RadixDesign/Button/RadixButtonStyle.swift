@@ -29,7 +29,7 @@ public struct RadixButtonStyle: ButtonStyle {
         self.color = color
     }
 
-    private var newColor: RadixAutoColor {
+    private var unwrappedColor: RadixAutoColor {
         guard let color else { return .blue }
         return color
     }
@@ -51,7 +51,7 @@ public struct RadixButtonStyle: ButtonStyle {
                             isLoading: isLoading,
                             isPressed: configuration.isPressed,
                             isEnabled: isEnabled,
-                            color: newColor,
+                            color: unwrappedColor,
                             layout: layout,
                             radius: radius,
                             variant: variant
