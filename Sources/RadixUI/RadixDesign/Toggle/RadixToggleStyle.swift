@@ -34,6 +34,8 @@ public struct RadixToggleStyle: ToggleStyle {
         self.size = size
     }
 
+    private var gray: RadixAutoColor = .gray
+
     public func makeBody(configuration: Configuration) -> some View {
         switch type {
             case .checkbox: checkbox(configuration: configuration)
@@ -87,7 +89,7 @@ extension RadixToggleStyle {
             case .surface:
                 return [
                     configuration.isOn ? unwrappedColor.solid2 : .clear,
-                    configuration.isOn ? .clear : RadixAutoColor.gray.border2
+                    configuration.isOn ? .clear : gray.border2
                 ]
         }
     }
@@ -97,13 +99,13 @@ extension RadixToggleStyle {
                 // 1st Entry is Fill and 2nd is Stroke Colors
             case .soft:
                 return [
-                    configuration.isOn ? unwrappedColor.solid2 : RadixAutoColor.gray.component3,
+                    configuration.isOn ? unwrappedColor.solid2 : gray.component3,
                     .clear
                 ]
             case .surface:
                 return [
-                    configuration.isOn ? unwrappedColor.solid2 : RadixAutoColor.gray.component2,
-                    configuration.isOn ? .clear : RadixAutoColor.gray.border2
+                    configuration.isOn ? unwrappedColor.solid2 : gray.component2,
+                    configuration.isOn ? .clear : gray.border2
                 ]
         }
     }
@@ -120,7 +122,7 @@ extension RadixToggleStyle {
             .overlay {
                 if variant == .surface {
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(RadixAutoColor.gray.border2, lineWidth: 1)
+                        .stroke(gray.border2, lineWidth: 1)
                 }
                 if configuration.isOn {
                     configuration.label
@@ -287,25 +289,28 @@ extension RadixToggleStyle {
 
     @ViewBuilder
     private func switchThumb(_ configuration: Configuration, size: CGSize) -> some View {
+
+        let whiteA: RadixAutoColor = .whiteA
+
         switch radius {
             case .none:
                 Rectangle()
                     .radixShapeFillApplier(
-                        color: RadixAutoColor.whiteA.text2,
+                        color: whiteA.text2,
                         width: size.width, height: size.height
                     )
                     .radixShadow3()
             case .large:
                 RoundedRectangle(cornerRadius: 4)
                     .radixShapeFillApplier(
-                        color: RadixAutoColor.whiteA.text2,
+                        color: whiteA.text2,
                         width: size.width, height: size.height
                     )
                     .radixShadow3()
             case .full:
                 Circle()
                     .radixShapeFillApplier(
-                        color: RadixAutoColor.whiteA.text2,
+                        color: whiteA.text2,
                         width: size.width, height: size.height
                     )
                     .radixShadow3()

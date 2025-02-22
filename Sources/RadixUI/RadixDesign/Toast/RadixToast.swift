@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct RadixToast<ButtonLabel: View, ToastLabel: View>: View {
 
+    @Environment(\.colorScheme) private var colorScheme
+
     @Binding var isPresented: Bool
 
     private var variant: RadixToastVariant
@@ -63,7 +65,7 @@ public struct RadixToast<ButtonLabel: View, ToastLabel: View>: View {
                         )
                 }
         }
-        .foregroundStyle(unwrappedColor.solid2)
+        .foregroundStyle(reversedBlackOrWhite.text2)
         .task {
             guard duration != 0 else { return }
             try? await Task.sleep(nanoseconds: UInt64(duration) * 1000000000)
@@ -120,11 +122,29 @@ extension RadixToast {
         return color
     }
 
+    var isBlackOrWhite: Bool {
+        let isBlack = unwrappedColor == .blackA
+        let isWhite = unwrappedColor == .whiteA
+        return isBlack || isWhite
+    }
+
+    var reversedBlackOrWhite: RadixAutoColor {
+        guard unwrappedColor != .blackA else { return .whiteA }
+        guard unwrappedColor != .whiteA else { return .blackA }
+        return unwrappedColor
+    }
+
     private var toastColor: [Color] {
         switch variant {
                 // 1st Entry is Fill and 2nd is Stroke Colors
-            case .soft: [ unwrappedColor.component1, .clear ]
-            case .surface: [unwrappedColor.background2, unwrappedColor.border2]
+            case .soft: [
+                isBlackOrWhite ? unwrappedColor.text2 : unwrappedColor.component1,
+                .clear
+            ]
+            case .surface: [
+                isBlackOrWhite ? unwrappedColor.text2 : unwrappedColor.background2,
+                isBlackOrWhite ? reversedBlackOrWhite.solid1 : unwrappedColor.border2
+            ]
         }
     }
 
@@ -135,14 +155,14 @@ extension RadixToast {
                     variant: .solid,
                     layout: .icon,
                     radius: .large,
-                    color: unwrappedColor
+                    color: reversedBlackOrWhite
                 )
             case .surface:
                 return RadixButtonStyle(
-                    variant: .soft,
+                    variant: isBlackOrWhite ? .solid : .soft,
                     layout: .icon,
                     radius: .large,
-                    color: unwrappedColor
+                    color: reversedBlackOrWhite
                 )
         }
     }
