@@ -122,13 +122,13 @@ extension RadixToast {
         return color
     }
 
-    var isBlackOrWhite: Bool {
+    private var isBlackOrWhite: Bool {
         let isBlack = unwrappedColor == .blackA
         let isWhite = unwrappedColor == .whiteA
         return isBlack || isWhite
     }
 
-    var reversedBlackOrWhite: RadixAutoColor {
+    private var reversedBlackOrWhite: RadixAutoColor {
         guard unwrappedColor != .blackA else { return .whiteA }
         guard unwrappedColor != .whiteA else { return .blackA }
         return unwrappedColor
@@ -152,14 +152,14 @@ extension RadixToast {
         switch variant {
             case .soft:
                 return RadixButtonStyle(
-                    variant: .solid,
+                    variant: isBlackOrWhite ? .outline : .solid,
                     layout: .icon,
                     radius: .large,
                     color: reversedBlackOrWhite
                 )
             case .surface:
                 return RadixButtonStyle(
-                    variant: isBlackOrWhite ? .solid : .soft,
+                    variant: isBlackOrWhite ? .outline : .soft,
                     layout: .icon,
                     radius: .large,
                     color: reversedBlackOrWhite

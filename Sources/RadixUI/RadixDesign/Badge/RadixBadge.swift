@@ -13,35 +13,44 @@ public struct RadixBadge: ViewModifier {
 
     private var variant: RadixBadgeVariant
     private var radius: RadixElementShapeRadius
-    private var color: RadixAutoColor
+    private var color: RadixAutoColor?
 
     init(
         variant: RadixBadgeVariant,
         radius: RadixElementShapeRadius,
-        color: RadixAutoColor
+        color: RadixAutoColor?
     ) {
         self.variant = variant
         self.radius = radius
         self.color = color
     }
 
+    private var unwrappedColor: RadixAutoColor {
+        guard let color else {
+            return colorScheme == .light ? .blackA : .whiteA
+        }
+        return color
+    }
+
     private var badgeColor: [Color] {
         switch variant {
                 // 1st Entry is Fill and 2nd is Stroke Colors
-            case .outline: [ .clear, color.solid1 ]
-            case .soft: [ color.component2, .clear ]
-            case .solid: [ color.border3, .clear ]
-            case .surface: [ color.background2, color.solid1 ]
+            case .outline: [ .clear, unwrappedColor.solid1 ]
+            case .soft: [ unwrappedColor.component2, .clear ]
+            case .solid: [ unwrappedColor.solid1, .clear ]
+            case .surface: [ unwrappedColor.background2, unwrappedColor.solid1 ]
         }
     }
 
     private var fgColor: Color {
-        guard color != .blackA else { return .whiteA11 }
-        guard color != .whiteA else { return .blackA11 }
         guard variant != .solid else {
-            return colorScheme == .light ? color.background2 : color.text2
+            if unwrappedColor == .blackA { return .whiteA11 }
+            if unwrappedColor == .whiteA { return .blackA11 }
+            return colorScheme == .light
+            ? unwrappedColor.background2
+            : unwrappedColor.text2
         }
-        return color.text1
+        return unwrappedColor.text1
     }
 
     public func body(content: Content) -> some View {

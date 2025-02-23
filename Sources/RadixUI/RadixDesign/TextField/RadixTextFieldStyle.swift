@@ -138,7 +138,9 @@ public struct RadixTextFieldStyle: TextFieldStyle {
 extension RadixTextFieldStyle {
 
     private var unwrappedColor: RadixAutoColor {
-        guard let color else { return .blue }
+        guard let color else {
+            return colorScheme == .light ? .blackA : .whiteA
+        }
         return color
     }
 
@@ -165,14 +167,14 @@ extension RadixTextFieldStyle {
                     variant: .solid,
                     layout: .icon,
                     radius: radius,
-                    color: unwrappedColor
+                    color: color
                 )
             case .surface:
                 return RadixButtonStyle(
                     variant: .soft,
                     layout: .icon,
                     radius: radius,
-                    color: unwrappedColor
+                    color: color
                 )
         }
     }

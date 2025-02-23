@@ -9,6 +9,7 @@ import SwiftUI
 
 public struct RadixButtonStyle: ButtonStyle {
 
+    @Environment(\.colorScheme) private var colorScheme
     @Environment(\.isEnabled) private var isEnabled
     @Environment(\.isLoading) private var isLoading
 
@@ -30,7 +31,9 @@ public struct RadixButtonStyle: ButtonStyle {
     }
 
     private var unwrappedColor: RadixAutoColor {
-        guard let color else { return .blue }
+        guard let color else {
+            return colorScheme == .light ? .blackA : .whiteA
+        }
         return color
     }
 

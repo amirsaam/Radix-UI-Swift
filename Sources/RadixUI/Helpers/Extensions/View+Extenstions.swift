@@ -28,7 +28,7 @@ extension View {
         _ isPresented: Binding<Bool>,
         variant: RadixToastVariant,
         position: RadixToastPosition,
-        color: RadixAutoColor?,
+        color: RadixAutoColor? = nil,
         duration: Int,
         toastLabel: @escaping () -> ToastLabel
     ) -> some View {
@@ -50,7 +50,7 @@ extension View {
         _ isPresented: Binding<Bool>,
         variant: RadixToastVariant,
         position: RadixToastPosition,
-        color: RadixAutoColor?,
+        color: RadixAutoColor? = nil,
         duration: Int,
         buttonAction: @escaping () -> Void,
         buttonLabel: @escaping () -> ButtonLabel,
@@ -79,7 +79,7 @@ extension View where Self == Text {
     public func radixBadge(
         variant: RadixBadgeVariant,
         radius: RadixElementShapeRadius,
-        color: RadixAutoColor
+        color: RadixAutoColor? = nil
     ) -> some View {
         self
             .modifier(
@@ -94,7 +94,7 @@ extension View where Self == Text {
     /// Modifies a Text View to become an Info Callout with Customizable Color
     public func radixInfoCallout(
         variant: RadixCalloutVariant,
-        color: RadixAutoColor
+        color: RadixAutoColor? = nil
     ) -> some View {
         self
             .modifier(

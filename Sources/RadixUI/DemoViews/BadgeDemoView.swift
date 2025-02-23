@@ -16,46 +16,46 @@ struct BadgeDemoView: View {
             HStack(spacing: 20) {
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .outline, radius: .none, color: .grass)
+                    .radixBadge(variant: .outline, radius: .none, color: .blue)
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .outline, radius: .large, color: .grass)
+                    .radixBadge(variant: .outline, radius: .large)
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .outline, radius: .full, color: .grass)
+                    .radixBadge(variant: .outline, radius: .full, color: .orange)
             }
             HStack(spacing: 20) {
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .soft, radius: .none, color: .grass)
+                    .radixBadge(variant: .soft, radius: .none, color: .blue)
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .soft, radius: .large, color: .grass)
+                    .radixBadge(variant: .soft, radius: .large)
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .soft, radius: .full, color: .grass)
+                    .radixBadge(variant: .soft, radius: .full, color: .orange)
             }
             HStack(spacing: 20) {
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .solid, radius: .none, color: .grass)
+                    .radixBadge(variant: .solid, radius: .none, color: .blue)
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .solid, radius: .large, color: .grass)
+                    .radixBadge(variant: .solid, radius: .large)
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .solid, radius: .full, color: .grass)
+                    .radixBadge(variant: .solid, radius: .full, color: .orange)
             }
             HStack(spacing: 20) {
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .surface, radius: .none, color: .grass)
+                    .radixBadge(variant: .surface, radius: .none, color: .blue)
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .surface, radius: .large, color: .grass)
+                    .radixBadge(variant: .surface, radius: .large)
                 Text(new)
                     .font(.footnote)
-                    .radixBadge(variant: .surface, radius: .full, color: .grass)
+                    .radixBadge(variant: .surface, radius: .full, color: .orange)
             }
         }
     }

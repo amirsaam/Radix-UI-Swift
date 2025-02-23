@@ -15,11 +15,11 @@ struct ToastDemoView: View {
     var body: some View {
         VStack(spacing: 25) {
             Button {
-                presentInfoToast = true
+                presentActionToast = true
             } label: {
                 Label(
-                    "Present Bot Toast",
-                    imageName: "vercel-logo",
+                    "Present Top Toast",
+                    imageName: "arrow-up",
                     imageSize: 20,
                     bundle: .module
                 )
@@ -27,17 +27,16 @@ struct ToastDemoView: View {
             .buttonStyle(
                 .radixSolid(
                     layout: .leading,
-                    radius: .full,
-                    color: .grass
+                    radius: .large
                 ),
                 isLoading: .constant(false)
             )
             Button {
-                presentActionToast = true
+                presentInfoToast = true
             } label: {
                 Label(
-                    "Present Top Toast",
-                    imageName: "vercel-logo",
+                    "Present Bot Toast",
+                    imageName: "arrow-down",
                     imageSize: 20,
                     bundle: .module
                 )
@@ -60,8 +59,8 @@ struct ToastDemoView: View {
         ) {
             Label(
                 "This is a Radix Info Toast",
-                imageName: "vercel-logo",
-                imageSize: 20,
+                imageName: "calendar",
+                imageSize: 25,
                 bundle: .module
             )
         }
@@ -69,7 +68,6 @@ struct ToastDemoView: View {
             $presentActionToast,
             variant: .soft,
             position: .top,
-            color: .grass,
             duration: 0
         ) {
             presentInfoToast = true
@@ -83,8 +81,8 @@ struct ToastDemoView: View {
         } toastLabel: {
             Label(
                 "Button Presents Info Toast",
-                imageName: "vercel-logo",
-                imageSize: 20,
+                imageName: "calendar",
+                imageSize: 25,
                 bundle: .module
             )
         }

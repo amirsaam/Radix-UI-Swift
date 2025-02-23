@@ -57,6 +57,18 @@ extension RadixToggleStyle {
         return color
     }
 
+    private var isBlackOrWhite: Bool {
+        let isBlack = unwrappedColor == .blackA
+        let isWhite = unwrappedColor == .whiteA
+        return isBlack || isWhite
+    }
+
+    private var reversedBlackOrWhite: RadixAutoColor {
+        guard unwrappedColor != .blackA else { return .whiteA }
+        guard unwrappedColor != .whiteA else { return .blackA }
+        return unwrappedColor
+    }
+
     private var unwrappedSize: CGFloat {
         guard let size else { return 27.5 }
         return size
@@ -67,13 +79,17 @@ extension RadixToggleStyle {
                 // 1st Entry is Background and 2nd is Foreground Colors
             case .soft:
                 return [
-                    unwrappedColor.component3,
-                    configuration.isOn ? unwrappedColor.solid2 : .clear
+                    isBlackOrWhite ? unwrappedColor.solid2 : unwrappedColor.component3,
+                    configuration.isOn
+                    ? isBlackOrWhite ? reversedBlackOrWhite.text2 : unwrappedColor.solid2
+                    : .clear
                 ]
             case .surface:
                 return [
                     configuration.isOn ? unwrappedColor.solid2 : .clear,
-                    configuration.isOn ? unwrappedColor.text2 : .clear
+                    configuration.isOn ?
+                     (isBlackOrWhite ? reversedBlackOrWhite.text2 : unwrappedColor.text2)
+                    : .clear
                 ]
         }
     }
@@ -83,7 +99,7 @@ extension RadixToggleStyle {
                 // 1st Entry is Fill and 2nd is Stroke Colors
             case .soft:
                 return [
-                    unwrappedColor.component3,
+                    isBlackOrWhite ? unwrappedColor.solid2 : unwrappedColor.component3,
                     .clear
                 ]
             case .surface:
@@ -99,12 +115,14 @@ extension RadixToggleStyle {
                 // 1st Entry is Fill and 2nd is Stroke Colors
             case .soft:
                 return [
-                    configuration.isOn ? unwrappedColor.solid2 : gray.component3,
+                    isBlackOrWhite ? unwrappedColor.solid2
+                    : configuration.isOn ? unwrappedColor.component3 : gray.component3,
                     .clear
                 ]
             case .surface:
                 return [
-                    configuration.isOn ? unwrappedColor.solid2 : gray.component2,
+                    isBlackOrWhite ? unwrappedColor.solid2
+                    : configuration.isOn ? unwrappedColor.solid2 : gray.background2,
                     configuration.isOn ? .clear : gray.border2
                 ]
         }
@@ -128,7 +146,7 @@ extension RadixToggleStyle {
                     configuration.label
                         .foregroundColor(
                             variant == .surface
-                            ? unwrappedColor.background2
+                            ? (isBlackOrWhite ? reversedBlackOrWhite.text2 : unwrappedColor.background2)
                             : checkboxStyleColor(configuration).last!
                         )
                 }
@@ -191,12 +209,20 @@ extension RadixToggleStyle {
     @ViewBuilder
     private func toggle(configuration: Configuration) -> some View {
         RoundedRectangle(cornerRadius: 8)
-            .fill(configuration.isOn ? unwrappedColor.solid2 : unwrappedColor.component3)
+            .fill(
+                configuration.isOn
+                ? unwrappedColor.solid2
+                : isBlackOrWhite ? unwrappedColor.border1 : unwrappedColor.component3
+            )
             .frame(width: unwrappedSize, height: unwrappedSize)
             .radixShadow1()
             .overlay {
                 configuration.label
-                    .foregroundColor(unwrappedColor.background2)
+                    .foregroundColor(
+                        isBlackOrWhite
+                         ? reversedBlackOrWhite.text2
+                         : unwrappedColor.background2
+                    )
             }
             .onTapGesture {
                 configuration.isOn.toggle()
@@ -225,8 +251,8 @@ extension RadixToggleStyle {
                 Circle()
                     .radixShapeFillApplier(
                         color: variant == .soft
-                        ? unwrappedColor.solid2
-                        : unwrappedColor.background2,
+                        ? reversedBlackOrWhite.solid2
+                        : (isBlackOrWhite ? reversedBlackOrWhite.text2 : unwrappedColor.background2),
                         width: size.width - 12, height: size.height - 12
                     )
             }

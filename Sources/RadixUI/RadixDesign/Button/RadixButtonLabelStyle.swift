@@ -137,11 +137,19 @@ extension RadixButtonLabelStyle {
         return 0.6
     }
 
+    private var isBlackOrWhite: Bool {
+        let isBlack = color == .blackA
+        let isWhite = color == .whiteA
+        return isBlack || isWhite
+    }
+
     private var fgColor: Color {
-        guard color != .blackA else { return .whiteA11 }
-        guard color != .whiteA else { return .blackA11 }
         guard variant != .solid else {
-            return colorScheme == .light ? color.background2 : color.text2
+            if color == .blackA { return .whiteA11 }
+            if color == .whiteA { return .blackA11 }
+            return colorScheme == .light
+            ? color.background2
+            : color.text2
         }
         return color.text1
     }
@@ -166,7 +174,9 @@ extension RadixButtonLabelStyle {
                 ]
             case .solid:
                 [
-                    isPressed ? color.solid1 : color.border3,
+                    isPressed
+                    ? (isBlackOrWhite ? color.text2 : color.solid2)
+                    : (isBlackOrWhite ? color.text1 : color.solid1),
                     .clear
                 ]
             case .surface:

@@ -16,8 +16,7 @@ struct Option: Identifiable, Equatable {
 struct ToggleDemoView: View {
 
     @State private var checkbox = false
-    @State private var switchSurface = false
-    @State private var switchSoft = false
+    @State private var switchToggle = false
     @State private var toggle = false
 
     private var radixColor = RadixAutoColor.self
@@ -57,24 +56,13 @@ struct ToggleDemoView: View {
                     )
                 )
             }
-            Toggle(isOn: $switchSurface) {
+            Toggle(isOn: $switchToggle) {
                 Text("Label Text")
                     .foregroundStyle(radixColor.grass.text2)
             }
             .toggleStyle(
                 .radixSwitch(
                     variant: .surface,
-                    radius: .full,
-                    color: .grass
-                )
-            )
-            Toggle(isOn: $switchSoft) {
-                Text("Label Text")
-                    .foregroundStyle(radixColor.grass.text2)
-            }
-            .toggleStyle(
-                .radixSwitch(
-                    variant: .soft,
                     radius: .full,
                     color: .grass
                 )
@@ -92,9 +80,7 @@ struct ToggleDemoView: View {
                     )
                 }
                 .toggleStyle(
-                    .radixToggle(
-                        color: .grass
-                    )
+                    .radixToggle(color: .grass)
                 )
             }
         }

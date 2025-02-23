@@ -40,7 +40,7 @@ Text("RadixUI-Swift")
 ```
 or
 ```swift
-@State private var color: RadixAutoColor = .crimson
+private var color: RadixAutoColor = .crimson
 
 Text("RadixUI-Swift")
   .foregroundColor(color.solid9) // From RadixAutoColor Enum
@@ -48,7 +48,7 @@ Text("RadixUI-Swift")
 
 In order to use your own custom color pallete head to [Radix Pallete Generator](https://www.radix-ui.com/colors/custom) and create your pallete and add them to your Asset Catalogue in 12 level named in this way for example: MyColor1, MyColor2, MyColor3, MyColor4, MyColor5, ... MyColor12 then using RadixAutoColor's `.custom` property:
 ```swift
-@State private var color: RadixAutoColor = .custom("myColor")
+private var color: RadixAutoColor = .custom("myColor")
  // Reads all 12 levels of your custom pallete using the color's child variables.
 // It will automatically capitalize the first letter for you.
 

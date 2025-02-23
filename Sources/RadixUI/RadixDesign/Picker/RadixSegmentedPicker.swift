@@ -22,12 +22,6 @@ public struct RadixSegmentedPicker {
         self.selectedFont = selectedFont
         self.notSelectedFont = notSelectedFont
 
-        var fgColor: RadixAutoColor {
-            guard color != .blackA else { return .whiteA }
-            guard color != .whiteA else { return .blackA }
-            return color
-        }
-
         let appeareance = UISegmentedControl.appearance()
 
         appeareance.backgroundColor = UIColor(color.component2)
@@ -40,7 +34,7 @@ public struct RadixSegmentedPicker {
         appeareance.selectedSegmentTintColor = UIColor(color.text2)
         appeareance.setTitleTextAttributes(
             [
-                .foregroundColor: UIColor(fgColor.background2),
+                .foregroundColor: UIColor(color.background2),
                 .font: selectedFont
             ],
             for: .selected

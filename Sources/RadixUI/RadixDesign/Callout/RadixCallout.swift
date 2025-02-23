@@ -9,26 +9,35 @@ import SwiftUI
 
 public struct RadixCallout: ViewModifier {
 
+    @Environment(\.colorScheme) private var colorScheme
+
     private var variant: RadixCalloutVariant
     private var role: RadixCalloutRole
-    private var color: RadixAutoColor
+    private var color: RadixAutoColor?
 
     init(
         variant: RadixCalloutVariant,
         role: RadixCalloutRole,
-        color: RadixAutoColor
+        color: RadixAutoColor?
     ) {
         self.variant = variant
         self.role = role
         self.color = color
     }
 
+    private var unwrappedColor: RadixAutoColor {
+        guard let color else {
+            return colorScheme == .light ? .blackA : .whiteA
+        }
+        return color
+    }
+
     private var calloutColor: [Color] {
         switch variant {
                 // 1st Entry is Fill and 2nd is Stroke Colors
-            case .outline: [ .clear, color.solid1 ]
-            case .soft: [ color.component2, .clear ]
-            case .surface: [ color.background2, color.solid1 ]
+            case .outline: [ .clear, unwrappedColor.solid1 ]
+            case .soft: [ unwrappedColor.component2, .clear ]
+            case .surface: [ unwrappedColor.background2, unwrappedColor.solid1 ]
         }
     }
 
@@ -58,7 +67,7 @@ public struct RadixCallout: ViewModifier {
                         )
                 }
         )
-        .foregroundStyle(color.solid2)
+        .foregroundStyle(unwrappedColor.solid2)
     }
 
 }
