@@ -58,6 +58,10 @@ Text("RadixUI-Swift")
 
 **Important Note**: All RadixUI modifiers and styles are using `RadixAutoColor` enum
 
+**Most Important Note**: All Radix theme styles have a default dynamic Black on Light ColorScheme and White on Dark ColorScheme, so
+
+**DO NOT PASS `.whiteA` or `.blackA` TO RADIX MODIFIERS**
+
 ### Icons
 Use icons in `Image` with bundle name completely customizable in two ways
 ```swift
@@ -89,6 +93,7 @@ Text("New")
 
 ### Button
 RadixUI does have multiple ButtonStyles as: radixGhost, radixOutline, radixSoft, radixSolid and radixSurface
+
 **Note 1**: RadixUI buttons can have a loading state after press that does change the Button label's icon into a progress view until the boolean becomes `false` again.
 Examples:
 ```swift
