@@ -121,8 +121,7 @@ extension RadixToggleStyle {
                 ]
             case .surface:
                 return [
-                    isBlackOrWhite ? unwrappedColor.solid2
-                    : configuration.isOn ? unwrappedColor.solid2 : gray.background2,
+                    configuration.isOn ? unwrappedColor.solid2 : .clear,
                     configuration.isOn ? .clear : gray.border2
                 ]
         }
