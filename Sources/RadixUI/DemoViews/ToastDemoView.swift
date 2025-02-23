@@ -44,8 +44,7 @@ struct ToastDemoView: View {
             .buttonStyle(
                 .radixSolid(
                     layout: .leading,
-                    radius: .full,
-                    color: .grass
+                    radius: .large
                 ),
                 isLoading: .constant(false)
             )
@@ -55,6 +54,7 @@ struct ToastDemoView: View {
             variant: .surface,
             position: .bottom,
             color: .grass,
+            isInverted: false,
             duration: 3
         ) {
             Label(
@@ -68,6 +68,7 @@ struct ToastDemoView: View {
             $presentActionToast,
             variant: .soft,
             position: .top,
+            color: .grass,
             duration: 0
         ) {
             presentInfoToast = true

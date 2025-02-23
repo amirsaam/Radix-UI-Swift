@@ -29,6 +29,7 @@ extension View {
         variant: RadixToastVariant,
         position: RadixToastPosition,
         color: RadixAutoColor? = nil,
+        isInverted: Bool = false,
         duration: Int,
         toastLabel: @escaping () -> ToastLabel
     ) -> some View {
@@ -39,18 +40,20 @@ extension View {
                     variant: variant,
                     position: position,
                     color: color,
+                    isInverted: isInverted,
                     duration: duration,
                     toastLabel: toastLabel
                 )
             )
     }
-    
+
     /// Shows a Toast on any View of your choice with a Custom Button Action, use it on highest container in your view hierarchy, duration == 0 will disable auto dismiss
     public func radixActionToast<ButtonLabel: View, ToastLabel: View>(
         _ isPresented: Binding<Bool>,
         variant: RadixToastVariant,
         position: RadixToastPosition,
         color: RadixAutoColor? = nil,
+        isInverted: Bool = false,
         duration: Int,
         buttonAction: @escaping () -> Void,
         buttonLabel: @escaping () -> ButtonLabel,
@@ -63,6 +66,7 @@ extension View {
                     variant: variant,
                     position: position,
                     color: color,
+                    isInverted: isInverted,
                     duration: duration,
                     buttonAction: buttonAction,
                     buttonLabel: buttonLabel,
@@ -70,7 +74,20 @@ extension View {
                 )
             )
     }
-    
+
+    /// Inverts the colors of a view based on the Environment's ColorScheme value
+    @ViewBuilder public func radixInvertedColorScheme(_ shouldInvert: Bool) -> some View {
+        if shouldInvert {
+            switch Environment(\.colorScheme).wrappedValue {
+                case .dark: self.environment(\.colorScheme, .light)
+                case .light: self.environment(\.colorScheme, .dark)
+                @unknown default: self
+            }
+        } else {
+            self
+        }
+    }
+
 }
 
 extension View where Self == Text {

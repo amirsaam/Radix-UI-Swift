@@ -16,6 +16,7 @@ public struct RadixToastModifier<ButtonLabel: View, ToastLabel: View>: ViewModif
     private var position: RadixToastPosition
     private var color: RadixAutoColor?
     private var duration: Int
+    private var isInverted: Bool
     private var buttonAction: (() -> Void)?
     private var buttonLabel: (() -> ButtonLabel)?
     @ViewBuilder private var toastLabel: () -> ToastLabel
@@ -29,9 +30,9 @@ public struct RadixToastModifier<ButtonLabel: View, ToastLabel: View>: ViewModif
                         Spacer()
                     }
                     if buttonAction != nil && buttonLabel != nil {
-                        actionToast
+                        actionToast.radixInvertedColorScheme(isInverted)
                     } else {
-                        infoToast
+                        infoToast.radixInvertedColorScheme(isInverted)
                     }
                     if position == .top {
                         Spacer()
@@ -84,6 +85,7 @@ extension RadixToastModifier {
         variant: RadixToastVariant,
         position: RadixToastPosition,
         color: RadixAutoColor?,
+        isInverted: Bool,
         duration: Int,
         buttonAction: @escaping () -> Void,
         buttonLabel: @escaping () -> ButtonLabel,
@@ -93,6 +95,7 @@ extension RadixToastModifier {
         self.variant = variant
         self.position = position
         self.color = color
+        self.isInverted = isInverted
         self.duration = duration
         self.buttonAction = buttonAction
         self.buttonLabel = buttonLabel
@@ -104,6 +107,7 @@ extension RadixToastModifier {
         variant: RadixToastVariant,
         position: RadixToastPosition,
         color: RadixAutoColor?,
+        isInverted: Bool,
         duration: Int,
         toastLabel: @escaping () -> ToastLabel
     ) where ButtonLabel == Never {
@@ -111,6 +115,7 @@ extension RadixToastModifier {
         self.variant = variant
         self.position = position
         self.color = color
+        self.isInverted = isInverted
         self.duration = duration
         self.toastLabel = toastLabel
     }
