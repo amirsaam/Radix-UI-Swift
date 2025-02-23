@@ -118,7 +118,9 @@ extension RadixToast {
 extension RadixToast {
 
     private var unwrappedColor: RadixAutoColor {
-        guard let color else { return .blue }
+        guard let color else {
+            return colorScheme == .light ? .blackA : .whiteA
+        }
         return color
     }
 
