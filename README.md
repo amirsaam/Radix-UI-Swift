@@ -2,7 +2,7 @@
 > Radix-UI is an open source library optimized for fast development, easy maintenance, and accessibility.
 
 [![Swift Version][swift-image]][swift-url]
-[![Last Release][latest-release-image]][releases-url]
+[![Last Release][latest-tag-image]][releases-url]
 [![Last Stable Release][latest-stable-image]][releases-url]
 [![Last Commit Date][last-commit-image]][commits-url]
 [![Contributors][contributors-image]][contributors-url]
