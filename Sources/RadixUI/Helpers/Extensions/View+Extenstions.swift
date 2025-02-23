@@ -78,11 +78,7 @@ extension View {
     /// Inverts the colors of a view based on the Environment's ColorScheme value
     @ViewBuilder public func radixInvertedColorScheme(_ shouldInvert: Bool) -> some View {
         if shouldInvert {
-            switch Environment(\.colorScheme).wrappedValue {
-                case .dark: self.environment(\.colorScheme, .light)
-                case .light: self.environment(\.colorScheme, .dark)
-                @unknown default: self
-            }
+            RadixColorSchemeInverter(content: self)
         } else {
             self
         }
