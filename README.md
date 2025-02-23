@@ -2,7 +2,7 @@
 > Radix-UI is an open source library optimized for fast development, easy maintenance, and accessibility.
 
 [![Swift Version][swift-image]][swift-url]
-[![Last Release][latest-release-image]][releases-url]
+[![Last Release][latest-tag-image]][releases-url]
 [![Last Stable Release][latest-stable-image]][releases-url]
 [![Last Commit Date][last-commit-image]][commits-url]
 [![Contributors][contributors-image]][contributors-url]
@@ -58,6 +58,10 @@ Text("RadixUI-Swift")
 
 **Important Note**: All RadixUI modifiers and styles are using `RadixAutoColor` enum
 
+**Most Important Note**: All Radix theme styles have a default dynamic Black on Light ColorScheme and White on Dark ColorScheme, so
+
+**DO NOT PASS `.whiteA` or `.blackA` TO RADIX MODIFIERS**
+
 ### Icons
 Use icons in `Image` with bundle name completely customizable in two ways
 ```swift
@@ -89,6 +93,7 @@ Text("New")
 
 ### Button
 RadixUI does have multiple ButtonStyles as: radixGhost, radixOutline, radixSoft, radixSolid and radixSurface
+
 **Note 1**: RadixUI buttons can have a loading state after press that does change the Button label's icon into a progress view until the boolean becomes `false` again.
 Examples:
 ```swift
@@ -426,7 +431,7 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 [swift-image]: https://badgen.net/static/Swift/5.5/orange
 [swift-url]: https://swift.org/
 
-[latest-release-image]: https://badgen.net/github/release/amirsaam/Radix-UI-Swift
+[latest-tag-image]: https://badgen.net/github/tag/amirsaam/radix-ui-swift
 [latest-stable-image]: https://badgen.net/github/release/amirsaam/Radix-UI-Swift/stable
 [releases-url]: https://github.com/amirsaam/Radix-UI-Swift/releases
 
