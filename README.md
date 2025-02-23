@@ -431,7 +431,7 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 [swift-image]: https://badgen.net/static/Swift/5.5/orange
 [swift-url]: https://swift.org/
 
-[latest-release-image]: https://badgen.net/github/release/amirsaam/Radix-UI-Swift
+[latest-tag-image]: https://badgen.net/github/tag/amirsaam/radix-ui-swift
 [latest-stable-image]: https://badgen.net/github/release/amirsaam/Radix-UI-Swift/stable
 [releases-url]: https://github.com/amirsaam/Radix-UI-Swift/releases
 
