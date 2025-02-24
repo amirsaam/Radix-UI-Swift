@@ -157,14 +157,16 @@ extension RadixToast {
                     variant: isBlackOrWhite ? .outline : .solid,
                     layout: .icon,
                     radius: .large,
-                    color: reversedBlackOrWhite
+                    color: reversedBlackOrWhite,
+                    frame: (maxWitdth: nil, minHeight: nil)
                 )
             case .surface:
                 return RadixButtonStyle(
                     variant: isBlackOrWhite ? .outline : .soft,
                     layout: .icon,
                     radius: .large,
-                    color: reversedBlackOrWhite
+                    color: reversedBlackOrWhite,
+                    frame: (maxWitdth: nil, minHeight: nil)
                 )
         }
     }

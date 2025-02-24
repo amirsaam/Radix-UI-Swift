@@ -26,8 +26,9 @@ extension ButtonStyle where Self == RadixButtonStyle {
         .init(
             variant: .custom,
             layout: .leading,
-            radius: .full,
-            color: .blackA
+            radius: .none,
+            color: nil,
+            frame: (nil, nil)
         )
     }
 
@@ -40,59 +41,68 @@ extension ButtonStyle where Self == RadixButtonStyle {
             variant: .ghost,
             layout: layout,
             radius: radius,
-            color: color
+            color: color,
+            frame: (nil, nil)
         )
     }
 
     public static func radixOutline(
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
-        color: RadixAutoColor? = nil
+        color: RadixAutoColor? = nil,
+        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             variant: .outline,
             layout: layout,
             radius: radius,
-            color: color
+            color: color,
+            frame: frame
         )
     }
 
     public static func radixSoft(
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
-        color: RadixAutoColor? = nil
+        color: RadixAutoColor? = nil,
+        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             variant: .soft,
             layout: layout,
             radius: radius,
-            color: color
+            color: color,
+            frame: frame
         )
     }
 
     public static func radixSolid(
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
-        color: RadixAutoColor? = nil
+        color: RadixAutoColor? = nil,
+        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             variant: .solid,
             layout: layout,
             radius: radius,
-            color: color
+            color: color,
+            frame: frame
         )
     }
 
     public static func radixSurface(
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
-        color: RadixAutoColor? = nil
+        color: RadixAutoColor? = nil,
+        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             variant: .surface,
             layout: layout,
             radius: radius,
-            color: color
+            color: color,
+            frame: frame
         )
     }
 }

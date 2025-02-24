@@ -19,6 +19,7 @@ public struct RadixButtonLabelStyle: LabelStyle {
     private var layout: RadixButtonLayout
     private var radius: RadixElementShapeRadius
     private var color: RadixAutoColor
+    private var frame: (maxWitdth: CGFloat?, minHeight: CGFloat?)
 
     init(
         isLoading: Binding<Bool>,
@@ -27,7 +28,8 @@ public struct RadixButtonLabelStyle: LabelStyle {
         variant: RadixButtonVariant,
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
-        color: RadixAutoColor
+        color: RadixAutoColor,
+        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?)
     ) {
         self.isLoading = isLoading
         self.isPressed = isPressed
@@ -36,6 +38,7 @@ public struct RadixButtonLabelStyle: LabelStyle {
         self.layout = layout
         self.radius = radius
         self.color = color
+        self.frame = frame
     }
 
     public func makeBody(configuration: Configuration) -> some View {
@@ -54,8 +57,10 @@ public struct RadixButtonLabelStyle: LabelStyle {
             }
         }
         .foregroundStyle(fgColor)
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding(.horizontal, frame == (nil, nil) ? 12 : 0)
+        .padding(.vertical, frame == (nil, nil) ? 8 : 0)
+        .frame(maxWidth: frame.maxWitdth, minHeight: frame.minHeight)
+        .contentShape(Rectangle())
         .background(shape)
         .opacity(opacityValue)
         .scaleEffect(isPressed ? 0.98 : 1)

@@ -17,17 +17,21 @@ public struct RadixButtonStyle: ButtonStyle {
     private var layout: RadixButtonLayout
     private var radius: RadixElementShapeRadius
     private var color: RadixAutoColor?
+    private var frame: (maxWitdth: CGFloat?, minHeight: CGFloat?)
+
 
     init(
         variant: RadixButtonVariant,
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
-        color: RadixAutoColor?
+        color: RadixAutoColor?,
+        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?)
     ) {
         self.variant = variant
         self.layout = layout
         self.radius = radius
         self.color = color
+        self.frame = frame
     }
 
     private var unwrappedColor: RadixAutoColor {
@@ -42,6 +46,7 @@ public struct RadixButtonStyle: ButtonStyle {
             case .custom:
                 configuration.label
                     .opacity(isEnabled ? 1.0 : 0.6)
+                    .contentShape(Rectangle())
                     .scaleEffect(configuration.isPressed ? 0.98 : 1)
                     .animation(
                         .easeIn(duration: 0.2),
@@ -57,7 +62,8 @@ public struct RadixButtonStyle: ButtonStyle {
                             color: unwrappedColor,
                             layout: layout,
                             radius: radius,
-                            variant: variant
+                            variant: variant,
+                            frame: frame
                         )
                     )
         }

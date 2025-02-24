@@ -167,14 +167,16 @@ extension RadixTextFieldStyle {
                     variant: .solid,
                     layout: .icon,
                     radius: radius,
-                    color: color
+                    color: color,
+                    frame: (maxWitdth: nil, minHeight: nil)
                 )
             case .surface:
                 return RadixButtonStyle(
                     variant: .soft,
                     layout: .icon,
                     radius: radius,
-                    color: color
+                    color: color,
+                    frame: (maxWitdth: nil, minHeight: nil)
                 )
         }
     }

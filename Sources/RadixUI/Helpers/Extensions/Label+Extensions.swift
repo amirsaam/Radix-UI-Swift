@@ -42,7 +42,8 @@ extension LabelStyle where Self == RadixButtonLabelStyle {
         color: RadixAutoColor,
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
-        variant: RadixButtonVariant
+        variant: RadixButtonVariant,
+        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             isLoading: isLoading,
@@ -51,7 +52,8 @@ extension LabelStyle where Self == RadixButtonLabelStyle {
             variant: variant,
             layout: layout,
             radius: radius,
-            color: color
+            color: color,
+            frame: frame
         )
     }
 
