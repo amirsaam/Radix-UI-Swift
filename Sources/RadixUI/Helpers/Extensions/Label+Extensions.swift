@@ -43,7 +43,7 @@ extension LabelStyle where Self == RadixButtonLabelStyle {
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
         variant: RadixButtonVariant,
-        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
+        frame: (maxWidth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             isLoading: isLoading,

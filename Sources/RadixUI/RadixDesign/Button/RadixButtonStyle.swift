@@ -17,7 +17,8 @@ public struct RadixButtonStyle: ButtonStyle {
     private var layout: RadixButtonLayout
     private var radius: RadixElementShapeRadius
     private var color: RadixAutoColor?
-    private var frame: (maxWitdth: CGFloat?, minHeight: CGFloat?)
+    private var frame: (maxWidth: CGFloat?, minHeight: CGFloat?)
+
 
 
     init(
@@ -25,7 +26,7 @@ public struct RadixButtonStyle: ButtonStyle {
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
         color: RadixAutoColor?,
-        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?)
+        frame: (maxWidth: CGFloat?, minHeight: CGFloat?)
     ) {
         self.variant = variant
         self.layout = layout

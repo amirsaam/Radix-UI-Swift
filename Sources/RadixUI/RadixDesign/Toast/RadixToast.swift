@@ -158,7 +158,7 @@ extension RadixToast {
                     layout: .icon,
                     radius: .large,
                     color: reversedBlackOrWhite,
-                    frame: (maxWitdth: nil, minHeight: nil)
+                    frame: (nil, nil)
                 )
             case .surface:
                 return RadixButtonStyle(
@@ -166,7 +166,7 @@ extension RadixToast {
                     layout: .icon,
                     radius: .large,
                     color: reversedBlackOrWhite,
-                    frame: (maxWitdth: nil, minHeight: nil)
+                    frame: (nil, nil)
                 )
         }
     }

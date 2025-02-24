@@ -50,7 +50,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
         color: RadixAutoColor? = nil,
-        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
+        frame: (maxWidth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             variant: .outline,
@@ -65,7 +65,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
         color: RadixAutoColor? = nil,
-        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
+        frame: (maxWidth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             variant: .soft,
@@ -80,7 +80,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
         color: RadixAutoColor? = nil,
-        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
+        frame: (maxWidth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             variant: .solid,
@@ -95,7 +95,7 @@ extension ButtonStyle where Self == RadixButtonStyle {
         layout: RadixButtonLayout,
         radius: RadixElementShapeRadius,
         color: RadixAutoColor? = nil,
-        frame: (maxWitdth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
+        frame: (maxWidth: CGFloat?, minHeight: CGFloat?) = (nil, nil)
     ) -> Self {
         .init(
             variant: .surface,
