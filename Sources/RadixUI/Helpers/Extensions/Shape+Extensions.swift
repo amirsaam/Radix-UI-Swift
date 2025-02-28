@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+// AnyShape compatibility for earlier iOS versions than iOS16
+public struct PortedAnyShape: Shape, @unchecked Sendable {
+
+    private let pathClosure: (CGRect) -> Path
+
+    init<S: Shape>(_ shape: S) {
+        self.pathClosure = { rect in shape.path(in: rect) }
+    }
+
+    public func path(in rect: CGRect) -> Path {
+        pathClosure(rect)
+    }
+
+}
+
 //MARK: - Slider Thumb Shape Modifiers
 extension Shape {
 

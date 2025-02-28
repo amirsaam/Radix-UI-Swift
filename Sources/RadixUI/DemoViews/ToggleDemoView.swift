@@ -33,7 +33,11 @@ struct ToggleDemoView: View {
             RadixRadioGroup(
                 options: options,
                 selected: $selectedOption,
-                style: (variant: .surface, layout: .trailing, color: .grass)
+                style: (
+                    variant: .surface,
+                    layout: .trailing,
+                    color: .grass
+                )
             ) {
                 Text($0.title)
                     .foregroundStyle(radixColor.grass.text2)

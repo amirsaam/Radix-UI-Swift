@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-// MARK: -
+// MARK: - Dismiss Direction Enum
 public enum DismissSwipeDirection {
     case up, down
 }
@@ -16,6 +16,35 @@ public enum DismissSwipeDirection {
 // MARK: - Globally used Enums in RadixUI Elements
 public enum RadixElementShapeRadius {
     case none, large, full
+}
+
+//MARK: - Enums Used in RadixAvatar
+public enum RadixAvatarFallbackType {
+    case name, icon
+}
+
+public enum RadixAvatarVariant {
+    case soft, solid
+}
+
+public enum RadixAvatarSize: CGFloat {
+    case small, medium, large
+
+    var frame: CGFloat {
+        switch self {
+            case .small: return 48
+            case .medium: return 80
+            case .large: return 128
+        }
+    }
+
+    var radius: CGFloat {
+        switch self {
+            case .small: return 12
+            case .medium: return 16
+            case .large: return 20
+        }
+    }
 }
 
 // MARK: - Enums used in RadixBadge
