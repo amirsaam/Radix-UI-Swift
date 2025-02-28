@@ -49,7 +49,7 @@ Text("RadixUI-Swift")
 In order to use your own custom color pallete head to [Radix Pallete Generator](https://www.radix-ui.com/colors/custom) and create your pallete and add them to your Asset Catalogue in 12 level named in this way for example: MyColor1, MyColor2, MyColor3, MyColor4, MyColor5, ... MyColor12 then using RadixAutoColor's `.custom` property:
 ```swift
 private var color: RadixAutoColor = .custom("myColor")
- // Reads all 12 levels of your custom pallete using the color's child variables.
+// Reads all 12 levels of your custom pallete using the color's child variables.
 // It will automatically capitalize the first letter for you.
 
 Text("RadixUI-Swift")
@@ -79,6 +79,32 @@ ResizableBundledImage(imageName: "vercel-logo", imageSize: 20, bundle: .radixUI)
 For using in `Label` use the built-in extension that uses `ResizableBundledImage`:
 ```swift
 Label("Vercel", imageName: "vercel-logo", imageSize: 20, bundle: .radixUI)
+```
+
+### Avatar
+To create an Radix-themed Avatar loader you can use this View that loads the image from url using built-in SwiftUI's `AsyncImage`:
+```swift
+// for person's name abbreviation placeholder/fallback, it will automatically abbreviate the full name
+RadixAvatar(
+    url: URL(string: "urlToImage"),
+    name: "Passed Name",
+    variant: .soft,
+    size: .small,
+    radius: .large,
+    color: .grass
+)
+// or for person icon placeholder/fallback
+RadixAvatar(
+    url: URL(string: "urlToImage"),
+    variant: .solid,
+    size: .medium,
+    radius: .none,
+    color: .grass
+)
+
+// variant: soft, solid
+// size: small, medium, large
+// radius: none, large, full
 ```
 
 ### Badge
