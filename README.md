@@ -156,7 +156,10 @@ Button(action: functionName) {
     .radixOutline(
         layout: .leading,
         radius: .large,
-        color: .grass
+        color: .grass,
+        // you can pass your custom size into the button in here or completely ignore it
+        // in order to have it scaled based on button label's content
+        frame: (maxWidth: maxWidth, minHeight: minHeight)
     ),
     isLoading: $isLoading
 // or
@@ -178,8 +181,8 @@ Button(action: functionName) {
         layout: .leading,
         radius: .large,
         color: .grass
-    ),
-    isLoading: .constant(false) // for disabling the loading state change
+    )
+// you completely ignore passing `isLoading` to the button style if you don't want to utilize the loading state
 )
 // layout: icon, title, leading, trailing
 // radius: none, large, full
